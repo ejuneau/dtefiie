@@ -1,8 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://cimpqytdnwe88"]
+[gd_scene load_steps=13 format=3 uid="uid://cimpqytdnwe88"]
 
 [ext_resource type="Script" path="res://clipboard.gd" id="1_isb6y"]
+[ext_resource type="Texture2D" uid="uid://cbsesq2emq5va" path="res://assets/images/puppies.jpg" id="2_c7vxg"]
+[ext_resource type="Texture2D" uid="uid://yc703mkt2luw" path="res://assets/textures/bec-r-cFnDFeQianA-unsplash.jpg" id="2_yku67"]
+[ext_resource type="FontFile" uid="uid://curgdoaj3yxfs" path="res://assets/fonts/VT323-Regular.ttf" id="3_mncxb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d2w85"]
+albedo_texture = ExtResource("2_yku67")
+uv1_scale = Vector3(1.995, 1.995, 1.995)
 
 [sub_resource type="BoxMesh" id="BoxMesh_2wt8b"]
+material = SubResource("StandardMaterial3D_d2w85")
 size = Vector3(0.21, 0.297, 0.01)
 
 [sub_resource type="Animation" id="Animation_uyvm2"]
@@ -186,6 +194,13 @@ _data = {
 "RESET": SubResource("Animation_0g8lp")
 }
 
+[sub_resource type="QuadMesh" id="QuadMesh_ih10s"]
+size = Vector2(0.05, 0.05)
+center_offset = Vector3(0, 0, 0.01)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r4osk"]
+albedo_texture = ExtResource("2_c7vxg")
+
 [node name="Clipboard" type="Node3D"]
 script = ExtResource("1_isb6y")
 
@@ -199,18 +214,163 @@ libraries = {
 }
 speed_scale = 1.867
 
-[node name="Label3D" type="Label3D" parent="MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09, 0, 0.01)
+[node name="Image" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 1.49012e-08, 0, -1.49012e-08, 1, 0, -2.98023e-08, 2.98023e-08, 1, -0.065, 0.08, 0)
+mesh = SubResource("QuadMesh_ih10s")
+surface_material_override/0 = SubResource("StandardMaterial3D_r4osk")
+
+[node name="Image2" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 1.49012e-08, 0, -1.49012e-08, 1, 0, -2.98023e-08, 2.98023e-08, 1, -0.065, 0.08, 0)
+mesh = SubResource("QuadMesh_ih10s")
+surface_material_override/0 = SubResource("StandardMaterial3D_r4osk")
+
+[node name="Name" type="Label3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.035, 0.1, 0.01)
 pixel_size = 0.001
-outline_modulate = Color(1, 1, 1, 1)
-text = "NAME: Joe
-SAFETY: Meh
-Description:
-[REDACTED]
-❎             ✅"
-font_size = 28
-outline_size = 1
+modulate = Color(0, 0, 0, 1)
+text = "NAME: Just a bunch of puppies"
+font = ExtResource("3_mncxb")
+font_size = 11
+outline_size = 0
+horizontal_alignment = 0
+
+[node name="Safety" type="Label3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.035, 0.08, 0.01)
+pixel_size = 0.001
+modulate = Color(0, 0, 0, 1)
+text = "SAFETY: [unknown]"
+font = ExtResource("3_mncxb")
+font_size = 12
+outline_size = 0
 horizontal_alignment = 0
 width = 210.0
 
+[node name="Description" type="Label3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01, 0.015, 0.01)
+pixel_size = 0.001
+offset = Vector2(-82, 29.13)
+modulate = Color(0, 0, 0, 1)
+text = "DESCRIPTION:
+Puppies are not the cutest animal in the world, however they do have a special place in the hearts of facility staff. They are likely not too dangerous, and as a matter of fact have been ranked less deadly than influenza, which has killed 30 active facility members in the last year.
+"
+font = ExtResource("3_mncxb")
+font_size = 11
+outline_size = 0
+horizontal_alignment = 0
+vertical_alignment = 0
+autowrap_mode = 2
+width = 190.0
+
+[node name="Blackout" type="Label3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01, 0.015, 0.01)
+pixel_size = 0.001
+offset = Vector2(-47.37, 21.845)
+modulate = Color(0, 0, 0, 1)
+font = ExtResource("3_mncxb")
+font_size = 11
+outline_size = 0
+horizontal_alignment = 0
+vertical_alignment = 0
+autowrap_mode = 2
+width = 190.0
+
+[node name="Assessment" type="Label3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 2.98023e-08, 1, -0.09, -0.07, 0.01)
+pixel_size = 0.001
+offset = Vector2(0, 11.36)
+modulate = Color(0, 0, 0, 1)
+text = "ASSESSMENT:  (check one)
+Does the entity fit in its enclosure?
+"
+font = ExtResource("3_mncxb")
+font_size = 12
+outline_size = 0
+horizontal_alignment = 0
+vertical_alignment = 0
+width = 210.0
+
+[node name="Yes" type="Label3D" parent="MeshInstance3D/Assessment"]
+transform = Transform3D(1, 1.49012e-08, 0, -1.49012e-08, 1, -2.98023e-08, -2.98023e-08, 0, 1, 0, 0, 0)
+pixel_size = 0.001
+offset = Vector2(16.36, -50)
+modulate = Color(0, 0, 0, 1)
+text = "\"YES\""
+font = ExtResource("3_mncxb")
+font_size = 12
+outline_size = 0
+horizontal_alignment = 0
+vertical_alignment = 0
+width = 210.0
+
+[node name="Yes Box" type="Label3D" parent="MeshInstance3D/Assessment"]
+transform = Transform3D(1, 1.49012e-08, 0, -1.49012e-08, 1, -2.98023e-08, -2.98023e-08, 0, 1, 0, 0, 0)
+pixel_size = 0.001
+offset = Vector2(16.865, -27.925)
+modulate = Color(0, 0, 0, 1)
+text = "☐"
+font = ExtResource("3_mncxb")
+font_size = 27
+outline_size = 0
+horizontal_alignment = 0
+vertical_alignment = 0
+width = 210.0
+
+[node name="Yes Tick" type="Label3D" parent="MeshInstance3D/Assessment/Yes Box"]
+transform = Transform3D(1, 2.98023e-08, -2.98023e-08, 0, 1, 0, -2.98023e-08, 2.98023e-08, 1, 0, 0, 0)
+visible = false
+pixel_size = 0.001
+offset = Vector2(18.65, -27.925)
+modulate = Color(0, 0, 0, 1)
+text = "✓"
+font = ExtResource("3_mncxb")
+font_size = 27
+outline_size = 0
+horizontal_alignment = 0
+vertical_alignment = 0
+width = 210.0
+
+[node name="No" type="Label3D" parent="MeshInstance3D/Assessment"]
+transform = Transform3D(1, 1.49012e-08, 0, -1.49012e-08, 1, -2.98023e-08, -2.98023e-08, 0, 1, 0, 0, 0)
+pixel_size = 0.001
+offset = Vector2(135, -50)
+modulate = Color(0, 0, 0, 1)
+text = "\"NO\"
+"
+font = ExtResource("3_mncxb")
+font_size = 12
+outline_size = 0
+horizontal_alignment = 0
+vertical_alignment = 0
+width = 210.0
+
+[node name="No Box" type="Label3D" parent="MeshInstance3D/Assessment"]
+transform = Transform3D(1, 4.47035e-08, 0, -2.98023e-08, 1, -5.96046e-08, -2.98023e-08, 0, 1, 0, 0, 0)
+pixel_size = 0.001
+offset = Vector2(133.64, -27.925)
+modulate = Color(0, 0, 0, 1)
+text = "☐"
+font = ExtResource("3_mncxb")
+font_size = 27
+outline_size = 0
+horizontal_alignment = 0
+vertical_alignment = 0
+width = 210.0
+
+[node name="No Tick" type="Label3D" parent="MeshInstance3D/Assessment/No Box"]
+transform = Transform3D(1, 1.49012e-08, -2.98023e-08, -1.49012e-08, 1, 0, -2.98023e-08, 0, 1, 0, 0, 0)
+visible = false
+pixel_size = 0.001
+offset = Vector2(135.255, -21.855)
+modulate = Color(0, 0, 0, 1)
+text = "╳"
+font = ExtResource("3_mncxb")
+font_size = 19
+outline_size = 0
+horizontal_alignment = 0
+vertical_alignment = 0
+width = 210.0
+
 [node name="AnimationTree" type="AnimationTree" parent="MeshInstance3D"]
+
+[node name="debug camera" type="Camera3D" parent="."]
+transform = Transform3D(0.793353, 0.230998, -0.563232, 0, 0.92521, 0.379456, 0.608761, -0.301043, 0.734018, 0.0901148, -0.17, -0.035)

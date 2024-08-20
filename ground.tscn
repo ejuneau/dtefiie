@@ -1,4 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://xed5a2r5d4ae"]
+[gd_scene load_steps=4 format=3 uid="uid://xed5a2r5d4ae"]
+
+[ext_resource type="Script" path="res://ground.gd" id="1_h4nva"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_avguv"]
 size = Vector2(12, 15)
@@ -8,6 +10,7 @@ data = PackedVector3Array(10, 0, 10, -10, 0, 10, 10, 0, -10, -10, 0, 10, -10, 0,
 
 [node name="ground" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+script = ExtResource("1_h4nva")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_avguv")

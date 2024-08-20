@@ -1,5 +1,6 @@
 extends CharacterBody3D
 
+signal step_taken(type)
 
 @export_category("Movement Variables")
 @export var SPEED = 5.0
@@ -64,6 +65,8 @@ var lastYVelocity : float
 
 var HandOffsetPosition: Vector3;
 
+var landing : bool
+
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -119,11 +122,9 @@ func _physics_process(delta: float) -> void:
 	if walkingSway_CurrentValue > 0:
 		var stepSpeed: float = delta * WalkingSway_StepsPerSecond
 		var stepBounce: float = (EaseInOutSine(-1.0, 1.0, timeSinceStarted * stepSpeed * 2.0 + 0.2) * -1.0 * WalkingSway_MaxSwayHandsHeight)
-		print(stepBounce, " ", WalkingSway_MaxSwayHandsHeight)
 		if (stepBounce == WalkingSway_MaxSwayHandsHeight ):
 			#sound effect for stepping
-			print("step")
-			$FootstepPlayer.play()
+			step_taken.emit()
 			pass
 			
 			
@@ -142,6 +143,16 @@ func _physics_process(delta: float) -> void:
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+	
+	# Play sound when landing jump
+	if is_on_floor():
+		if landing:
+			$JumpPlayer.play()
+			$FootstepPlayer.play()
+			landing = false
+	else:
+		if !landing:
+			landing = true
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -175,3 +186,9 @@ func _on_clipboard_raised() -> void:
 
 func _on_clipboard_lowered() -> void:
 	clipboard_up = false
+	
+func _on_step_taken(type = "step") -> void:
+	if type == "step" :
+		$FootstepPlayer.play()
+	elif type == "jump":
+		$JumpPlayer.play()

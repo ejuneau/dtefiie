@@ -1,6 +1,7 @@
 Based on a dream by Eve Juneau
 
 All assets are used under Creative Commons License
+All fonts are used under Open Font License
 
 
 Shaders
