@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://dw35bffcddcbw"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_avguv"]
+size = Vector2(9, 12)
+
+[sub_resource type="Shader" id="Shader_nhcuq"]
+code = "shader_type spatial;
+
+void vertex() {
+	// Called for every vertex the material is visible on.
+}
+
+void fragment() {
+	// Called for every pixel the material is visible on.
+}
+
+//void light() {
+	// Called for every pixel for every light affecting the material.
+	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g20gc"]
+render_priority = 0
+shader = SubResource("Shader_nhcuq")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_hfqyf"]
+data = PackedVector3Array(4.5, 0, 6, -4.5, 0, 6, 4.5, 0, -6, -4.5, 0, 6, -4.5, 0, -6, 4.5, 0, -6)
+
+[node name="Wall 12m" type="Node3D"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 6, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 0)
+mesh = SubResource("PlaneMesh_avguv")
+surface_material_override/0 = SubResource("ShaderMaterial_g20gc")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_hfqyf")

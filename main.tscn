@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://cclw1wvrcc5s7"]
+
+[ext_resource type="PackedScene" uid="uid://ce7hf8flai85b" path="res://player.tscn" id="2_b3486"]
+[ext_resource type="Shader" path="res://retropixel.gdshader" id="3_3p64c"]
+[ext_resource type="PackedScene" uid="uid://6jc0oj15ibsk" path="res://containment_chamber.tscn" id="3_ohpg2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_huvq6"]
+shader = ExtResource("3_3p64c")
+shader_parameter/shake = 0.015
+shader_parameter/noiseQuality = 250.0
+shader_parameter/noiseIntensity = 0.001
+shader_parameter/offsetIntensity = 0.0045
+shader_parameter/colorOffsetIntensity = 0.2
+shader_parameter/pixelSize = 605.284
+shader_parameter/grainIntensity = 0.082
+shader_parameter/use_overlay = true
+shader_parameter/use_lens_distortion = true
+shader_parameter/overlay_color = Color(1, 1, 1, 10)
+shader_parameter/lens_distortion_strength = 0.007
+
+[node name="Main" type="Node"]
+
+[node name="Player" parent="." instance=ExtResource("2_b3486")]
+
+[node name="Containment Chamber" parent="." instance=ExtResource("3_ohpg2")]
+
+[node name="Perfect Pixel Effects" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_huvq6")
+offset_right = 7814.0
+offset_bottom = 3611.0
+mouse_filter = 2
+color = Color(1, 1, 1, 0)

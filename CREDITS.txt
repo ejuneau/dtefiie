@@ -1,0 +1,24 @@
+Based on a dream by Eve Juneau
+
+All assets are used under Creative Commons License
+
+
+Shaders
+
+Perfect Retro Pixel Shader - Godot 4 by ReVybes
+https://godotshaders.com/shader/perfect-retro-pixel-shader-godot-4/
+
+
+Sounds
+
+Forcefield Hum.wav by Zeraora
+https://freesound.org/people/Zeraora/sounds/702631/
+
+Foley_Mechanism_Light_Buzz_Short_Loop_Mono_DR05.wav by Nox_Sound
+https://freesound.org/people/Nox_Sound/sounds/553075/
+
+Electricity Sound by Duasun
+https://freesound.org/people/Duasun/sounds/712127/
+
+Fridge buzz (loop) by Matislav
+https://freesound.org/people/Matislav/sounds/524598/

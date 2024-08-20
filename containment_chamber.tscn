@@ -1,0 +1,66 @@
+[gd_scene load_steps=10 format=3 uid="uid://6jc0oj15ibsk"]
+
+[ext_resource type="Script" path="res://containment_chamber.gd" id="1_ijjuw"]
+[ext_resource type="PackedScene" uid="uid://xed5a2r5d4ae" path="res://ground.tscn" id="1_kkm7v"]
+[ext_resource type="PackedScene" uid="uid://dvbjel3xsvehr" path="res://wall15.tscn" id="2_7e4dd"]
+[ext_resource type="PackedScene" uid="uid://dw35bffcddcbw" path="res://wall12.tscn" id="3_ua1q1"]
+[ext_resource type="AudioStream" uid="uid://o7lrn6u0stb6" path="res://assets/sound/702631__zeraora__forcefield-hum.wav" id="4_syimf"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_0wjx5"]
+height = 0.431
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nklpr"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_ofdmj"]
+sky_material = SubResource("ProceduralSkyMaterial_nklpr")
+
+[sub_resource type="Environment" id="Environment_8ix4w"]
+background_mode = 2
+sky = SubResource("Sky_ofdmj")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Containment Chamber" type="Node3D"]
+script = ExtResource("1_ijjuw")
+
+[node name="Ground" parent="." instance=ExtResource("1_kkm7v")]
+
+[node name="Right Wall" parent="." instance=ExtResource("2_7e4dd")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 4, 6, -8)
+
+[node name="Left Wall" parent="." instance=ExtResource("2_7e4dd")]
+transform = Transform3D(4.37114e-08, 1, -8.74228e-08, 1, -4.37114e-08, 0, -3.82137e-15, -8.74228e-08, -1, -4, 6, 0)
+
+[node name="Near Wall" parent="." instance=ExtResource("3_ua1q1")]
+transform = Transform3D(1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, 0, 6, 3.5)
+
+[node name="Door" type="MeshInstance3D" parent="Near Wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 4.23516e-22, 0, 1, -4, 0.131927, 5.76672e-09)
+mesh = SubResource("CylinderMesh_0wjx5")
+
+[node name="DoorHum" type="AudioStreamPlayer3D" parent="Near Wall/Door"]
+stream = ExtResource("4_syimf")
+volume_db = -16.129
+unit_size = 0.74
+max_db = 0.097
+autoplay = true
+
+[node name="Far Wall" parent="." instance=ExtResource("3_ua1q1")]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0, 6, -6.5)
+
+[node name="Ceiling" parent="." instance=ExtResource("1_kkm7v")]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 5, -4)
+
+[node name="Environment" type="Node" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_8ix4w")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+light_energy = 0.063
+shadow_enabled = true
+
+[connection signal="finished" from="Near Wall/Door/DoorHum" to="." method="_on_door_hum_finished"]

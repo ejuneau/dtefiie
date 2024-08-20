@@ -1,0 +1,87 @@
+[gd_scene load_steps=27 format=3 uid="uid://ce7hf8flai85b"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_rpfpw"]
+[ext_resource type="PackedScene" uid="uid://cimpqytdnwe88" path="res://clipboard.tscn" id="2_cv7uu"]
+[ext_resource type="AudioStream" uid="uid://cl088q7y5jlsq" path="res://assets/sound/footsteps/footstep1.mp3" id="3_y4nxi"]
+[ext_resource type="AudioStream" uid="uid://d0ndj6s2g7i1h" path="res://assets/sound/footsteps/footstep2.mp3" id="4_6v2yt"]
+[ext_resource type="AudioStream" uid="uid://cdj3yilheeuyk" path="res://assets/sound/footsteps/footstep11.mp3" id="5_6gfky"]
+[ext_resource type="AudioStream" uid="uid://csepyvmjj1u5f" path="res://assets/sound/footsteps/footstep12.mp3" id="6_7fkjm"]
+[ext_resource type="AudioStream" uid="uid://benolathu7m7v" path="res://assets/sound/footsteps/footstep13.mp3" id="7_ac181"]
+[ext_resource type="AudioStream" uid="uid://ct8ptdasi2u3t" path="res://assets/sound/footsteps/footstep14.mp3" id="8_3c3wr"]
+[ext_resource type="AudioStream" uid="uid://b0e0xf5mrlwb0" path="res://assets/sound/footsteps/footstep15.mp3" id="9_0v2eo"]
+[ext_resource type="AudioStream" uid="uid://c7bqpdoypkwsx" path="res://assets/sound/footsteps/footstep16.mp3" id="10_s2rpa"]
+[ext_resource type="AudioStream" uid="uid://cwngec8fhnu0h" path="res://assets/sound/footsteps/footstep17.mp3" id="11_p1768"]
+[ext_resource type="AudioStream" uid="uid://bnxl3x33oewge" path="res://assets/sound/footsteps/footstep18.mp3" id="12_v4chf"]
+[ext_resource type="AudioStream" uid="uid://clqubv15rcgmr" path="res://assets/sound/footsteps/footstep19.mp3" id="13_vrpgn"]
+[ext_resource type="AudioStream" uid="uid://cres5dt4h45d" path="res://assets/sound/footsteps/footstep20.mp3" id="14_0kluh"]
+[ext_resource type="AudioStream" uid="uid://cmnniut7e13uh" path="res://assets/sound/footsteps/footstep3.mp3" id="15_xoye5"]
+[ext_resource type="AudioStream" uid="uid://gf3vny2t1rjo" path="res://assets/sound/footsteps/footstep4.mp3" id="16_hq5pa"]
+[ext_resource type="AudioStream" uid="uid://d3cv3hve6dlga" path="res://assets/sound/footsteps/footstep5.mp3" id="17_2meca"]
+[ext_resource type="AudioStream" uid="uid://brf24mfl1g41v" path="res://assets/sound/footsteps/footstep6.mp3" id="18_xgndd"]
+[ext_resource type="AudioStream" uid="uid://bw7aqyde87uhn" path="res://assets/sound/footsteps/footstep7.mp3" id="19_jeca2"]
+[ext_resource type="AudioStream" uid="uid://by40w3v1osfp4" path="res://assets/sound/footsteps/footstep8.mp3" id="20_mupa5"]
+[ext_resource type="AudioStream" uid="uid://hpouru8ls7dl" path="res://assets/sound/footsteps/footstep9.mp3" id="21_qnodw"]
+[ext_resource type="AudioStream" uid="uid://ikonawnc53uk" path="res://assets/sound/footsteps/footstep10.mp3" id="22_oxmye"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_7lhf8"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_4wqt8"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_wxlij"]
+points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607, 0.498884, 0.169713, 0.559144, 0.464172, 0.231051, -0.803591, 0.320455, 0.40741, 0.651043, -0.243523, -0.482789, 0.594843, 0.0822132, -0.362868, -0.682312, 0.289697, 0.469044, -0.654529, -0.0662713, -0.127444, 0.842701, -0.338103, -0.393435, -0.683942, -0.244717, 0.438255, 0.623309, 0.200849, 0.0841477, 0.977454, 0.114795, -0.0682023, -0.976458, -0.12927, 0.20055, -0.563129, -0.451454, -0.185527, 0.595453, -0.453475, -0.273363, 0.592268, 0.407754, -0.00693649, -0.476823, 0.49966, 0.375821, -0.588614, 0.316955, 0.111579, 0.563059, -0.481177, -0.41725, 0.527866, -0.270497, -0.484546, -0.596972, -0.0665097, -0.279747, 0.908561, 0.0533361, -0.250197, -0.880712, 0.205319, 0.263647, -0.902771, -0.127394, 0.293368, 0.871526, -0.157196, 0.373412, -0.526319, -0.328246, 0.499663, 0.476641, -0.00688856, 0.0531056, 0.875001, 0.324703, -0.154543, -0.590854, 0.465879, -0.0972799, -0.782358, -0.398188, -0.387649, -0.498171, 0.31565, -0.30068, -0.587995, -0.388901)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_frxnh"]
+streams_count = 20
+stream_0/stream = ExtResource("3_y4nxi")
+stream_1/stream = ExtResource("4_6v2yt")
+stream_2/stream = ExtResource("15_xoye5")
+stream_3/stream = ExtResource("16_hq5pa")
+stream_4/stream = ExtResource("17_2meca")
+stream_5/stream = ExtResource("18_xgndd")
+stream_6/stream = ExtResource("19_jeca2")
+stream_7/stream = ExtResource("20_mupa5")
+stream_8/stream = ExtResource("21_qnodw")
+stream_9/stream = ExtResource("22_oxmye")
+stream_10/stream = ExtResource("5_6gfky")
+stream_11/stream = ExtResource("6_7fkjm")
+stream_12/stream = ExtResource("7_ac181")
+stream_13/stream = ExtResource("8_3c3wr")
+stream_14/stream = ExtResource("9_0v2eo")
+stream_15/stream = ExtResource("10_s2rpa")
+stream_16/stream = ExtResource("11_p1768")
+stream_17/stream = ExtResource("12_v4chf")
+stream_18/stream = ExtResource("13_vrpgn")
+stream_19/stream = ExtResource("14_0kluh")
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("CameraNode", "CameraActual", "ClipboardNode")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07633, 0)
+script = ExtResource("1_rpfpw")
+CameraNode = NodePath("Neck")
+CameraActual = NodePath("Neck/Camera3D")
+ClipboardNode = NodePath("Neck/Camera3D/Clipboard Container/Clipboard")
+CameraShake_Noise = SubResource("FastNoiseLite_7lhf8")
+WalkingSway_StepsPerSecond = 2.0
+WalkingSway_MaxSwayDistance = 0.005
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_4wqt8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_wxlij")
+
+[node name="Neck" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.667108, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Neck"]
+
+[node name="Clipboard Container" type="Node3D" parent="Neck/Camera3D"]
+
+[node name="Clipboard" parent="Neck/Camera3D/Clipboard Container" instance=ExtResource("2_cv7uu")]
+
+[node name="FootstepPlayer" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_frxnh")
+volume_db = -13.038
+unit_size = 3.15
+
+[connection signal="clipboard_lowered" from="Neck/Camera3D/Clipboard Container/Clipboard" to="." method="_on_clipboard_lowered"]
+[connection signal="clipboard_raised" from="Neck/Camera3D/Clipboard Container/Clipboard" to="." method="_on_clipboard_raised"]

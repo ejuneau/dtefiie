@@ -1,0 +1,216 @@
+[gd_scene load_steps=7 format=3 uid="uid://cimpqytdnwe88"]
+
+[ext_resource type="Script" path="res://clipboard.gd" id="1_isb6y"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_2wt8b"]
+size = Vector3(0.21, 0.297, 0.01)
+
+[sub_resource type="Animation" id="Animation_uyvm2"]
+resource_name = "Hold Up"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0.263, -0.25, 0, 0.25, 0, -0.184, 0, 0, 0, 0, -0.154, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4, 0.833333)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-0.261, -0.25, 0, 0.25, 0, 0.06, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.1, 0.7, 1)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-0.401426, -0.25, 0, 0.25, 0, -0.10821, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.366667, 0.766667)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:rotation:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-0.561996, -0.25, 0, 0.25, 0, 0.253073, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.2, 0.733333)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:rotation:z")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-0.015708, -0.25, 0, 0.25, 0, 0.0628319, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.4, 0.633333)
+}
+
+[sub_resource type="Animation" id="Animation_eeben"]
+resource_name = "Put Back"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-0.154, -0.25, 0, 0.25, 0, 0.265, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.166667, 0.7)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -0.04, -0.25, 0, 0.25, 0, -0.261, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.466667, 0.833333)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-0.10821, -0.25, 0, 0.25, 0, -0.401426, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.333333, 0.966667)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:rotation:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0.253073, -0.25, 0, 0.25, 0, -0.561996, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.2, 0.9)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:rotation:z")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0.0628319, -0.25, 0, 0.25, 0, -0.015708, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.4, 0.7)
+}
+
+[sub_resource type="Animation" id="Animation_0g8lp"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.263, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-0.261, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-0.401426, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:rotation:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-0.561996, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:rotation:z")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-0.015708, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cujlj"]
+_data = {
+"Hold Up": SubResource("Animation_uyvm2"),
+"Put Back": SubResource("Animation_eeben"),
+"RESET": SubResource("Animation_0g8lp")
+}
+
+[node name="Clipboard" type="Node3D"]
+script = ExtResource("1_isb6y")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.842818, 0.221477, -0.490515, -0.0144587, 0.920391, 0.390731, 0.538004, -0.322223, 0.778925, 0.263, -0.261, -0.265)
+mesh = SubResource("BoxMesh_2wt8b")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MeshInstance3D"]
+libraries = {
+"": SubResource("AnimationLibrary_cujlj")
+}
+speed_scale = 1.867
+
+[node name="Label3D" type="Label3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09, 0, 0.01)
+pixel_size = 0.001
+outline_modulate = Color(1, 1, 1, 1)
+text = "NAME: Joe
+SAFETY: Meh
+Description:
+[REDACTED]
+❎             ✅"
+font_size = 28
+outline_size = 1
+horizontal_alignment = 0
+width = 210.0
+
+[node name="AnimationTree" type="AnimationTree" parent="MeshInstance3D"]
