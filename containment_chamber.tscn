@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://6jc0oj15ibsk"]
+[gd_scene load_steps=16 format=3 uid="uid://6jc0oj15ibsk"]
 
 [ext_resource type="Script" path="res://containment_chamber.gd" id="1_ijjuw"]
 [ext_resource type="PackedScene" uid="uid://xed5a2r5d4ae" path="res://ground.tscn" id="1_kkm7v"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dw35bffcddcbw" path="res://wall12.tscn" id="3_ua1q1"]
 [ext_resource type="AudioStream" uid="uid://o7lrn6u0stb6" path="res://assets/sounds/702631__zeraora__forcefield-hum.wav" id="5_xlj1q"]
 [ext_resource type="PackedScene" uid="uid://cdvk5ukt4vfd8" path="res://ceiling_light.tscn" id="6_duiag"]
+[ext_resource type="PackedScene" uid="uid://bylljs228vt35" path="res://assets/models/labrador-dog/Labrador.glb" id="7_5qeut"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_0wjx5"]
 height = 0.431
@@ -22,6 +23,46 @@ background_mode = 2
 sky = SubResource("Sky_ofdmj")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_038ve"]
+height = 4.25589
+
+[sub_resource type="Animation" id="Animation_cobx5"]
+resource_name = "Spin that dog!"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 6.28319, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_pqduj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5bkwi"]
+_data = {
+"RESET": SubResource("Animation_pqduj"),
+"Spin that dog!": SubResource("Animation_cobx5")
+}
 
 [node name="Containment Chamber" type="Node3D"]
 script = ExtResource("1_ijjuw")
@@ -61,7 +102,7 @@ environment = SubResource("Environment_8ix4w")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
-light_energy = 0.063
+light_energy = 0.005
 shadow_enabled = true
 
 [node name="Ceiling Light2" parent="." instance=ExtResource("6_duiag")]
@@ -69,5 +110,20 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 4.8
 
 [node name="Ceiling Light3" parent="." instance=ExtResource("6_duiag")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 4.83937, 0)
+
+[node name="Labrador" parent="." instance=ExtResource("7_5qeut")]
+transform = Transform3D(0.21, 0, 0, 0, 0.21, 0, 0, 0, 0.21, 0, 0, -3.84054)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Labrador"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Labrador/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.00311761, 3.71712, 0.47435)
+shape = SubResource("CapsuleShape3D_038ve")
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Labrador"]
+libraries = {
+"": SubResource("AnimationLibrary_5bkwi")
+}
+autoplay = "Spin that dog!"
 
 [connection signal="finished" from="Near Wall/Door/DoorHum" to="." method="_on_door_hum_finished"]

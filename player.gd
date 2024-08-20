@@ -69,16 +69,12 @@ var landing : bool
 
 
 func _ready():
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 	ArmsBasePosition = ClipboardNode.position
 
 func _unhandled_input(event) -> void:
-	if event is InputEventMouseButton:
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	elif event.is_action_pressed("ui_cancel"):
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
+	# If game is focused, control camera
 	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		if event is InputEventMouseMotion:
 			neck.rotate_y(-event.relative.x * 0.01)

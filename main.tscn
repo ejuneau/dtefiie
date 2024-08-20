@@ -1,6 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cclw1wvrcc5s7"]
+[gd_scene load_steps=7 format=3 uid="uid://cclw1wvrcc5s7"]
 
+[ext_resource type="Script" path="res://main.gd" id="1_221ht"]
 [ext_resource type="PackedScene" uid="uid://ce7hf8flai85b" path="res://player.tscn" id="2_b3486"]
+[ext_resource type="PackedScene" uid="uid://dhv6378bmqja" path="res://pause_screen.tscn" id="2_gtrws"]
 [ext_resource type="Shader" path="res://retropixel.gdshader" id="3_3p64c"]
 [ext_resource type="PackedScene" uid="uid://6jc0oj15ibsk" path="res://containment_chamber.tscn" id="3_ohpg2"]
 
@@ -19,6 +21,10 @@ shader_parameter/overlay_color = Color(1, 1, 1, 10)
 shader_parameter/lens_distortion_strength = 0.007
 
 [node name="Main" type="Node"]
+script = ExtResource("1_221ht")
+
+[node name="Pause screen" parent="." instance=ExtResource("2_gtrws")]
+visible = false
 
 [node name="Player" parent="." instance=ExtResource("2_b3486")]
 
@@ -26,7 +32,10 @@ shader_parameter/lens_distortion_strength = 0.007
 
 [node name="Perfect Pixel Effects" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_huvq6")
-offset_right = 7814.0
-offset_bottom = 3611.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 color = Color(1, 1, 1, 0)
