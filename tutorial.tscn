@@ -1,12 +1,31 @@
-[gd_scene load_steps=5 format=3 uid="uid://cvjsuollag5m3"]
+[gd_scene load_steps=15 format=3 uid="uid://cvjsuollag5m3"]
 
 [ext_resource type="Script" path="res://tutorial.gd" id="1_mdjpn"]
 [ext_resource type="Theme" uid="uid://brc5wbswup5dd" path="res://pause_screen.tres" id="2_r7d54"]
 [ext_resource type="FontFile" uid="uid://curgdoaj3yxfs" path="res://assets/fonts/VT323-Regular.ttf" id="3_to3n5"]
+[ext_resource type="AudioStream" uid="uid://b8mgig58sesbl" path="res://assets/sounds/UI clicks/confirm01.mp3" id="4_5lwcx"]
+[ext_resource type="AudioStream" uid="uid://6kj3lguqsmu5" path="res://assets/sounds/Menu ambient/609357__florstristi__vhs_vcr-hum-c.wav" id="4_v7vob"]
+[ext_resource type="AudioStream" uid="uid://b7x0tig33jwap" path="res://assets/sounds/UI clicks/confirm02.mp3" id="5_2ac64"]
+[ext_resource type="AudioStream" uid="uid://cx8v23y2xwyop" path="res://assets/sounds/UI clicks/confirm03.mp3" id="6_g30vq"]
+[ext_resource type="AudioStream" uid="uid://du1bh7c235q35" path="res://assets/sounds/UI clicks/confirm04.mp3" id="7_is3yg"]
+[ext_resource type="AudioStream" uid="uid://brguralusvuwp" path="res://assets/sounds/UI clicks/confirm05.mp3" id="8_ggws0"]
+[ext_resource type="AudioStream" uid="uid://b4mmt5jsak3g6" path="res://assets/sounds/UI clicks/confirm06.mp3" id="9_h846y"]
+[ext_resource type="AudioStream" uid="uid://dd3cv0ni8623" path="res://assets/sounds/UI clicks/error.mp3" id="10_l2yuq"]
 
 [sub_resource type="Theme" id="Theme_1kv8n"]
 default_font = ExtResource("3_to3n5")
 default_font_size = 32
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6msik"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_l71gs"]
+streams_count = 6
+stream_0/stream = ExtResource("4_5lwcx")
+stream_1/stream = ExtResource("5_2ac64")
+stream_2/stream = ExtResource("6_g30vq")
+stream_3/stream = ExtResource("7_is3yg")
+stream_4/stream = ExtResource("8_ggws0")
+stream_5/stream = ExtResource("9_h846y")
 
 [node name="Tutorial" type="Control"]
 process_mode = 3
@@ -23,6 +42,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -514.0
+offset_top = -254.0
+offset_right = 579.0
+offset_bottom = 514.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.513726)
@@ -157,26 +180,42 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Ground Rules" type="Label" parent="Page 1_5"]
+[node name="ColorRect" type="ColorRect" parent="Page 1_5"]
+layout_mode = 2
+offset_left = -648.0
+offset_top = -363.0
+offset_right = 1825.0
+offset_bottom = 1102.0
+color = Color(0, 0, 0, 0.654902)
+
+[node name="PanelContainer" type="PanelContainer" parent="Page 1_5"]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
+anchor_left = -0.119
+anchor_top = -0.116
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 137.088
+offset_top = 75.168
+offset_bottom = 5.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_6msik")
+
+[node name="Ground Rules" type="Label" parent="Page 1_5/PanelContainer"]
+layout_mode = 2
 theme = SubResource("Theme_1kv8n")
 theme_override_font_sizes/font_size = 325
-text = "VERRY
-FUNNY"
+text = "TRY
+AGAIN"
 horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Page 1_5"]
-root_node = NodePath("../Timer")
+root_node = NodePath("../Page1_5Timer")
 
-[node name="Timer" type="Timer" parent="Page 1_5"]
-wait_time = 0.5
+[node name="Page1_5Timer" type="Timer" parent="Page 1_5"]
 
 [node name="Page1_5Notifier" type="VisibleOnScreenNotifier2D" parent="Page 1_5"]
 position = Vector2(576, 324)
@@ -302,6 +341,56 @@ text = "⨯"
 position = Vector2(576, 324)
 scale = Vector2(57.6, 32.4)
 
+[node name="Page 2_5" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Page 2_5"]
+layout_mode = 2
+offset_left = -648.0
+offset_top = -363.0
+offset_right = 1825.0
+offset_bottom = 1102.0
+color = Color(0, 0, 0, 0.654902)
+
+[node name="PanelContainer" type="PanelContainer" parent="Page 2_5"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.119
+anchor_top = -0.116
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 137.088
+offset_top = 75.168
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_6msik")
+
+[node name="Ground Rules" type="Label" parent="Page 2_5/PanelContainer"]
+layout_mode = 2
+theme = SubResource("Theme_1kv8n")
+theme_override_font_sizes/font_size = 325
+text = "VERY
+FUNNY"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Page 2_5"]
+root_node = NodePath("../Page2_5Timer")
+
+[node name="Page2_5Timer" type="Timer" parent="Page 2_5"]
+
+[node name="Page2_5Notifier" type="VisibleOnScreenNotifier2D" parent="Page 2_5"]
+position = Vector2(576, 324)
+scale = Vector2(57.6, 32.4)
+
 [node name="Page 3" type="Control" parent="."]
 visible = false
 layout_mode = 1
@@ -423,6 +512,56 @@ text = "⨯"
 position = Vector2(576, 324)
 scale = Vector2(57.6, 32.4)
 
+[node name="Page 3_5" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Page 3_5"]
+layout_mode = 2
+offset_left = -648.0
+offset_top = -363.0
+offset_right = 1825.0
+offset_bottom = 1102.0
+color = Color(0, 0, 0, 0.654902)
+
+[node name="PanelContainer" type="PanelContainer" parent="Page 3_5"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.119
+anchor_top = -0.116
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 137.088
+offset_top = 75.168
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_6msik")
+
+[node name="Ground Rules" type="Label" parent="Page 3_5/PanelContainer"]
+layout_mode = 2
+theme = SubResource("Theme_1kv8n")
+theme_override_font_sizes/font_size = 215
+text = "YOU THINK YOU
+HAVE A CHOICE"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Page 3_5"]
+root_node = NodePath("../Page3_5Timer")
+
+[node name="Page3_5Timer" type="Timer" parent="Page 3_5"]
+
+[node name="Page3_5Notifier" type="VisibleOnScreenNotifier2D" parent="Page 3_5"]
+position = Vector2(576, 324)
+scale = Vector2(57.6, 32.4)
+
 [node name="Page 4" type="Control" parent="."]
 visible = false
 layout_mode = 1
@@ -431,6 +570,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="ColorRect2" type="ColorRect" parent="Page 4"]
+layout_mode = 2
+offset_left = -648.0
+offset_top = -363.0
+offset_right = 1825.0
+offset_bottom = 1102.0
+color = Color(0, 0, 0, 0.654902)
 
 [node name="Ground Rules" type="Label" parent="Page 4"]
 layout_mode = 1
@@ -450,15 +597,35 @@ clip_text = true
 root_node = NodePath("../Timer")
 
 [node name="Timer" type="Timer" parent="Page 4"]
+wait_time = 0.6
 
 [node name="Page4Notifier" type="VisibleOnScreenNotifier2D" parent="Page 4"]
 position = Vector2(576, 324)
 scale = Vector2(57.6, 32.4)
 
+[node name="clicks player" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_l71gs")
+
+[node name="confirm player" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_l71gs")
+
+[node name="error player" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_l2yuq")
+
+[node name="Ambiance" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_v7vob")
+volume_db = -10.0
+autoplay = true
+
 [connection signal="screen_entered" from="Page 1/Page1Notifier" to="." method="_on_page_1_notifier_screen_entered"]
-[connection signal="timeout" from="Page 1_5/Timer" to="." method="_on_timer_timeout"]
-[connection signal="screen_entered" from="Page 1_5/Page1_5Notifier" to="." method="_on_page_4_notifier_screen_entered"]
+[connection signal="timeout" from="Page 1_5/Page1_5Timer" to="." method="_on_page_1_5_timer_timeout"]
+[connection signal="screen_entered" from="Page 1_5/Page1_5Notifier" to="." method="_on_page_1_5_notifier_screen_entered"]
 [connection signal="screen_entered" from="Page 2/Page2Notifier" to="." method="_on_page_2_notifier_screen_entered"]
+[connection signal="timeout" from="Page 2_5/Page2_5Timer" to="." method="_on_page_2_5_timer_timeout"]
+[connection signal="screen_entered" from="Page 2_5/Page2_5Notifier" to="." method="_on_page_2_5_notifier_screen_entered"]
 [connection signal="screen_entered" from="Page 3/Page3Notifier" to="." method="_on_page_3_notifier_screen_entered"]
+[connection signal="timeout" from="Page 3_5/Page3_5Timer" to="." method="_on_page_3_5_timer_timeout"]
+[connection signal="screen_entered" from="Page 3_5/Page3_5Notifier" to="." method="_on_page_3_5_notifier_screen_entered"]
 [connection signal="timeout" from="Page 4/Timer" to="." method="_on_timer_timeout"]
 [connection signal="screen_entered" from="Page 4/Page4Notifier" to="." method="_on_page_4_notifier_screen_entered"]
+[connection signal="finished" from="Ambiance" to="." method="_on_ambiance_finished"]

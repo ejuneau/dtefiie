@@ -18,6 +18,7 @@ func _unhandled_input(event) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		isPaused = !isPaused
 		if isPaused:
+			
 			paused.emit()
 		elif !isPaused:
 			unpaused.emit()
@@ -33,6 +34,7 @@ func _on_paused() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	show()
 	isPaused = true
+	$Ambiance.play()
 	pass
 
 func _on_unpaused() -> void:
@@ -40,6 +42,7 @@ func _on_unpaused() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	hide()
 	isPaused = false
+	$Ambiance.stop()
 	pass
 
 # Quit the game
@@ -50,3 +53,8 @@ func _on_quit_pressed() -> void:
 
 func _on_options_pressed() -> void:
 	$"MarginContainer/VSplitContainer/Options/WIP label".show()
+
+
+func _on_ambiance_finished() -> void:
+	$Ambiance.play()
+	pass # Replace with function body.

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cx8v23y2xwyop"
+path="res://.godot/imported/confirm03.mp3-e84673347ea2c49c9a2e695d4e9d74e8.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/UI clicks/confirm03.mp3"
+dest_files=["res://.godot/imported/confirm03.mp3-e84673347ea2c49c9a2e695d4e9d74e8.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

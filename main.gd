@@ -59,3 +59,9 @@ func _on_tutorial_load_level_1() -> void:
 	add_child(level1_instance)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	$"Tutorial".queue_free()
+	$AudioStreamPlayer2D.queue_free()
+	
+
+
+func _on_audio_stream_player_2d_finished() -> void:
+	$AudioStreamPlayer2D.play()

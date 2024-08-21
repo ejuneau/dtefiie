@@ -31,3 +31,8 @@ func _on_options_pressed() -> void:
 func _on_new_game_pressed() -> void:
 	new_game_pressed.emit()
 	pass # Replace with function body.
+
+
+func _on_ambiance_finished() -> void:
+	$Ambiance.play()
+	pass # Replace with function body.

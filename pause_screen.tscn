@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dhv6378bmqja"]
+[gd_scene load_steps=9 format=3 uid="uid://dhv6378bmqja"]
 
 [ext_resource type="Script" path="res://pause_screen.gd" id="1_14o6p"]
 [ext_resource type="Theme" uid="uid://brc5wbswup5dd" path="res://pause_screen.tres" id="2_6w1ci"]
 [ext_resource type="FontFile" uid="uid://curgdoaj3yxfs" path="res://assets/fonts/VT323-Regular.ttf" id="2_w68ol"]
+[ext_resource type="AudioStream" uid="uid://6kj3lguqsmu5" path="res://assets/sounds/Menu ambient/609357__florstristi__vhs_vcr-hum-c.wav" id="4_1jod7"]
 
 [sub_resource type="Theme" id="Theme_1kv8n"]
 default_font = ExtResource("2_w68ol")
@@ -135,8 +136,13 @@ text = "Quit
 "
 alignment = 0
 
+[node name="Ambiance" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_1jod7")
+volume_db = -10.0
+
 [connection signal="paused" from="." to="." method="_on_paused"]
 [connection signal="unpaused" from="." to="." method="_on_unpaused"]
 [connection signal="pressed" from="MarginContainer/VSplitContainer/Options/Resume" to="." method="_on_unpaused"]
 [connection signal="pressed" from="MarginContainer/VSplitContainer/Options/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="MarginContainer/VSplitContainer/Options/Quit" to="." method="_on_quit_pressed"]
+[connection signal="finished" from="Ambiance" to="." method="_on_ambiance_finished"]
