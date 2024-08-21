@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cimpqytdnwe88"]
+[gd_scene load_steps=14 format=3 uid="uid://cimpqytdnwe88"]
 
 [ext_resource type="Script" path="res://clipboard.gd" id="1_isb6y"]
 [ext_resource type="Texture2D" uid="uid://cbsesq2emq5va" path="res://assets/images/puppies.jpg" id="2_c7vxg"]
@@ -194,6 +194,9 @@ _data = {
 "RESET": SubResource("Animation_0g8lp")
 }
 
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_o4ahl"]
+graph_offset = Vector2(-74.6667, 50)
+
 [sub_resource type="QuadMesh" id="QuadMesh_ih10s"]
 size = Vector2(0.05, 0.05)
 center_offset = Vector3(0, 0, 0.01)
@@ -212,7 +215,12 @@ mesh = SubResource("BoxMesh_2wt8b")
 libraries = {
 "": SubResource("AnimationLibrary_cujlj")
 }
-speed_scale = 1.867
+speed_scale = 1.559
+
+[node name="AnimationTree" type="AnimationTree" parent="MeshInstance3D/AnimationPlayer"]
+root_node = NodePath("../..")
+tree_root = SubResource("AnimationNodeBlendTree_o4ahl")
+anim_player = NodePath("..")
 
 [node name="Image" type="MeshInstance3D" parent="MeshInstance3D"]
 transform = Transform3D(1, 1.49012e-08, 0, -1.49012e-08, 1, 0, -2.98023e-08, 2.98023e-08, 1, -0.065, 0.08, 0)
@@ -370,7 +378,7 @@ horizontal_alignment = 0
 vertical_alignment = 0
 width = 210.0
 
-[node name="AnimationTree" type="AnimationTree" parent="MeshInstance3D"]
-
 [node name="debug camera" type="Camera3D" parent="."]
 transform = Transform3D(0.793353, 0.230998, -0.563232, 0, 0.92521, 0.379456, 0.608761, -0.301043, 0.734018, 0.0901148, -0.17, -0.035)
+
+[connection signal="animation_finished" from="MeshInstance3D/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

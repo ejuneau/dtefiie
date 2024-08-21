@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://cclw1wvrcc5s7"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_221ht"]
+[ext_resource type="PackedScene" uid="uid://cv63n5anpa81i" path="res://Menu.tscn" id="2_0v5m8"]
+[ext_resource type="PackedScene" uid="uid://dhv6378bmqja" path="res://pause_screen.tscn" id="2_gtrws"]
+[ext_resource type="Shader" path="res://retropixel.gdshader" id="3_3p64c"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_huvq6"]
+shader = ExtResource("3_3p64c")
+shader_parameter/shake = 0.015
+shader_parameter/noiseQuality = 250.0
+shader_parameter/noiseIntensity = 0.001
+shader_parameter/offsetIntensity = 0.0045
+shader_parameter/colorOffsetIntensity = 0.2
+shader_parameter/pixelSize = 605.284
+shader_parameter/grainIntensity = 0.082
+shader_parameter/use_overlay = true
+shader_parameter/use_lens_distortion = true
+shader_parameter/overlay_color = Color(1, 1, 1, 10)
+shader_parameter/lens_distortion_strength = 0.007
+
+[node name="Main" type="Node"]
+script = ExtResource("1_221ht")
+
+[node name="Menu Screen" parent="." instance=ExtResource("2_0v5m8")]
+script = null
+
+[node name="Pause screen" parent="." instance=ExtResource("2_gtrws")]
+visible = false
+
+[node name="Perfect Pixel Effects" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_huvq6")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)

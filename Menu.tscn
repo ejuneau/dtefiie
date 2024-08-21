@@ -1,0 +1,98 @@
+[gd_scene load_steps=5 format=3 uid="uid://cv63n5anpa81i"]
+
+[ext_resource type="Script" path="res://menu.gd" id="1_76wdd"]
+[ext_resource type="Theme" uid="uid://brc5wbswup5dd" path="res://pause_screen.tres" id="2_wwkv2"]
+[ext_resource type="FontFile" uid="uid://curgdoaj3yxfs" path="res://assets/fonts/VT323-Regular.ttf" id="3_b21va"]
+
+[sub_resource type="Theme" id="Theme_1kv8n"]
+default_font = ExtResource("3_b21va")
+default_font_size = 32
+
+[node name="Menu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_76wdd")
+
+[node name="Overlay" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.513726)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_wwkv2")
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="VSplitContainer" type="VSplitContainer" parent="MarginContainer"]
+layout_mode = 2
+split_offset = 165
+dragger_visibility = 2
+
+[node name="Label2" type="Label" parent="MarginContainer/VSplitContainer"]
+layout_mode = 2
+theme = SubResource("Theme_1kv8n")
+theme_override_font_sizes/font_size = 86
+text = "Does the Entity fit in its Enclosure?"
+clip_text = true
+
+[node name="Options" type="GridContainer" parent="MarginContainer/VSplitContainer"]
+layout_mode = 2
+
+[node name="Continue" type="Button" parent="MarginContainer/VSplitContainer/Options"]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_b21va")
+theme_override_font_sizes/font_size = 64
+text = "Continue
+"
+alignment = 0
+
+[node name="New Game" type="Button" parent="MarginContainer/VSplitContainer/Options"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_b21va")
+theme_override_font_sizes/font_size = 64
+text = "New Game
+"
+alignment = 0
+
+[node name="Options" type="Button" parent="MarginContainer/VSplitContainer/Options"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_b21va")
+theme_override_font_sizes/font_size = 64
+text = "Options"
+alignment = 0
+
+[node name="WIP label" type="Label" parent="MarginContainer/VSplitContainer/Options"]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_b21va")
+theme_override_font_sizes/font_size = 24
+text = "working on it"
+
+[node name="Quit" type="Button" parent="MarginContainer/VSplitContainer/Options"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_b21va")
+theme_override_font_sizes/font_size = 64
+text = "Quit
+"
+alignment = 0
+
+[connection signal="pressed" from="MarginContainer/VSplitContainer/Options/New Game" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="MarginContainer/VSplitContainer/Options/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="MarginContainer/VSplitContainer/Options/Quit" to="." method="_on_quit_pressed"]

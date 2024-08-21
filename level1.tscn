@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://d2urrlsle1qqm"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_0pm2l"]
+[ext_resource type="PackedScene" uid="uid://dhv6378bmqja" path="res://pause_screen.tscn" id="3_a46w6"]
+[ext_resource type="PackedScene" uid="uid://ce7hf8flai85b" path="res://player.tscn" id="4_f406j"]
+[ext_resource type="PackedScene" uid="uid://6jc0oj15ibsk" path="res://containment_chamber.tscn" id="5_mbe43"]
+
+[node name="level1" type="Node"]
+script = ExtResource("1_0pm2l")
+
+[node name="Player" parent="." instance=ExtResource("4_f406j")]
+
+[node name="Containment Chamber" parent="." instance=ExtResource("5_mbe43")]
+
+[node name="Pause screen" parent="." instance=ExtResource("3_a46w6")]
+visible = false
