@@ -20,6 +20,7 @@ shader_parameter/overlay_color = Color(1, 1, 1, 10)
 shader_parameter/lens_distortion_strength = 0.007
 
 [node name="Main" type="Node"]
+process_mode = 3
 script = ExtResource("1_221ht")
 
 [node name="Pause screen" parent="." instance=ExtResource("3_ew01b")]
@@ -38,4 +39,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(1, 1, 1, 0)
 
+[connection signal="hideOptions" from="Pause screen" to="." method="_on_pause_screen_hide_options"]
+[connection signal="showOptions" from="Pause screen" to="." method="_on_pause_screen_show_options"]
 [connection signal="new_game_pressed" from="main menu" to="." method="_on_main_menu_new_game_pressed"]
+[connection signal="options_pressed" from="main menu" to="." method="_on_main_menu_options_pressed"]

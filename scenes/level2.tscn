@@ -51,6 +51,7 @@ default_font = ExtResource("4_0sbh3")
 default_font_size = 32
 
 [node name="level2" type="Node"]
+process_mode = 1
 script = ExtResource("1_47px5")
 
 [node name="Containment Chamber" parent="." instance=ExtResource("3_ye03n")]

@@ -15,7 +15,7 @@ default_font_size = 32
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6msik"]
 
 [node name="Tutorial" type="Control"]
-process_mode = 3
+process_mode = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -560,7 +560,6 @@ stream = ExtResource("10_l2yuq")
 
 [node name="Ambiance" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_v7vob")
-volume_db = -10.0
 autoplay = true
 
 [connection signal="screen_entered" from="Page 1/Page1Notifier" to="." method="_on_page_1_notifier_screen_entered"]

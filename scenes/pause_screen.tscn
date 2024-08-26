@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://ce1ony8rmdpak"]
+[gd_scene load_steps=12 format=3 uid="uid://ce1ony8rmdpak"]
 
 [ext_resource type="Script" path="res://scripts/pause_screen.gd" id="1_qott6"]
 [ext_resource type="Theme" uid="uid://brc5wbswup5dd" path="res://pause_screen.tres" id="2_6w1ci"]
 [ext_resource type="FontFile" uid="uid://curgdoaj3yxfs" path="res://assets/fonts/VT323-Regular.ttf" id="2_w68ol"]
 [ext_resource type="AudioStream" uid="uid://6kj3lguqsmu5" path="res://assets/sounds/Menu ambient/609357__florstristi__vhs_vcr-hum-c.wav" id="4_1jod7"]
+[ext_resource type="PackedScene" uid="uid://chu4f2ph7qea" path="res://scenes/options.tscn" id="4_hj05d"]
 [ext_resource type="AudioStream" uid="uid://cmyouajrgakxm" path="res://confirm_randomizer.tres" id="5_kk58x"]
 [ext_resource type="AudioStream" uid="uid://cd14h01dg46xm" path="res://click_randomizer.tres" id="6_07xxg"]
 
@@ -138,9 +139,12 @@ text = "Quit
 "
 alignment = 0
 
+[node name="Options Menu" parent="Pause Screen Margin" instance=ExtResource("4_hj05d")]
+visible = false
+layout_mode = 2
+
 [node name="Ambiance" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_1jod7")
-volume_db = -10.0
 
 [node name="Confirm Player" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_kk58x")
@@ -155,4 +159,5 @@ volume_db = -10.0
 [connection signal="pressed" from="Pause Screen Margin/Pause Screen/Pause Screen Buttons/Resume" to="." method="_on_unpaused"]
 [connection signal="pressed" from="Pause Screen Margin/Pause Screen/Pause Screen Buttons/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="Pause Screen Margin/Pause Screen/Pause Screen Buttons/Quit" to="." method="_on_quit_pressed"]
+[connection signal="exitOptions" from="Pause Screen Margin/Options Menu" to="." method="_on_options_menu_exit_options"]
 [connection signal="finished" from="Ambiance" to="." method="_on_ambiance_finished"]

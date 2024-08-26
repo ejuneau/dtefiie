@@ -18,6 +18,7 @@ func _on_title_notifier_screen_entered() -> void:
 
 
 func _on_title_timer_timeout() -> void:
+	$ClickPlayer.play()
 	$Title.queue_free()
 	pass # Replace with function body.
 

@@ -65,6 +65,7 @@ _data = {
 }
 
 [node name="level3" type="Node"]
+process_mode = 1
 script = ExtResource("1_8qurq")
 
 [node name="Containment Chamber" parent="." instance=ExtResource("3_cyegj")]

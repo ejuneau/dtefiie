@@ -60,6 +60,8 @@ CameraNode = NodePath("Neck")
 CameraActual = NodePath("Neck/Camera3D")
 ClipboardNode = NodePath("Neck/Camera3D/Clipboard Container/Clipboard")
 CameraShake_Noise = SubResource("FastNoiseLite_a26gn")
+WalkingSway_StepsPerSecond = 2.0
+WalkingSway_MaxSwayDistance = 0.005
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_4wqt8")

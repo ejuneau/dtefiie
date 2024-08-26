@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cdvk5ukt4vfd8"]
 
-[ext_resource type="Script" path="res://ceiling_light.gd" id="1_8hsm5"]
+[ext_resource type="Script" path="res://scripts/ceiling_light.gd" id="1_8hsm5"]
 [ext_resource type="AudioStream" uid="uid://kaifxvuwb3jv" path="res://assets/sounds/712127__duasun__electricity-sound.wav" id="2_lhbg6"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_h3744"]
