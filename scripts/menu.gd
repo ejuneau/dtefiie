@@ -43,5 +43,6 @@ func _on_button_pressed() -> void:
 
 
 func _on_options_exit_options() -> void:
+	print("signal received")
 	$"MarginContainer/Main Menu".show()
 	pass # Replace with function body.

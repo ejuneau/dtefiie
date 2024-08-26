@@ -1,6 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://cvjsuollag5m3"]
+[gd_scene load_steps=10 format=3 uid="uid://nsagvjr1uvpa"]
 
-[ext_resource type="Script" path="res://tutorial.gd" id="1_mdjpn"]
+[ext_resource type="Script" path="res://scripts/tutorial.gd" id="1_d15op"]
 [ext_resource type="Theme" uid="uid://brc5wbswup5dd" path="res://pause_screen.tres" id="2_r7d54"]
 [ext_resource type="FontFile" uid="uid://curgdoaj3yxfs" path="res://assets/fonts/VT323-Regular.ttf" id="3_to3n5"]
 [ext_resource type="AudioStream" uid="uid://cmyouajrgakxm" path="res://confirm_randomizer.tres" id="4_8r0xq"]
@@ -22,7 +22,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_mdjpn")
+script = ExtResource("1_d15op")
 
 [node name="Overlay" type="ColorRect" parent="."]
 layout_mode = 1

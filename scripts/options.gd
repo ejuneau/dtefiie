@@ -2,13 +2,6 @@ extends Control
 
 signal exitOptions
 
-var file = "res://config.json"
-var json_as_text = FileAccess.get_file_as_string(file)
-var currentOptions = JSON.parse_string(json_as_text)
-# TODO make sure this is not an assignment by reference
-var tempOptions = currentOptions
-
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# Check if an options file exists, if not makes one
@@ -16,9 +9,6 @@ func _ready() -> void:
 	# if any value is chagned, log values in temp file, hide Back button and show Save/Discard 
 	# on confirmation, commit temp file values to options file
 	# on discard, delete contents of temp file
-	
-
-	
 	pass # Replace with function body.
 
 

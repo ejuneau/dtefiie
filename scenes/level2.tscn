@@ -1,8 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://cxfb70r0yclwg"]
+[gd_scene load_steps=10 format=3 uid="uid://cmiu1lmmoj1io"]
 
-[ext_resource type="Script" path="res://level_2.gd" id="1_baffw"]
+[ext_resource type="Script" path="res://scripts/level_2.gd" id="1_47px5"]
 [ext_resource type="PackedScene" uid="uid://di3tkkgp5ujo8" path="res://assets/models/deer/deer.glb" id="3_d746y"]
-[ext_resource type="PackedScene" uid="uid://6jc0oj15ibsk" path="res://containment_chamber.tscn" id="3_ye03n"]
+[ext_resource type="PackedScene" uid="uid://6jc0oj15ibsk" path="res://scenes/containment_chamber.tscn" id="3_ye03n"]
 [ext_resource type="FontFile" uid="uid://curgdoaj3yxfs" path="res://assets/fonts/VT323-Regular.ttf" id="4_0sbh3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vjnj3"]
@@ -51,7 +51,7 @@ default_font = ExtResource("4_0sbh3")
 default_font_size = 32
 
 [node name="level2" type="Node"]
-script = ExtResource("1_baffw")
+script = ExtResource("1_47px5")
 
 [node name="Containment Chamber" parent="." instance=ExtResource("3_ye03n")]
 

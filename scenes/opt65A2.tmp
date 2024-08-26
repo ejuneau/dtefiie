@@ -1,0 +1,188 @@
+[gd_scene load_steps=4 format=3 uid="uid://chu4f2ph7qea"]
+
+[ext_resource type="Theme" uid="uid://brc5wbswup5dd" path="res://pause_screen.tres" id="1_lsd5l"]
+[ext_resource type="Script" path="res://addons/save_system/save_system.gd" id="2_x47el"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4rvke"]
+bg_color = Color(0.545098, 0.129412, 0.0666667, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[node name="Options" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+theme = ExtResource("1_lsd5l")
+script = ExtResource("2_x47el")
+
+[node name="VSplit" type="VSplitContainer" parent="."]
+layout_mode = 2
+offset_right = 952.0
+offset_bottom = 448.0
+theme = ExtResource("1_lsd5l")
+split_offset = 165
+dragger_visibility = 2
+
+[node name="TabContainer" type="TabContainer" parent="VSplit"]
+layout_mode = 2
+theme = ExtResource("1_lsd5l")
+current_tab = 0
+tab_focus_mode = 0
+
+[node name="General" type="Control" parent="VSplit/TabContainer"]
+layout_mode = 2
+theme = ExtResource("1_lsd5l")
+metadata/_tab_index = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="VSplit/TabContainer/General"]
+layout_mode = 1
+offset_left = 55.0
+offset_top = 70.0
+offset_right = 79.0
+offset_bottom = 94.0
+focus_mode = 2
+mouse_filter = 0
+theme = ExtResource("1_lsd5l")
+
+[node name="HSplitContainer2" type="HSplitContainer" parent="VSplit/TabContainer/General/MarginContainer"]
+layout_mode = 2
+
+[node name="VHS Effects" type="CheckBox" parent="VSplit/TabContainer/General/MarginContainer/HSplitContainer2"]
+layout_mode = 2
+theme = ExtResource("1_lsd5l")
+
+[node name="Label" type="Label" parent="VSplit/TabContainer/General/MarginContainer/HSplitContainer2"]
+layout_mode = 2
+text = "VHS Effects
+"
+
+[node name="VHS Effect Intensity" type="HSlider" parent="VSplit/TabContainer/General/MarginContainer/HSplitContainer2"]
+layout_mode = 2
+step = 5.0
+
+[node name="Label" type="Label" parent="VSplit/TabContainer/General/MarginContainer/HSplitContainer2/VHS Effect Intensity"]
+layout_mode = 0
+offset_top = -40.0
+offset_right = 179.0
+offset_bottom = -7.0
+text = "VHS Effect Intensity
+"
+
+[node name="Sound" type="Control" parent="VSplit/TabContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("1_lsd5l")
+metadata/_tab_index = 1
+
+[node name="HSplitContainer" type="HSplitContainer" parent="VSplit/TabContainer/Sound"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 60.0
+offset_top = 78.0
+offset_right = -664.0
+offset_bottom = -296.0
+grow_vertical = 2
+
+[node name="Mute All Sounds" type="CheckBox" parent="VSplit/TabContainer/Sound/HSplitContainer"]
+layout_mode = 2
+theme = ExtResource("1_lsd5l")
+
+[node name="Label" type="Label" parent="VSplit/TabContainer/Sound/HSplitContainer"]
+layout_mode = 2
+text = "Mute all sounds
+"
+
+[node name="Overall Volume" type="HSlider" parent="VSplit/TabContainer/Sound"]
+layout_mode = 1
+offset_left = 60.0
+offset_top = 165.0
+offset_right = 531.0
+offset_bottom = 181.0
+step = 5.0
+
+[node name="Label" type="Label" parent="VSplit/TabContainer/Sound/Overall Volume"]
+layout_mode = 0
+offset_top = -40.0
+offset_right = 179.0
+offset_bottom = -7.0
+text = "Overall Volume
+"
+
+[node name="SFX Volume" type="HSlider" parent="VSplit/TabContainer/Sound"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 228.0
+offset_right = 531.0
+offset_bottom = 244.0
+step = 5.0
+
+[node name="Label" type="Label" parent="VSplit/TabContainer/Sound/SFX Volume"]
+layout_mode = 0
+offset_top = -40.0
+offset_right = 128.0
+offset_bottom = -7.0
+text = "SFX Volume"
+
+[node name="Ambiance Volume" type="HSlider" parent="VSplit/TabContainer/Sound"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 293.0
+offset_right = 531.0
+offset_bottom = 309.0
+theme = ExtResource("1_lsd5l")
+step = 5.0
+
+[node name="Label" type="Label" parent="VSplit/TabContainer/Sound/Ambiance Volume"]
+layout_mode = 0
+offset_top = -40.0
+offset_right = 192.0
+offset_bottom = -7.0
+theme = ExtResource("1_lsd5l")
+text = "Ambiance Volume"
+
+[node name="Display" type="Control" parent="VSplit/TabContainer"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+metadata/_tab_index = 2
+
+[node name="Save" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 779.0
+offset_top = 367.0
+offset_right = 838.0
+offset_bottom = 408.0
+theme = ExtResource("1_lsd5l")
+text = "Save
+"
+
+[node name="Back" type="Button" parent="."]
+layout_mode = 0
+offset_left = 779.0
+offset_top = 367.0
+offset_right = 838.0
+offset_bottom = 408.0
+theme = ExtResource("1_lsd5l")
+text = "Back
+"
+
+[node name="Discard" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 779.0
+offset_top = 317.0
+offset_right = 877.0
+offset_bottom = 358.0
+theme = ExtResource("1_lsd5l")
+theme_override_styles/hover = SubResource("StyleBoxFlat_4rvke")
+text = "Discard"
+
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

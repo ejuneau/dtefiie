@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://2p3ri2e438sn"]
+[gd_scene load_steps=4 format=3 uid="uid://chu4f2ph7qea"]
 
 [ext_resource type="Theme" uid="uid://brc5wbswup5dd" path="res://pause_screen.tres" id="1_lsd5l"]
-[ext_resource type="Script" path="res://options.gd" id="2_xxwv5"]
+[ext_resource type="Script" path="res://addons/save_system/save_system.gd" id="2_x47el"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4rvke"]
 bg_color = Color(0.545098, 0.129412, 0.0666667, 1)
@@ -18,7 +18,7 @@ expand_margin_bottom = 4.0
 layout_mode = 3
 anchors_preset = 0
 theme = ExtResource("1_lsd5l")
-script = ExtResource("2_xxwv5")
+script = ExtResource("2_x47el")
 
 [node name="VSplit" type="VSplitContainer" parent="."]
 layout_mode = 2
@@ -31,11 +31,10 @@ dragger_visibility = 2
 [node name="TabContainer" type="TabContainer" parent="VSplit"]
 layout_mode = 2
 theme = ExtResource("1_lsd5l")
-current_tab = 1
+current_tab = 0
 tab_focus_mode = 0
 
 [node name="General" type="Control" parent="VSplit/TabContainer"]
-visible = false
 layout_mode = 2
 theme = ExtResource("1_lsd5l")
 metadata/_tab_index = 0
@@ -50,17 +49,32 @@ focus_mode = 2
 mouse_filter = 0
 theme = ExtResource("1_lsd5l")
 
-[node name="GridContainer" type="GridContainer" parent="VSplit/TabContainer/General/MarginContainer"]
+[node name="HSplitContainer2" type="HSplitContainer" parent="VSplit/TabContainer/General/MarginContainer"]
 layout_mode = 2
-size_flags_vertical = 4
-mouse_filter = 2
+
+[node name="VHS Effects" type="CheckBox" parent="VSplit/TabContainer/General/MarginContainer/HSplitContainer2"]
+layout_mode = 2
 theme = ExtResource("1_lsd5l")
 
-[node name="CheckBox" type="CheckBox" parent="VSplit/TabContainer/General/MarginContainer/GridContainer"]
+[node name="Label" type="Label" parent="VSplit/TabContainer/General/MarginContainer/HSplitContainer2"]
 layout_mode = 2
-text = "VHS Effect"
+text = "VHS Effects
+"
+
+[node name="VHS Effect Intensity" type="HSlider" parent="VSplit/TabContainer/General/MarginContainer/HSplitContainer2"]
+layout_mode = 2
+step = 5.0
+
+[node name="Label" type="Label" parent="VSplit/TabContainer/General/MarginContainer/HSplitContainer2/VHS Effect Intensity"]
+layout_mode = 0
+offset_top = -40.0
+offset_right = 179.0
+offset_bottom = -7.0
+text = "VHS Effect Intensity
+"
 
 [node name="Sound" type="Control" parent="VSplit/TabContainer"]
+visible = false
 layout_mode = 2
 theme = ExtResource("1_lsd5l")
 metadata/_tab_index = 1
@@ -76,7 +90,7 @@ offset_right = -664.0
 offset_bottom = -296.0
 grow_vertical = 2
 
-[node name="CheckButton" type="CheckBox" parent="VSplit/TabContainer/Sound/HSplitContainer"]
+[node name="Mute All Sounds" type="CheckBox" parent="VSplit/TabContainer/Sound/HSplitContainer"]
 layout_mode = 2
 theme = ExtResource("1_lsd5l")
 

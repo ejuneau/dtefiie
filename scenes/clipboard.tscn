@@ -1,6 +1,6 @@
-[gd_scene load_steps=22 format=3 uid="uid://cimpqytdnwe88"]
+[gd_scene load_steps=22 format=3 uid="uid://c0a71s75g5xh8"]
 
-[ext_resource type="Script" path="res://clipboard.gd" id="1_isb6y"]
+[ext_resource type="Script" path="res://scripts/clipboard.gd" id="1_lyson"]
 [ext_resource type="Texture2D" uid="uid://cbsesq2emq5va" path="res://assets/images/puppies.jpg" id="2_c7vxg"]
 [ext_resource type="Texture2D" uid="uid://yc703mkt2luw" path="res://assets/textures/bec-r-cFnDFeQianA-unsplash.jpg" id="2_yku67"]
 [ext_resource type="FontFile" uid="uid://curgdoaj3yxfs" path="res://assets/fonts/VT323-Regular.ttf" id="3_mncxb"]
@@ -221,7 +221,7 @@ stream_5/stream = ExtResource("10_gopaa")
 stream_6/stream = ExtResource("11_mq6tn")
 
 [node name="Clipboard" type="Node3D"]
-script = ExtResource("1_isb6y")
+script = ExtResource("1_lyson")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.842818, 0.221477, -0.490515, -0.0144587, 0.920391, 0.390731, 0.538004, -0.322223, 0.778925, 0.263, -0.261, -0.265)

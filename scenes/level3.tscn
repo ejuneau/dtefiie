@@ -1,7 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://cttc1ecb54jr5"]
+[gd_scene load_steps=14 format=3 uid="uid://qjgx2jjf1pxq"]
 
-[ext_resource type="Script" path="res://level_2.gd" id="1_m1wxh"]
-[ext_resource type="PackedScene" uid="uid://6jc0oj15ibsk" path="res://containment_chamber.tscn" id="3_cyegj"]
+[ext_resource type="Script" path="res://scripts/level_3.gd" id="1_8qurq"]
+[ext_resource type="PackedScene" uid="uid://6jc0oj15ibsk" path="res://scenes/containment_chamber.tscn" id="3_cyegj"]
 [ext_resource type="Texture2D" uid="uid://bcjfqcuh0778u" path="res://assets/models/shrimp/RGB_a0cd01ef8b7a45b7989182aba5493bc5_Q11583-1all-3-body_2.jpeg" id="4_25mtf"]
 [ext_resource type="FontFile" uid="uid://curgdoaj3yxfs" path="res://assets/fonts/VT323-Regular.ttf" id="4_h6rai"]
 [ext_resource type="ArrayMesh" uid="uid://cpxyc5bm4p85c" path="res://assets/models/shrimp/model.obj" id="5_xdu2t"]
@@ -65,7 +65,7 @@ _data = {
 }
 
 [node name="level3" type="Node"]
-script = ExtResource("1_m1wxh")
+script = ExtResource("1_8qurq")
 
 [node name="Containment Chamber" parent="." instance=ExtResource("3_cyegj")]
 

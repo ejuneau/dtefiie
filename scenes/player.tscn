@@ -1,7 +1,7 @@
 [gd_scene load_steps=27 format=3 uid="uid://ce7hf8flai85b"]
 
-[ext_resource type="Script" path="res://player.gd" id="1_rpfpw"]
-[ext_resource type="PackedScene" uid="uid://cimpqytdnwe88" path="res://clipboard.tscn" id="2_cv7uu"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_rpfpw"]
+[ext_resource type="PackedScene" uid="uid://c0a71s75g5xh8" path="res://scenes/clipboard.tscn" id="2_cv7uu"]
 [ext_resource type="AudioStream" uid="uid://cl088q7y5jlsq" path="res://assets/sounds/footsteps/footstep1.mp3" id="3_a0wnv"]
 [ext_resource type="AudioStream" uid="uid://d0ndj6s2g7i1h" path="res://assets/sounds/footsteps/footstep2.mp3" id="4_0rtyy"]
 [ext_resource type="AudioStream" uid="uid://cdj3yilheeuyk" path="res://assets/sounds/footsteps/footstep11.mp3" id="5_fpe8j"]
@@ -23,7 +23,7 @@
 [ext_resource type="AudioStream" uid="uid://hpouru8ls7dl" path="res://assets/sounds/footsteps/footstep9.mp3" id="21_u6pso"]
 [ext_resource type="AudioStream" uid="uid://ikonawnc53uk" path="res://assets/sounds/footsteps/footstep10.mp3" id="22_wxa54"]
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_7lhf8"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_a26gn"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_4wqt8"]
 
@@ -59,9 +59,7 @@ script = ExtResource("1_rpfpw")
 CameraNode = NodePath("Neck")
 CameraActual = NodePath("Neck/Camera3D")
 ClipboardNode = NodePath("Neck/Camera3D/Clipboard Container/Clipboard")
-CameraShake_Noise = SubResource("FastNoiseLite_7lhf8")
-WalkingSway_StepsPerSecond = 2.0
-WalkingSway_MaxSwayDistance = 0.005
+CameraShake_Noise = SubResource("FastNoiseLite_a26gn")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_4wqt8")

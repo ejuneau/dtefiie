@@ -1,6 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://dhv6378bmqja"]
+[gd_scene load_steps=11 format=3 uid="uid://ce1ony8rmdpak"]
 
-[ext_resource type="Script" path="res://pause_screen.gd" id="1_14o6p"]
+[ext_resource type="Script" path="res://scripts/pause_screen.gd" id="1_qott6"]
 [ext_resource type="Theme" uid="uid://brc5wbswup5dd" path="res://pause_screen.tres" id="2_6w1ci"]
 [ext_resource type="FontFile" uid="uid://curgdoaj3yxfs" path="res://assets/fonts/VT323-Regular.ttf" id="2_w68ol"]
 [ext_resource type="AudioStream" uid="uid://6kj3lguqsmu5" path="res://assets/sounds/Menu ambient/609357__florstristi__vhs_vcr-hum-c.wav" id="4_1jod7"]
@@ -57,7 +57,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_14o6p")
+script = ExtResource("1_qott6")
 
 [node name="Overlay" type="ColorRect" parent="."]
 layout_mode = 1

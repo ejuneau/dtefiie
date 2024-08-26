@@ -1,10 +1,10 @@
 [gd_scene load_steps=14 format=3 uid="uid://cv63n5anpa81i"]
 
-[ext_resource type="Script" path="res://menu.gd" id="1_76wdd"]
+[ext_resource type="Script" path="res://scripts/menu.gd" id="1_76wdd"]
 [ext_resource type="Theme" uid="uid://brc5wbswup5dd" path="res://pause_screen.tres" id="2_wwkv2"]
 [ext_resource type="FontFile" uid="uid://curgdoaj3yxfs" path="res://assets/fonts/VT323-Regular.ttf" id="3_b21va"]
 [ext_resource type="AudioStream" uid="uid://6kj3lguqsmu5" path="res://assets/sounds/Menu ambient/609357__florstristi__vhs_vcr-hum-c.wav" id="4_ubv2r"]
-[ext_resource type="PackedScene" uid="uid://2p3ri2e438sn" path="res://options.tscn" id="4_vd8yc"]
+[ext_resource type="PackedScene" uid="uid://chu4f2ph7qea" path="res://scenes/options.tscn" id="4_vd8yc"]
 [ext_resource type="AudioStream" uid="uid://b8mgig58sesbl" path="res://assets/sounds/UI clicks/confirm01.mp3" id="5_v0nin"]
 [ext_resource type="AudioStream" uid="uid://b7x0tig33jwap" path="res://assets/sounds/UI clicks/confirm02.mp3" id="6_l2eap"]
 [ext_resource type="AudioStream" uid="uid://cx8v23y2xwyop" path="res://assets/sounds/UI clicks/confirm03.mp3" id="7_t3la4"]
@@ -116,7 +116,6 @@ layout_mode = 2
 
 [node name="Ambiance" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_ubv2r")
-volume_db = -10.0
 autoplay = true
 
 [node name="ClickPlayer" type="AudioStreamPlayer2D" parent="."]

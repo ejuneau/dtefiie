@@ -53,18 +53,17 @@ func _on_main_menu_new_game_pressed() -> void:
 	#add_child(level1_instance)
 	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	#hide()
-	var tutorial = load("res://tutorial.tscn")
-	var tutorial_instance = tutorial.instantiate()
-	tutorial_instance.set_name("tutorial")
-	add_child(tutorial_instance)
-	move_child(tutorial_instance, 0)
+	var tutorial = load("res://scenes/tutorial.tscn").instantiate()
+	tutorial.set_name("tutorial")
+	add_child(tutorial)
+	move_child(tutorial, 0)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	$"main menu".queue_free()
 	$"Pause screen".set_process_mode(3)
 	$"tutorial".load_level1.connect(_on_load_level1)
 
 func _on_load_level1() -> void:
-	var level1 = load("res://level1.tscn").instantiate()
+	var level1 = load("res://scenes/level1.tscn").instantiate()
 	level1.set_name("level1")
 	add_child(level1)
 	spawnPlayer()
@@ -128,7 +127,7 @@ func loadLevel(levelNum) -> void:
 	get_tree().paused = true
 	var newLevel = "level" + str(levelNum)
 	var oldLevel = "level" + str(levelNum - 1)
-	var level = load("res://"+newLevel+".tscn").instantiate()
+	var level = load("res://scenes/"+newLevel+".tscn").instantiate()
 	level.set_name(newLevel)
 	get_node(oldLevel).queue_free()
 	add_child(level)
@@ -145,7 +144,7 @@ func resetPlayer() -> void:
 	
 func spawnPlayer() -> void:
 	await get_tree().create_timer(1).timeout
-	var player = load("res://player.tscn").instantiate()
+	var player = load("res://scenes/player.tscn").instantiate()
 	player.set_name("player")
 	add_child(player)
 	move_child(player, 1)

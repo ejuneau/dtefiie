@@ -1,9 +1,9 @@
 [gd_scene load_steps=17 format=3 uid="uid://d2urrlsle1qqm"]
 
-[ext_resource type="Script" path="res://level_1.gd" id="1_w5a7p"]
+[ext_resource type="Script" path="res://scripts/level_1.gd" id="1_w5a7p"]
 [ext_resource type="FontFile" uid="uid://curgdoaj3yxfs" path="res://assets/fonts/VT323-Regular.ttf" id="4_cg3d7"]
 [ext_resource type="PackedScene" uid="uid://bylljs228vt35" path="res://assets/models/labrador-dog/Labrador.glb" id="4_ybumy"]
-[ext_resource type="PackedScene" uid="uid://6jc0oj15ibsk" path="res://containment_chamber.tscn" id="5_mbe43"]
+[ext_resource type="PackedScene" uid="uid://6jc0oj15ibsk" path="res://scenes/containment_chamber.tscn" id="5_mbe43"]
 [ext_resource type="AudioStream" uid="uid://b8mgig58sesbl" path="res://assets/sounds/UI clicks/confirm01.mp3" id="5_rqhpu"]
 [ext_resource type="AudioStream" uid="uid://b7x0tig33jwap" path="res://assets/sounds/UI clicks/confirm02.mp3" id="6_88dg3"]
 [ext_resource type="AudioStream" uid="uid://cx8v23y2xwyop" path="res://assets/sounds/UI clicks/confirm03.mp3" id="7_udern"]
