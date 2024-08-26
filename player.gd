@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
 signal step_taken(type)
+signal clipboard_answer_confirmed_player(answer: bool)
 
 @export_category("Movement Variables")
 @export var SPEED = 5.0
@@ -69,7 +70,7 @@ var landing : bool
 
 
 func _ready():
-	
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	ArmsBasePosition = ClipboardNode.position
 
 func _unhandled_input(event) -> void:
@@ -188,3 +189,8 @@ func _on_step_taken(type = "step") -> void:
 		$FootstepPlayer.play()
 	elif type == "jump":
 		$JumpPlayer.play()
+
+
+func _on_clipboard_answer_confirmed(answer: bool) -> void:
+	clipboard_answer_confirmed_player.emit(answer)
+	pass # Replace with function body.

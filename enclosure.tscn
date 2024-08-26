@@ -1,0 +1,81 @@
+[gd_scene load_steps=5 format=3 uid="uid://d3mn5013n1h58"]
+
+[ext_resource type="Texture2D" uid="uid://dkp6d7jjuprov" path="res://assets/textures/DirtyMetalWeave03/DirtyMetalWeave03_4K_BaseColor.png" id="1_macwq"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_v70um"]
+top_radius = 3.0
+bottom_radius = 3.0
+height = 0.001
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ty3it"]
+top_radius = 0.25
+bottom_radius = 0.25
+height = 0.02
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8l2kq"]
+albedo_texture = ExtResource("1_macwq")
+
+[node name="Enclosure" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+mesh = SubResource("CylinderMesh_v70um")
+
+[node name="Pin" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_ty3it")
+surface_material_override/0 = SubResource("StandardMaterial3D_8l2kq")
+
+[node name="Pin2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6)
+mesh = SubResource("CylinderMesh_ty3it")
+surface_material_override/0 = SubResource("StandardMaterial3D_8l2kq")
+
+[node name="Pin3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -3)
+mesh = SubResource("CylinderMesh_ty3it")
+surface_material_override/0 = SubResource("StandardMaterial3D_8l2kq")
+
+[node name="Pin4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -3)
+mesh = SubResource("CylinderMesh_ty3it")
+surface_material_override/0 = SubResource("StandardMaterial3D_8l2kq")
+
+[node name="Pin5" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.55, 0, -4.55)
+mesh = SubResource("CylinderMesh_ty3it")
+surface_material_override/0 = SubResource("StandardMaterial3D_8l2kq")
+
+[node name="Pin10" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.55, 0, -1.41104)
+mesh = SubResource("CylinderMesh_ty3it")
+surface_material_override/0 = SubResource("StandardMaterial3D_8l2kq")
+
+[node name="Pin11" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.55386, 0, -1.41104)
+mesh = SubResource("CylinderMesh_ty3it")
+surface_material_override/0 = SubResource("StandardMaterial3D_8l2kq")
+
+[node name="Pin8" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.55498, 0, -4.55)
+mesh = SubResource("CylinderMesh_ty3it")
+surface_material_override/0 = SubResource("StandardMaterial3D_8l2kq")
+
+[node name="Pin6" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55, 0, -5.55)
+mesh = SubResource("CylinderMesh_ty3it")
+surface_material_override/0 = SubResource("StandardMaterial3D_8l2kq")
+
+[node name="Pin9" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55, 0, -0.462972)
+mesh = SubResource("CylinderMesh_ty3it")
+surface_material_override/0 = SubResource("StandardMaterial3D_8l2kq")
+
+[node name="Pin12" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6056, 0, -0.462972)
+mesh = SubResource("CylinderMesh_ty3it")
+surface_material_override/0 = SubResource("StandardMaterial3D_8l2kq")
+
+[node name="Pin7" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.58504, 0, -5.55)
+mesh = SubResource("CylinderMesh_ty3it")
+surface_material_override/0 = SubResource("StandardMaterial3D_8l2kq")

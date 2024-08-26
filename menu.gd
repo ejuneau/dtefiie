@@ -4,7 +4,7 @@ signal new_game_pressed
 # Good luck with this one buddy
 var saveData
 
-# Called when the node enters the scene tree for the first time.
+# TODO implement save state data.
 func _ready() -> void:
 	if saveData:
 		$MarginContainer/VSplitContainer/Options/Continue.show()
@@ -13,9 +13,7 @@ func _ready() -> void:
 #
 		
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta: float) -> void:
-	#pass
+
 
 
 # Quit the game
@@ -25,7 +23,8 @@ func _on_quit_pressed() -> void:
 
 
 func _on_options_pressed() -> void:
-	$"MarginContainer/VSplitContainer/Options/WIP label".show()
+	$"MarginContainer/Main Menu".hide()
+	$MarginContainer/Options.show()
 
 
 func _on_new_game_pressed() -> void:
@@ -35,4 +34,14 @@ func _on_new_game_pressed() -> void:
 
 func _on_ambiance_finished() -> void:
 	$Ambiance.play()
+	pass # Replace with function body.
+
+
+func _on_button_pressed() -> void:
+	$ClickPlayer.play()
+	pass # Replace with function body.
+
+
+func _on_options_exit_options() -> void:
+	$"MarginContainer/Main Menu".show()
 	pass # Replace with function body.

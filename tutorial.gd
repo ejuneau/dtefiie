@@ -11,7 +11,8 @@ var shake_strength: float = 0.0
 var YN
 var currentPage
 
-signal loadLevel1
+signal load_level1
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -57,10 +58,22 @@ func _process(delta: float) -> void:
 				$"Page 3".show()
 				YN = ""
 			elif currentPage == 3:
-				$"Page 3".hide()
-				$"Page 4".show()
-				YN = ""
-	pass
+				#$"Page 3".hide()
+				#$"Page 4".show()
+				#YN = ""
+				#var level1 = load("res://level1.tscn").instantiate()
+				#level1.set_name("level1")
+				#get_tree().root.get_node("Main").add_child(level1)
+				#
+				#var player = load("res://player.tscn").instantiate()
+				#player.set_name("player")
+				#get_tree().root.get_node("Main").add_child(player)
+				load_level1.emit()
+				
+				get_tree().root.get_node("Main/Pause screen/Ambiance").set_process_mode(3)
+				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+				self.queue_free()
+				pass
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("mark_too_big"):
 		YN = "true"
@@ -98,6 +111,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _on_page_1_notifier_screen_entered() -> void:
 	currentPage = 1
+	$"confirm player".play()
 	pass # Replace with function body.
 
 
@@ -111,20 +125,18 @@ func _on_page_3_notifier_screen_entered() -> void:
 	pass # Replace with function body.
 
 
-func _on_page_4_notifier_screen_entered() -> void:
-	currentPage = 4
-	$"Page 4/Timer".start()
-	pass # Replace with function body.
 
 
-func _on_timer_timeout() -> void:
-	$"Page 4/Timer".stop()
-	var level1 = load("res://level1.tscn")
-	var level1_instance = level1.instantiate()
-	level1_instance.set_name("level1")
-	get_tree().root.get_node("Main").add_child(level1_instance)
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	self.queue_free()
+
+#func _on_timer_timeout() -> void:
+	#$"Page 4/Timer".stop()
+	#var level1 = load("res://level1.tscn")
+	#var level1_instance = level1.instantiate()
+	#level1_instance.set_name("level1")
+	#get_tree().root.get_node("Main").add_child(level1_instance)
+	#get_tree().root.get_node("Main/Pause screen/Ambiance").set_process_mode(3)
+	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	#self.queue_free()
 	
 
 
@@ -161,4 +173,9 @@ func _on_page_3_5_notifier_screen_entered() -> void:
 
 func _on_page_3_5_timer_timeout() -> void:
 	$"Page 3_5".hide()
+	pass # Replace with function body.
+
+
+func _on_ambiance_finished() -> void:
+	$Ambiance.play()
 	pass # Replace with function body.

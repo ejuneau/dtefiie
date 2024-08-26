@@ -35,6 +35,7 @@ func _on_paused() -> void:
 	show()
 	isPaused = true
 	$Ambiance.play()
+	$"Click Player".play()
 	pass
 
 func _on_unpaused() -> void:
@@ -43,6 +44,8 @@ func _on_unpaused() -> void:
 	hide()
 	isPaused = false
 	$Ambiance.stop()
+	$"Confirm Player".play()
+
 	pass
 
 # Quit the game

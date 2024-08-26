@@ -1,0 +1,19 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=8 format=3 uid="uid://cd14h01dg46xm"]
+
+[ext_resource type="AudioStream" uid="uid://2iosx3wshcct" path="res://assets/sounds/UI clicks/click01.mp3" id="1_ruoes"]
+[ext_resource type="AudioStream" uid="uid://w4auy7tjmvxe" path="res://assets/sounds/UI clicks/click02.mp3" id="2_3rf2o"]
+[ext_resource type="AudioStream" uid="uid://rwkeukef6bgs" path="res://assets/sounds/UI clicks/click03.mp3" id="3_gtkwb"]
+[ext_resource type="AudioStream" uid="uid://cdenxctbhy5l0" path="res://assets/sounds/UI clicks/click04.mp3" id="4_ii021"]
+[ext_resource type="AudioStream" uid="uid://dax27145k36jm" path="res://assets/sounds/UI clicks/click05.mp3" id="5_jsp2p"]
+[ext_resource type="AudioStream" uid="uid://c21lm04tn5r5m" path="res://assets/sounds/UI clicks/click06.mp3" id="6_cx8ns"]
+[ext_resource type="AudioStream" uid="uid://c3s1gr5sy74tl" path="res://assets/sounds/UI clicks/click07.mp3" id="7_kehnt"]
+
+[resource]
+streams_count = 7
+stream_0/stream = ExtResource("1_ruoes")
+stream_1/stream = ExtResource("2_3rf2o")
+stream_2/stream = ExtResource("3_gtkwb")
+stream_3/stream = ExtResource("4_ii021")
+stream_4/stream = ExtResource("5_jsp2p")
+stream_5/stream = ExtResource("6_cx8ns")
+stream_6/stream = ExtResource("7_kehnt")

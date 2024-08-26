@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://lhntg346fvvw"
+path="res://.godot/imported/pen02.mp3-32d88a08fab596a067594f2f7113abad.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/Pen Strokes/pen02.mp3"
+dest_files=["res://.godot/imported/pen02.mp3-32d88a08fab596a067594f2f7113abad.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

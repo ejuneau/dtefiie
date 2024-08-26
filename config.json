@@ -1,0 +1,17 @@
+{
+  "general": {
+    "VHS effects": true
+  },
+  "sound": {
+    "Mute all sounds": false,
+    "Overall volume": 50,
+    "SFX volume": 50,
+    "Ambience volume": 50
+  },
+  "display": {
+    "Mute all sounds": false,
+    "Overall volume": 50,
+    "SFX volume": 50,
+    "Ambience volume": 50
+  }
+}

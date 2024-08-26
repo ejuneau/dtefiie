@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cclw1wvrcc5s7"]
+[gd_scene load_steps=6 format=3 uid="uid://cclw1wvrcc5s7"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_221ht"]
 [ext_resource type="PackedScene" uid="uid://cv63n5anpa81i" path="res://Menu.tscn" id="2_0v5m8"]
 [ext_resource type="Shader" path="res://retropixel.gdshader" id="3_3p64c"]
+[ext_resource type="PackedScene" uid="uid://dhv6378bmqja" path="res://pause_screen.tscn" id="3_ew01b"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_huvq6"]
 shader = ExtResource("3_3p64c")
@@ -20,6 +21,9 @@ shader_parameter/lens_distortion_strength = 0.007
 
 [node name="Main" type="Node"]
 script = ExtResource("1_221ht")
+
+[node name="Pause screen" parent="." instance=ExtResource("3_ew01b")]
+visible = false
 
 [node name="main menu" parent="." instance=ExtResource("2_0v5m8")]
 

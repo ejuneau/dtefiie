@@ -1,9 +1,16 @@
-[gd_scene load_steps=14 format=3 uid="uid://cimpqytdnwe88"]
+[gd_scene load_steps=22 format=3 uid="uid://cimpqytdnwe88"]
 
 [ext_resource type="Script" path="res://clipboard.gd" id="1_isb6y"]
 [ext_resource type="Texture2D" uid="uid://cbsesq2emq5va" path="res://assets/images/puppies.jpg" id="2_c7vxg"]
 [ext_resource type="Texture2D" uid="uid://yc703mkt2luw" path="res://assets/textures/bec-r-cFnDFeQianA-unsplash.jpg" id="2_yku67"]
 [ext_resource type="FontFile" uid="uid://curgdoaj3yxfs" path="res://assets/fonts/VT323-Regular.ttf" id="3_mncxb"]
+[ext_resource type="AudioStream" uid="uid://b4p1vlb6yvl32" path="res://assets/sounds/Pen Strokes/pen01.mp3" id="5_vasbm"]
+[ext_resource type="AudioStream" uid="uid://lhntg346fvvw" path="res://assets/sounds/Pen Strokes/pen02.mp3" id="6_im470"]
+[ext_resource type="AudioStream" uid="uid://bejvgkfxn1jw1" path="res://assets/sounds/Pen Strokes/pen03.mp3" id="7_hpeqo"]
+[ext_resource type="AudioStream" uid="uid://b17b1an643vad" path="res://assets/sounds/Pen Strokes/pen04.mp3" id="8_cvgfp"]
+[ext_resource type="AudioStream" uid="uid://bgbfbi7alfp60" path="res://assets/sounds/Pen Strokes/pen05.mp3" id="9_gkxas"]
+[ext_resource type="AudioStream" uid="uid://bk1lf83gqy3ho" path="res://assets/sounds/Pen Strokes/pen06.mp3" id="10_gopaa"]
+[ext_resource type="AudioStream" uid="uid://btdboixwg1m6j" path="res://assets/sounds/Pen Strokes/pen07.mp3" id="11_mq6tn"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d2w85"]
 albedo_texture = ExtResource("2_yku67")
@@ -195,7 +202,6 @@ _data = {
 }
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_o4ahl"]
-graph_offset = Vector2(-74.6667, 50)
 
 [sub_resource type="QuadMesh" id="QuadMesh_ih10s"]
 size = Vector2(0.05, 0.05)
@@ -203,6 +209,16 @@ center_offset = Vector3(0, 0, 0.01)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r4osk"]
 albedo_texture = ExtResource("2_c7vxg")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1cdrv"]
+streams_count = 7
+stream_0/stream = ExtResource("5_vasbm")
+stream_1/stream = ExtResource("6_im470")
+stream_2/stream = ExtResource("7_hpeqo")
+stream_3/stream = ExtResource("8_cvgfp")
+stream_4/stream = ExtResource("9_gkxas")
+stream_5/stream = ExtResource("10_gopaa")
+stream_6/stream = ExtResource("11_mq6tn")
 
 [node name="Clipboard" type="Node3D"]
 script = ExtResource("1_isb6y")
@@ -380,5 +396,8 @@ width = 210.0
 
 [node name="debug camera" type="Camera3D" parent="."]
 transform = Transform3D(0.793353, 0.230998, -0.563232, 0, 0.92521, 0.379456, 0.608761, -0.301043, 0.734018, 0.0901148, -0.17, -0.035)
+
+[node name="scribble player" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_1cdrv")
 
 [connection signal="animation_finished" from="MeshInstance3D/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
