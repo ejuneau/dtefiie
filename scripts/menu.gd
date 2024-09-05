@@ -37,6 +37,20 @@ func _on_ambiance_finished() -> void:
 
 
 func _on_button_pressed() -> void:
-	options_pressed.emit()
 	button_pressed.emit()
+	pass # Replace with function body.
+
+
+func _on_credits_back_pressed() -> void:
+	$Credits.hide()
+	pass # Replace with function body.
+
+
+func _on_show_credits_pressed() -> void:
+	$Credits.show()
+	pass # Replace with function body.
+
+
+func _on_options_pressed() -> void:
+	options_pressed.emit()
 	pass # Replace with function body.

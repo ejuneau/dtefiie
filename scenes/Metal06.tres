@@ -1,0 +1,18 @@
+[gd_resource type="StandardMaterial3D" load_steps=6 format=3 uid="uid://dp8uhacc08w4k"]
+
+[ext_resource type="Texture2D" uid="uid://cr7v533iwqrrb" path="res://assets/textures/Metal006/Metal_006_Base_Color.png" id="1_d75iy"]
+[ext_resource type="Texture2D" uid="uid://dq48iufp7t5p0" path="res://assets/textures/Metal006/Metal_006_Height.jpg" id="2_gl1j1"]
+[ext_resource type="Texture2D" uid="uid://byg0npkpeuc7u" path="res://assets/textures/Metal006/Metal_006_Metallic.jpg" id="3_daps6"]
+[ext_resource type="Texture2D" uid="uid://bugnq4b2ufdy6" path="res://assets/textures/Metal006/Metal_006_Normal.jpg" id="4_apnn7"]
+[ext_resource type="Texture2D" uid="uid://be65hvo1gvqd0" path="res://assets/textures/Metal006/Metal_006_Roughness.jpg" id="5_phqme"]
+
+[resource]
+albedo_texture = ExtResource("1_d75iy")
+metallic = 1.0
+metallic_texture = ExtResource("3_daps6")
+roughness_texture = ExtResource("5_phqme")
+normal_enabled = true
+normal_texture = ExtResource("4_apnn7")
+heightmap_enabled = true
+heightmap_texture = ExtResource("2_gl1j1")
+uv1_scale = Vector3(1.555, 1.555, 1.555)

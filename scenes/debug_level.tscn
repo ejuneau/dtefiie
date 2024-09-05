@@ -1,18 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://bjdft7bcwpnt6"]
+[gd_scene load_steps=7 format=3 uid="uid://bjdft7bcwpnt6"]
 
 [ext_resource type="Script" path="res://scenes/debug_level.gd" id="1_ufycv"]
 [ext_resource type="PackedScene" uid="uid://ce7hf8flai85b" path="res://scenes/player.tscn" id="1_uobwy"]
 [ext_resource type="PackedScene" uid="uid://6jc0oj15ibsk" path="res://scenes/containment_chamber.tscn" id="2_qkbli"]
 [ext_resource type="Shader" path="res://shaders/retropixel.gdshader" id="3_7rmmw"]
+[ext_resource type="Environment" uid="uid://j3yw0ieb1hv8" path="res://scenes/containment_chamber.tres" id="5_dif34"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_kkvyr"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a5qul"]
 shader = ExtResource("3_7rmmw")
 shader_parameter/shake = 0.015
 shader_parameter/noiseQuality = 250.0
-shader_parameter/noiseIntensity = 0.006
+shader_parameter/noiseIntensity = 0.001
 shader_parameter/offsetIntensity = 0.0045
-shader_parameter/colorOffsetIntensity = 1.0
-shader_parameter/pixelSize = 300.0
+shader_parameter/colorOffsetIntensity = 0.2
+shader_parameter/pixelSize = 605.284
 shader_parameter/grainIntensity = 0.082
 shader_parameter/use_overlay = true
 shader_parameter/use_lens_distortion = true
@@ -28,7 +29,7 @@ script = ExtResource("1_ufycv")
 
 [node name="Perfect Pixel Effects" type="ColorRect" parent="."]
 z_index = 5
-material = SubResource("ShaderMaterial_kkvyr")
+material = SubResource("ShaderMaterial_a5qul")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -36,3 +37,13 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(1, 1, 1, 0)
+
+[node name="Environment" type="Node" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4.11156, 0)
+light_energy = 0.133
+light_cull_mask = 4293918751
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = ExtResource("5_dif34")

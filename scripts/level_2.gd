@@ -1,4 +1,6 @@
 extends Node
+signal confirmPressed
+signal clickPressed
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -10,11 +12,12 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_title_notifier_screen_entered() -> void:
+	clickPressed.emit()
 	$Title/TitleTimer.start()
 	pass # Replace with function body.
 
 func _on_title_timer_timeout() -> void:
-	$ClickPlayer.play()
+	confirmPressed.emit()
 	$Title.queue_free()
 	pass # Replace with function body.
 

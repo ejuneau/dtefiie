@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://6jc0oj15ibsk"]
+[gd_scene load_steps=9 format=3 uid="uid://6jc0oj15ibsk"]
 
 [ext_resource type="Script" path="res://scripts/containment_chamber.gd" id="1_ijjuw"]
 [ext_resource type="PackedScene" uid="uid://xed5a2r5d4ae" path="res://scenes/ground.tscn" id="1_kkm7v"]
@@ -7,7 +7,6 @@
 [ext_resource type="AudioStream" uid="uid://o7lrn6u0stb6" path="res://assets/sounds/702631__zeraora__forcefield-hum.wav" id="5_xlj1q"]
 [ext_resource type="PackedScene" uid="uid://b3536qviqrlxh" path="res://assets/models/door/heavy_metal_door__submarine_door.glb" id="6_3ysxr"]
 [ext_resource type="PackedScene" uid="uid://cdvk5ukt4vfd8" path="res://scenes/ceiling_light.tscn" id="6_duiag"]
-[ext_resource type="Environment" uid="uid://j3yw0ieb1hv8" path="res://scenes/containment_chamber.tres" id="7_b2jbl"]
 [ext_resource type="PackedScene" uid="uid://d3mn5013n1h58" path="res://scenes/enclosure.tscn" id="7_mf141"]
 
 [node name="Containment Chamber" type="Node3D"]
@@ -42,16 +41,6 @@ transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114
 
 [node name="Ceiling" parent="." instance=ExtResource("1_kkm7v")]
 transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 5, -4)
-
-[node name="Environment" type="Node" parent="."]
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4.11156, 0)
-light_energy = 0.1
-light_cull_mask = 4293918751
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
-environment = ExtResource("7_b2jbl")
 
 [node name="Ceiling Light" parent="." instance=ExtResource("6_duiag")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 4.83937, 1.82824)

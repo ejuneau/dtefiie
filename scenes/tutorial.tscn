@@ -1,11 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://nsagvjr1uvpa"]
+[gd_scene load_steps=6 format=3 uid="uid://nsagvjr1uvpa"]
 
 [ext_resource type="Script" path="res://scripts/tutorial.gd" id="1_d15op"]
 [ext_resource type="Theme" uid="uid://brc5wbswup5dd" path="res://pause_screen.tres" id="2_r7d54"]
 [ext_resource type="FontFile" uid="uid://curgdoaj3yxfs" path="res://assets/fonts/VT323-Regular.ttf" id="3_to3n5"]
-[ext_resource type="AudioStream" uid="uid://cmyouajrgakxm" path="res://confirm_randomizer.tres" id="4_8r0xq"]
-[ext_resource type="AudioStream" uid="uid://cd14h01dg46xm" path="res://click_randomizer.tres" id="4_xs3h8"]
-[ext_resource type="AudioStream" uid="uid://dd3cv0ni8623" path="res://assets/sounds/UI clicks/error.mp3" id="10_l2yuq"]
 
 [sub_resource type="Theme" id="Theme_1kv8n"]
 default_font = ExtResource("3_to3n5")
@@ -547,15 +544,6 @@ root_node = NodePath("../Page3_5Timer")
 [node name="Page3_5Notifier" type="VisibleOnScreenNotifier2D" parent="Page 3_5"]
 position = Vector2(576, 324)
 scale = Vector2(57.6, 32.4)
-
-[node name="clicks player" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_xs3h8")
-
-[node name="confirm player" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_8r0xq")
-
-[node name="error player" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("10_l2yuq")
 
 [connection signal="screen_entered" from="Page 1/Page1Notifier" to="." method="_on_page_1_notifier_screen_entered"]
 [connection signal="timeout" from="Page 1_5/Page1_5Timer" to="." method="_on_page_1_5_timer_timeout"]

@@ -6,6 +6,9 @@ signal unpaused
 signal showOptions
 signal hideOptions
 signal optionsSaved
+signal clickPressed
+signal errorPressed
+signal confirmPressed
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -71,4 +74,19 @@ func _on_resume_pressed() -> void:
 
 func _on_options_menu_options_saved() -> void:
 	optionsSaved.emit()
+	pass # Replace with function body.
+
+
+func _on_click_pressed() -> void:
+	clickPressed.emit()
+	pass # Replace with function body.
+
+
+func _on_error_pressed() -> void:
+	errorPressed.emit()
+	pass # Replace with function body.
+
+
+func _on_confirm_pressed() -> void:
+	confirmPressed.emit()
 	pass # Replace with function body.

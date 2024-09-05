@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cclw1wvrcc5s7"]
+[gd_scene load_steps=17 format=3 uid="uid://cclw1wvrcc5s7"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_221ht"]
 [ext_resource type="PackedScene" uid="uid://cv63n5anpa81i" path="res://scenes/Menu.tscn" id="2_0v5m8"]
@@ -13,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://du1bh7c235q35" path="res://assets/sounds/UI clicks/confirm04.mp3" id="11_6o3k7"]
 [ext_resource type="AudioStream" uid="uid://brguralusvuwp" path="res://assets/sounds/UI clicks/confirm05.mp3" id="12_cjfw7"]
 [ext_resource type="AudioStream" uid="uid://b4mmt5jsak3g6" path="res://assets/sounds/UI clicks/confirm06.mp3" id="13_gu3ha"]
+[ext_resource type="Environment" uid="uid://j3yw0ieb1hv8" path="res://scenes/containment_chamber.tres" id="14_h5aqq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_huvq6"]
 shader = ExtResource("3_3p64c")
@@ -76,13 +77,27 @@ bus = &"sfx"
 
 [node name="Click" type="AudioStreamPlayer2D" parent="Audio"]
 stream = SubResource("AudioStreamRandomizer_lkxq5")
+volume_db = -10.0
 bus = &"sfx"
 
+[node name="Environment" type="Node" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4.11156, 0)
+light_energy = 0.1
+light_cull_mask = 4293918751
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = ExtResource("14_h5aqq")
+
+[connection signal="clickPressed" from="Pause screen" to="." method="_on_click_pressed"]
+[connection signal="confirmPressed" from="Pause screen" to="." method="_on_confirm_pressed"]
+[connection signal="errorPressed" from="Pause screen" to="." method="_on_error_pressed"]
 [connection signal="hideOptions" from="Pause screen" to="." method="_on_pause_screen_hide_options"]
 [connection signal="optionsSaved" from="Pause screen" to="." method="_on_pause_screen_options_saved"]
 [connection signal="showOptions" from="Pause screen" to="." method="_on_pause_screen_show_options"]
 [connection signal="unpaused" from="Pause screen" to="." method="_on_pause_screen_unpaused"]
-[connection signal="button_pressed" from="main menu" to="." method="_on_button_pressed"]
+[connection signal="button_pressed" from="main menu" to="." method="_on_click_pressed"]
 [connection signal="new_game_pressed" from="main menu" to="." method="_on_main_menu_new_game_pressed"]
 [connection signal="options_pressed" from="main menu" to="." method="_on_main_menu_options_pressed"]
 [connection signal="finished" from="Audio/Ambiance" to="." method="_on_ambiance_finished"]

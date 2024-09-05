@@ -12,7 +12,9 @@ var YN
 var currentPage
 
 signal load_level1
-
+signal confirmPressed
+signal clickPressed
+signal errorPressed
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -32,20 +34,20 @@ func _process(delta: float) -> void:
 		position = randomOffset()
 	
 	if Input.is_action_just_pressed("select"):
-		$"confirm player".play()
+		confirmPressed.emit()
 		if YN == "false":
 			if currentPage == 1:
 				$"Page 1/HSplitContainer/No Ensemble/CenterContainer3/NoTickContainer/No Tick".hide()
 				$"Page 1_5".show()
-				$"error player".play()
+				errorPressed.emit()
 			elif currentPage == 2:
 				$"Page 2/HSplitContainer/No Ensemble/CenterContainer3/NoTickContainer/No Tick".hide()
 				$"Page 2_5".show()
-				$"error player".play()
+				errorPressed.emit()
 			elif currentPage == 3:
 				$"Page 3/HSplitContainer/No Ensemble/CenterContainer3/NoTickContainer/No Tick".hide()
 				$"Page 3_5".show()
-				$"error player".play()
+				errorPressed.emit()
 			YN = ""
 		elif YN == "true":
 			
@@ -77,10 +79,10 @@ func _process(delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("mark_too_big"):
 		YN = "true"
-		$"clicks player".play()
+		clickPressed.emit()
 	elif event.is_action_pressed("mark_not_too_big"):
 		YN = "false"
-		$"clicks player".play()
+		clickPressed.emit()
 
 
 	if YN == "true":
@@ -111,7 +113,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _on_page_1_notifier_screen_entered() -> void:
 	currentPage = 1
-	$"confirm player".play()
+	confirmPressed.emit()
 	pass # Replace with function body.
 
 
@@ -173,9 +175,4 @@ func _on_page_3_5_notifier_screen_entered() -> void:
 
 func _on_page_3_5_timer_timeout() -> void:
 	$"Page 3_5".hide()
-	pass # Replace with function body.
-
-
-func _on_ambiance_finished() -> void:
-	#$Ambiance.play()
 	pass # Replace with function body.

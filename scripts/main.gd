@@ -65,6 +65,11 @@ func _on_main_menu_new_game_pressed() -> void:
 	$"main menu".queue_free()
 	$"Pause screen".set_process_mode(3)
 	$"tutorial".load_level1.connect(_on_load_level1)
+	$"tutorial".confirmPressed.connect(_on_confirm_pressed)
+	$"tutorial".clickPressed.connect(_on_click_pressed)
+	$"tutorial".errorPressed.connect(_on_error_pressed)
+
+
 
 func _on_load_level1() -> void:
 	var level1 = load("res://scenes/level1.tscn").instantiate()
@@ -72,8 +77,10 @@ func _on_load_level1() -> void:
 	spawnPlayer()
 	add_child(level1)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	$Ambiance.stop()
+	$Audio/Ambiance.stop()
 	$"tutorial".queue_free()
+	$"level1".confirmPressed.connect(_on_confirm_pressed)
+	$"level1".clickPressed.connect(_on_click_pressed)
 
 	await get_tree().create_timer(1).timeout
 	var clipboard = get_node("player/Neck/Camera3D/Clipboard Container/Clipboard")
@@ -104,6 +111,8 @@ func loadLevel(levelNum) -> void:
 	get_node(oldLevel).queue_free()
 	add_child(level)
 	resetPlayer()
+	get_node(newLevel).confirmPressed.connect(_on_confirm_pressed)
+	get_node(newLevel).clickPressed.connect(_on_click_pressed)
 	await get_tree().create_timer(1).timeout
 	var clipboard = get_node("player/Neck/Camera3D/Clipboard Container/Clipboard")
 	clipboard.load_text(levelNum)
@@ -168,17 +177,18 @@ func pauseGame() -> void:
 	$"Pause screen".show()
 	isPaused = true
 	if !get_node_or_null("tutorial"):
-		$"Ambiance".play()
-	$"Pause screen/Confirm Player".play()
+		$"Audio/Ambiance".play()
+	$"Audio/Confirm".play()
 
 func unpauseGame() -> void:
 	get_tree().paused = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	hideOptions()
 	$"Pause screen".hide()
 	isPaused = false
 	if !get_node_or_null("tutorial"):
-		$"Ambiance".stop()
-	$"Pause screen/Confirm Player".play()	
+		$"Audio/Ambiance".stop()
+	$"Audio/Confirm".play()
 
 func fetch_new_global_config() -> void:
 	global_config = $"Pause screen/Pause Screen Margin/Options Menu".loadOptions()
@@ -227,10 +237,19 @@ func effectuate_options() -> void:
 
 
 func _on_ambiance_finished() -> void:
-	$Ambiance.play()
+	$Audio/Ambiance.play()
 	pass # Replace with function body.
 
 
-func _on_button_pressed() -> void:
+
+func _on_click_pressed() -> void:
 	$Audio/Click.play()
 	pass # Replace with function body.
+
+
+func _on_error_pressed() -> void:
+	$Audio/Error.play()
+	pass # Replace with function body.
+
+func _on_confirm_pressed() -> void:
+	$Audio/Confirm.play()

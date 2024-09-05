@@ -2,6 +2,9 @@ extends Control
 
 signal exitOptions
 signal optionsSaved
+signal click_pressed
+signal error_pressed
+signal confirm_pressed
 
 #TODO extract these options from config file
 
@@ -28,21 +31,20 @@ var config = loadOptions
 # Called when the node enters the scene tree for the first time.
 
 var DEFAULT_CONFIG = {
-  "general": {
-	"vhs_effects": true,
-	"vhs_effects_intensity": 50
-
-  },
-  "sound": {
-	"mute_all_sounds": false,
-	"overall_volume": 10,
-	"sfx_volume": 10,
-	"ambiance_volume": 10
-  },
-  "display": {
-	"brightness": 10,
-	"fullscreen": false
-  }
+	"display": {
+		"brightness": 50,
+		"fullscreen": false
+	},
+	"general": {
+		"vhs_effects": true,
+		"vhs_effects_intensity": 1
+	},
+	"sound": {
+		"ambiance_volume": 5,
+		"mute_all_sounds": false,
+		"overall_volume": 5,
+		"sfx_volume": 5
+	}
 }
 
 
@@ -69,7 +71,7 @@ func _ready() -> void:
 	
 	# Check if an options file exists, if not makes one
 	# Creates temporary new options file
-	# if any value is chagned, log values in temp file, hide Back button and show Save/Discard 
+	# if any value is changed, log values in temp file, hide Back button and show Save/Discard 
 	# on confirmation, commit temp file values to options file
 	# on discard, delete contents of temp file
 	pass # Replace with function body.
@@ -144,10 +146,6 @@ func set_all_options(config) -> void:
 	ambiance_volume.value = config.sound.ambiance_volume
 	sfx_volume.value = config.sound.sfx_volume
 
-func reset_options() -> void:
-	set_all_options(DEFAULT_CONFIG)
-
-
 func _on_discard_pressed() -> void:
 	set_all_options(currentConfig)
 	$Back.show()
@@ -159,5 +157,25 @@ func _on_discard_pressed() -> void:
 func _on_save_pressed() -> void:
 	saveOptions()
 	optionsSaved.emit()
+	confirm_pressed.emit()
+	$Back.show()
+	pass # Replace with function body.
+
+
+func _on_click_pressed() -> void:
+	click_pressed.emit()
+	pass # Replace with function body.
+
+
+func _on_error_pressed() -> void:
+	error_pressed.emit()
+	pass # Replace with function body.
+
+
+func _on_defaults_pressed() -> void:
+	set_all_options(DEFAULT_CONFIG)
+	saveOptions()
+	optionsSaved.emit()
+	error_pressed.emit()
 	$Back.show()
 	pass # Replace with function body.

@@ -130,8 +130,7 @@ text = "Overall Volume
 
 [node name="SFX Volume" type="HSlider" parent="VSplit/TabContainer/Sound/MarginContainer/VBoxContainer" groups=["options"]]
 layout_mode = 2
-max_value = 20.0
-step = 2.0
+max_value = 10.0
 
 [node name="Label" type="Label" parent="VSplit/TabContainer/Sound/MarginContainer/VBoxContainer/SFX Volume"]
 layout_mode = 0
@@ -160,46 +159,60 @@ focus_mode = 2
 metadata/_tab_index = 2
 
 [node name="Save" type="Button" parent="."]
-visible = false
 layout_mode = 0
 offset_left = 779.0
-offset_top = 367.0
+offset_top = 309.0
 offset_right = 838.0
-offset_bottom = 408.0
+offset_bottom = 350.0
 theme = ExtResource("1_lsd5l")
 text = "Save
 "
 
 [node name="Back" type="Button" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 779.0
-offset_top = 367.0
+offset_top = 309.0
 offset_right = 838.0
-offset_bottom = 408.0
+offset_bottom = 350.0
 theme = ExtResource("1_lsd5l")
 text = "Back
 "
 
 [node name="Discard" type="Button" parent="."]
-visible = false
 layout_mode = 0
 offset_left = 779.0
-offset_top = 317.0
+offset_top = 259.0
 offset_right = 877.0
-offset_bottom = 358.0
+offset_bottom = 300.0
 theme = ExtResource("1_lsd5l")
 theme_override_styles/hover = SubResource("StyleBoxFlat_4rvke")
 text = "Discard"
+
+[node name="Defaults" type="Button" parent="."]
+layout_mode = 0
+offset_left = 779.0
+offset_top = 367.0
+offset_right = 889.0
+offset_bottom = 408.0
+theme = ExtResource("1_lsd5l")
+theme_override_styles/hover = SubResource("StyleBoxFlat_4rvke")
+text = "Defaults"
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
 [connection signal="toggled" from="VSplit/TabContainer/General/MarginContainer/VBoxContainer/VHS Effects Container/VHS Effects" to="." method="_on_options_changed"]
 [connection signal="value_changed" from="VSplit/TabContainer/General/MarginContainer/VBoxContainer/VHS Effect Intensity" to="." method="_on_options_changed"]
+[connection signal="focus_entered" from="VSplit/TabContainer/Sound" to="." method="_on_click_pressed"]
 [connection signal="toggled" from="VSplit/TabContainer/Sound/MarginContainer/VBoxContainer/Mute All Sounds Container/Mute All Sounds" to="." method="_on_options_changed"]
 [connection signal="value_changed" from="VSplit/TabContainer/Sound/MarginContainer/VBoxContainer/Overall Volume" to="." method="_on_options_changed"]
-[connection signal="value_changed" from="VSplit/TabContainer/Sound/MarginContainer/VBoxContainer/SFX Volume" to="." method="_on_options_chagned"]
+[connection signal="value_changed" from="VSplit/TabContainer/Sound/MarginContainer/VBoxContainer/SFX Volume" to="." method="_on_options_changed"]
 [connection signal="value_changed" from="VSplit/TabContainer/Sound/MarginContainer/VBoxContainer/Ambiance Volume" to="." method="_on_options_changed"]
 [connection signal="pressed" from="Save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="Back" to="." method="_on_click_pressed"]
 [connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="Discard" to="." method="_on_error_pressed"]
 [connection signal="pressed" from="Discard" to="." method="_on_discard_pressed"]
+[connection signal="pressed" from="Defaults" to="." method="_on_error_pressed"]
+[connection signal="pressed" from="Defaults" to="." method="_on_defaults_pressed"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
