@@ -33,25 +33,25 @@ This is a list of issues I'm trying to track. I will try to update this as I mak
 	This might not actually look good even if I get it right. Currently there is a more humanoid model that is hidden in the player node, as well as some commented out lines of code to track head movement along the Y axis. Rotating the model in 3D requires an understanding of quaternions and I don't have time to look into it right now.
 
 * ## Finalise Options menu
-As of right now the options menu has tabs for General, Audio, and Display settings, although Display is completely blank for now. There are some settings I'd like to add to the existing tabs, as well as new tabs altogether:
-* General
-* Sound
-* Display
-	* Fullscreen toggle
-	* Graphics settings
-* Controls
-	* Rebind-able keys
+	As of right now the options menu has tabs for General, Audio, and Display settings, although Display is completely blank for now. There are some settings I'd like to add to the existing tabs, as well as new tabs altogether:
+	* General
+	* Sound
+	* Display
+		* Fullscreen toggle
+		* Graphics settings
+	* Controls
+		* Rebind-able keys
 * ## Implement day mechanics
-The scope of the current game is to have 3 days made up of 3 or 4 entities per day. There would be a text-based menu in between days, sort of like Papers Please (introducing choices/arbitrary resources to use during these screens TBD)
+	The scope of the current game is to have 3 days made up of 3 or 4 entities per day. There would be a text-based menu in between days, sort of like Papers Please (introducing choices/arbitrary resources to use during these screens TBD)
 * ## Implement save states
-Once Days are implemented, it  will become more necessary to have a save function to track the player's progress and actually manage how many correct/incorrect decisions they have made. A Godot plugin for this has already been downloaded but has not been implemented yet, although given the scope of the game this could potentially also be done by simpler means.
+	Once Days are implemented, it  will become more necessary to have a save function to track the player's progress and actually manage how many correct/incorrect decisions they have made. A Godot plugin for this has already been downloaded but has not been implemented yet, although given the scope of the game this could potentially also be done by simpler means.
 
 * ## Controller support
-More for accessibility than anything else, as well as rebinding keys.
+	More for accessibility than anything else, as well as rebinding keys.
 * ## Shaders/visual effects
-I anticipate this will be the most difficult to implement seeing as I have no idea how to do this. Unfortunately, I also anticipate this to be the most engaging and interesting aspect about this game. Having Entities morph into each other when you're looking at them through a mirror, for example, requires many different visual effects that I don't even understand well enough to describe what I'm dealing with.
+	I anticipate this will be the most difficult to implement seeing as I have no idea how to do this. Unfortunately, I also anticipate this to be the most engaging and interesting aspect about this game. Having Entities morph into each other when you're looking at them through a mirror, for example, requires many different visual effects that I don't even understand well enough to describe what I'm dealing with.
 
-I don't know if I will be able to get this done and may have to hire a professional to have it done for me. Then again, I thought I would have to hire a developer for this project too. 
+	I don't know if I will be able to get this done and may have to hire a professional to have it done for me. Then again, I thought I would have to hire a developer for this project too. 
 
 # Credits
 
