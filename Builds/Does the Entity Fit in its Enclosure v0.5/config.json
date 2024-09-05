@@ -1,0 +1,16 @@
+{
+	"display": {
+		"brightness": 50,
+		"fullscreen": false
+	},
+	"general": {
+		"vhs_effects": false,
+		"vhs_effects_intensity": 1
+	},
+	"sound": {
+		"ambiance_volume": 5,
+		"mute_all_sounds": false,
+		"overall_volume": 5,
+		"sfx_volume": 5
+	}
+}
