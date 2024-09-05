@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://xed5a2r5d4ae"]
+[gd_scene load_steps=5 format=3 uid="uid://xed5a2r5d4ae"]
 
 [ext_resource type="Script" path="res://scripts/ground.gd" id="1_h4nva"]
+[ext_resource type="Material" uid="uid://cdspjiqeukke3" path="res://assets/textures/metal-floor/metalFloor.tres" id="2_mcwfm"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_avguv"]
 size = Vector2(12, 15)
@@ -14,6 +15,7 @@ script = ExtResource("1_h4nva")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_avguv")
+surface_material_override/0 = ExtResource("2_mcwfm")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://ce7hf8flai85b"]
+[gd_scene load_steps=28 format=3 uid="uid://ce7hf8flai85b"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_rpfpw"]
 [ext_resource type="PackedScene" uid="uid://c0a71s75g5xh8" path="res://scenes/clipboard.tscn" id="2_cv7uu"]
@@ -22,6 +22,7 @@
 [ext_resource type="AudioStream" uid="uid://by40w3v1osfp4" path="res://assets/sounds/footsteps/footstep8.mp3" id="20_102bq"]
 [ext_resource type="AudioStream" uid="uid://hpouru8ls7dl" path="res://assets/sounds/footsteps/footstep9.mp3" id="21_u6pso"]
 [ext_resource type="AudioStream" uid="uid://ikonawnc53uk" path="res://assets/sounds/footsteps/footstep10.mp3" id="22_wxa54"]
+[ext_resource type="PackedScene" uid="uid://c1goxluh42fgw" path="res://scenes/models/model.tscn" id="23_vfskx"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_a26gn"]
 
@@ -54,7 +55,7 @@ stream_18/stream = ExtResource("13_6q55y")
 stream_19/stream = ExtResource("14_k4byv")
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("CameraNode", "CameraActual", "ClipboardNode")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07633, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07633, 2)
 script = ExtResource("1_rpfpw")
 CameraNode = NodePath("Neck")
 CameraActual = NodePath("Neck/Camera3D")
@@ -80,14 +81,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.667108, 0)
 
 [node name="FootstepPlayer" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamRandomizer_frxnh")
-volume_db = -13.038
+volume_db = -30.0
 unit_size = 3.15
+bus = &"sfx"
 
 [node name="JumpPlayer" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamRandomizer_frxnh")
-volume_db = -11.496
+volume_db = -28.0
 unit_size = 3.15
 max_polyphony = 2
+bus = &"sfx"
+
+[node name="model" parent="." instance=ExtResource("23_vfskx")]
+transform = Transform3D(-1.225, 0, 1.8497e-07, 0, 1.225, 0, -1.8497e-07, 0, -1.225, 0, -0.989169, 0)
+visible = false
 
 [connection signal="step_taken" from="." to="." method="_on_step_taken"]
 [connection signal="answerConfirmed" from="Neck/Camera3D/Clipboard Container/Clipboard" to="." method="_on_clipboard_answer_confirmed"]

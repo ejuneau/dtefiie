@@ -9,29 +9,18 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func _on_player_clipboard_answer_confirmed(answer: bool) -> void:
-	if answer: #load level2
-		var level3 = load("res://level3.tscn")
-		var level3_instance = level3.instantiate()
-		level3_instance.set_name("level3")
-		get_tree().root.get_node("Main").add_child(level3_instance)
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		self.queue_free()
-	elif !answer: #restart level1
-		get_tree().reload_current_scene()
-	pass # Replace with function body.
-
-
 func _on_title_notifier_screen_entered() -> void:
 	$Title/TitleTimer.start()
 	pass # Replace with function body.
 
-
 func _on_title_timer_timeout() -> void:
+	$ClickPlayer.play()
 	$Title.queue_free()
 	pass # Replace with function body.
 
-
 func _on_day_timer_timeout() -> void:
 	$"Title/Day 1".show()
+	$"Containment Chamber/Near Wall/Door/DoorHum".play()
+	$"Containment Chamber/Ceiling Light 2/Ceiling Light Hum".play()
+	$"Containment Chamber/Ceiling Light/Ceiling Light Hum".play()
 	pass # Replace with function body.

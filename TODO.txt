@@ -1,0 +1,7 @@
+TODO
+
+* Figure out Quaternions and make player head follow mouse Y axis
+* Have options actually affect values
+* Implement save states
+* Implement day mechanics
+* Shaders/visual effects

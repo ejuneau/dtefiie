@@ -2,10 +2,10 @@ extends Control
 
 var isPaused: bool = false
 
-signal paused
 signal unpaused
 signal showOptions
 signal hideOptions
+signal optionsSaved
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -55,10 +55,20 @@ func _on_options_pressed() -> void:
 	showOptions.emit()
 
 func _on_ambiance_finished() -> void:
-	$Ambiance.play()
+	#$Ambiance.play()
 	pass # Replace with function body.
 
 
 func _on_options_menu_exit_options() -> void:
 	hideOptions.emit()
+	pass # Replace with function body.
+
+
+func _on_resume_pressed() -> void:
+	unpaused.emit()
+	pass # Replace with function body.
+
+
+func _on_options_menu_options_saved() -> void:
+	optionsSaved.emit()
 	pass # Replace with function body.

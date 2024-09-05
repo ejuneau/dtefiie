@@ -52,6 +52,8 @@ signal clipboard_answer_confirmed_player(answer: bool)
 
 @onready var neck := $Neck
 @onready var camera := $Neck/Camera3D
+@onready var model: Node3D = $model
+
 
 var targetRotation: Vector3;
 var clipboard_up : bool = false
@@ -68,7 +70,6 @@ var HandOffsetPosition: Vector3;
 
 var landing : bool
 
-
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	ArmsBasePosition = ClipboardNode.position
@@ -80,6 +81,7 @@ func _unhandled_input(event) -> void:
 		if event is InputEventMouseMotion:
 			neck.rotate_y(-event.relative.x * 0.01)
 			camera.rotate_x(-event.relative.y * 0.01)
+			rotate_model(event.relative.x, clamp(camera.rotation.x, deg_to_rad(-80), deg_to_rad(60)), camera.rotation.x)
 			camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-80), deg_to_rad(60))
 
 func _physics_process(delta: float) -> void:
@@ -194,3 +196,16 @@ func _on_step_taken(type = "step") -> void:
 func _on_clipboard_answer_confirmed(answer: bool) -> void:
 	clipboard_answer_confirmed_player.emit(answer)
 	pass # Replace with function body.
+	
+func rotate_model(x, y, cameraRot) -> void:
+	# x and y are event.relative.x/y respectively
+	model.rotate_y(-x * 0.01)
+	#rotate neck up/down
+	# from video:
+	# q = cos(angle) + sin(angle) * (normalized Vector)
+	#var quaternion = Quaternion(0.1, 0, 0, -x * 10)
+	var currentQuat = $model/masc.get_bone_pose_rotation($model/masc.find_bone("neck2_15"))
+	var newQuat = Quaternion(1, 0, 0, -y * 0.01)
+#$model/fem.set_bone_pose_rotation($model/fem.find_bone("head_14"), y)
+	var finalQuat = (currentQuat * newQuat).normalized()
+	$model/masc.set_bone_pose_rotation($model/masc.find_bone("neck2_15"),  finalQuat)

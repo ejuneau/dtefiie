@@ -1,10 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://nsagvjr1uvpa"]
+[gd_scene load_steps=9 format=3 uid="uid://nsagvjr1uvpa"]
 
 [ext_resource type="Script" path="res://scripts/tutorial.gd" id="1_d15op"]
 [ext_resource type="Theme" uid="uid://brc5wbswup5dd" path="res://pause_screen.tres" id="2_r7d54"]
 [ext_resource type="FontFile" uid="uid://curgdoaj3yxfs" path="res://assets/fonts/VT323-Regular.ttf" id="3_to3n5"]
 [ext_resource type="AudioStream" uid="uid://cmyouajrgakxm" path="res://confirm_randomizer.tres" id="4_8r0xq"]
-[ext_resource type="AudioStream" uid="uid://6kj3lguqsmu5" path="res://assets/sounds/Menu ambient/609357__florstristi__vhs_vcr-hum-c.wav" id="4_v7vob"]
 [ext_resource type="AudioStream" uid="uid://cd14h01dg46xm" path="res://click_randomizer.tres" id="4_xs3h8"]
 [ext_resource type="AudioStream" uid="uid://dd3cv0ni8623" path="res://assets/sounds/UI clicks/error.mp3" id="10_l2yuq"]
 
@@ -558,10 +557,6 @@ stream = ExtResource("4_8r0xq")
 [node name="error player" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_l2yuq")
 
-[node name="Ambiance" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_v7vob")
-autoplay = true
-
 [connection signal="screen_entered" from="Page 1/Page1Notifier" to="." method="_on_page_1_notifier_screen_entered"]
 [connection signal="timeout" from="Page 1_5/Page1_5Timer" to="." method="_on_page_1_5_timer_timeout"]
 [connection signal="screen_entered" from="Page 1_5/Page1_5Notifier" to="." method="_on_page_1_5_notifier_screen_entered"]
@@ -571,4 +566,3 @@ autoplay = true
 [connection signal="screen_entered" from="Page 3/Page3Notifier" to="." method="_on_page_3_notifier_screen_entered"]
 [connection signal="timeout" from="Page 3_5/Page3_5Timer" to="." method="_on_page_3_5_timer_timeout"]
 [connection signal="screen_entered" from="Page 3_5/Page3_5Notifier" to="." method="_on_page_3_5_notifier_screen_entered"]
-[connection signal="finished" from="Ambiance" to="." method="_on_ambiance_finished"]

@@ -70,7 +70,7 @@ func _process(delta: float) -> void:
 				#get_tree().root.get_node("Main").add_child(player)
 				load_level1.emit()
 				
-				get_tree().root.get_node("Main/Pause screen/Ambiance").set_process_mode(3)
+				#get_tree().root.get_node("Main/Pause screen/Ambiance").set_process_mode(3)
 				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 				self.queue_free()
 				pass
@@ -177,5 +177,5 @@ func _on_page_3_5_timer_timeout() -> void:
 
 
 func _on_ambiance_finished() -> void:
-	$Ambiance.play()
+	#$Ambiance.play()
 	pass # Replace with function body.

@@ -14,7 +14,7 @@ config/name="Does the Entity Fit in its enclosure?"
 run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 boot_splash/image="res://assets/images/splash.png"
-config/icon="res://icon.svg"
+config/icon="res://assets/images/icon-distorted.png"
 boot_splash/minimum_display_time=500
 
 [autoload]
@@ -30,6 +30,10 @@ window/minimum_display_time=0
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/save_system/plugin.cfg")
+
+[filesystem]
+
+import/blender/enabled=false
 
 [input]
 

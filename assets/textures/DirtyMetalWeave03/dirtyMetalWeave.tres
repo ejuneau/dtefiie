@@ -1,0 +1,23 @@
+[gd_resource type="StandardMaterial3D" load_steps=7 format=3 uid="uid://cxc6scbs0jxq6"]
+
+[ext_resource type="Texture2D" uid="uid://dkp6d7jjuprov" path="res://assets/textures/DirtyMetalWeave03/DirtyMetalWeave03_4K_BaseColor.png" id="1_3d3hh"]
+[ext_resource type="Texture2D" uid="uid://dlkm7buyw0fmn" path="res://assets/textures/DirtyMetalWeave03/DirtyMetalWeave03_4K_AO.png" id="2_xb51a"]
+[ext_resource type="Texture2D" uid="uid://c4exy3k8w1ym2" path="res://assets/textures/DirtyMetalWeave03/DirtyMetalWeave03_4K_Height.png" id="3_7s2jq"]
+[ext_resource type="Texture2D" uid="uid://dx1vtqawpvlsw" path="res://assets/textures/DirtyMetalWeave03/DirtyMetalWeave03_4K_Metallic.png" id="4_sebqw"]
+[ext_resource type="Texture2D" uid="uid://va07utsq01dq" path="res://assets/textures/DirtyMetalWeave03/DirtyMetalWeave03_4K_Normal.png" id="5_qt77j"]
+[ext_resource type="Texture2D" uid="uid://f1lw0r8suiss" path="res://assets/textures/DirtyMetalWeave03/DirtyMetalWeave03_4K_Roughness.png" id="6_knygn"]
+
+[resource]
+albedo_texture = ExtResource("1_3d3hh")
+metallic = 1.0
+metallic_texture = ExtResource("4_sebqw")
+roughness_texture = ExtResource("6_knygn")
+normal_enabled = true
+normal_texture = ExtResource("5_qt77j")
+ao_enabled = true
+ao_light_affect = 0.85
+ao_texture = ExtResource("2_xb51a")
+heightmap_enabled = true
+heightmap_scale = -0.529
+heightmap_texture = ExtResource("3_7s2jq")
+uv1_scale = Vector3(3.245, 3.245, 3.245)

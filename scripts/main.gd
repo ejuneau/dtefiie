@@ -1,41 +1,59 @@
 extends Node
 
+var global_config
+var min_shader_strength = {
+	"shake": 0.015,
+	"noiseQuality":  250,
+	"noiseIntensity": 0.001,
+	"offsetIntensity": 0.0045,
+	"colorOffsetIntensity": 0.2,
+	"pixelSize": 605,
+	"grainIntensity": 0.0
+}
+var med_shader_strength = {
+	"shake": 0.015,
+	"noiseQuality":  250,
+	"noiseIntensity": 0.001,
+	"offsetIntensity": 0.0045,
+	"colorOffsetIntensity": 0.2,
+	"pixelSize": 605,
+	"grainIntensity":0.08,
 
+}
+var max_shader_strength = {
+	"shake": 0.015,
+	"noiseQuality":  250,
+	"noiseIntensity": 0.006,
+	"offsetIntensity": 0.0045,
+	"colorOffsetIntensity": 1,
+	"pixelSize": 300,
+	"grainIntensity":0.08,
+}
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$"Pause screen".set_process_mode(4)
-	$"Pause screen/Ambiance".set_process_mode(4)
+	#$"Pause screen/Ambiance".set_process_mode(4)
+	# establish global config
+	global_config = $"Pause screen/Pause Screen Margin/Options Menu".loadOptions()
+	effectuate_options()
+	
+
 	pass
 	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 var isPaused: bool = false
 
+func _process(delta) -> void:
+	pass
 
 func _unhandled_input(event) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		isPaused = !isPaused
-		print(isPaused)
 		if isPaused:
-			print("pausing")
-			get_tree().paused = true
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-			$"Pause screen".show()
-			isPaused = true
-			$"Pause screen/Ambiance".play()
-			$"Pause screen/Confirm Player".play()
-			print("paused")
-			pass
+			pauseGame()
 		elif !isPaused:
-			print("unpausing")
-			get_tree().paused = false
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-			$"Pause screen".hide()
-			isPaused = false
-			$"Pause screen/Ambiance".stop()
-			$"Pause screen/Confirm Player".play()
-			print("unpaused")
+			unpauseGame()
 
-			pass
 
 
 func _on_main_menu_new_game_pressed() -> void:
@@ -46,38 +64,21 @@ func _on_main_menu_new_game_pressed() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	$"main menu".queue_free()
 	$"Pause screen".set_process_mode(3)
-	$"Pause screen/Ambiance".set_process_mode(3)
 	$"tutorial".load_level1.connect(_on_load_level1)
 
 func _on_load_level1() -> void:
 	var level1 = load("res://scenes/level1.tscn").instantiate()
 	level1.set_name("level1")
-	add_child(level1)
 	spawnPlayer()
+	add_child(level1)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	$Ambiance.stop()
 	$"tutorial".queue_free()
+
+	await get_tree().create_timer(1).timeout
+	var clipboard = get_node("player/Neck/Camera3D/Clipboard Container/Clipboard")
+	clipboard.load_text(1)
 	#$AudioStreamPlayer2D.queue_free()
-	
-
-#func _on_paused() -> void:
-	#get_tree().paused = true
-	#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	#$"Pause Screen".show()
-	#isPaused = true
-	#$Ambiance.play()
-	#pass
-#
-#func _on_unpaused() -> void:
-	#get_tree().paused = false
-	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	#$"Pause Screen".hide()
-	#isPaused = false
-	#$Ambiance.stop()
-	#pass
-
-#
-#func _on_audio_stream_player_2d_finished() -> void:
-	#$AudioStreamPlayer2D.play()
 	
 	
 func _on_player_answer_confirmed(answer: bool) -> void:
@@ -88,7 +89,7 @@ func _on_player_answer_confirmed(answer: bool) -> void:
 	elif get_node_or_null("./level2"):
 		loadLevel(3)
 	elif get_node_or_null("./level3"):
-		pass
+		loadLevel(4)
 
 	pass # Replace with function body.
 
@@ -103,6 +104,9 @@ func loadLevel(levelNum) -> void:
 	get_node(oldLevel).queue_free()
 	add_child(level)
 	resetPlayer()
+	await get_tree().create_timer(1).timeout
+	var clipboard = get_node("player/Neck/Camera3D/Clipboard Container/Clipboard")
+	clipboard.load_text(levelNum)
 	get_tree().paused = false
 	
 func resetPlayer() -> void:
@@ -123,7 +127,6 @@ func spawnPlayer() -> void:
 	
 func showOptions() -> void:
 	$"Pause screen".set_process_mode(3)
-
 	$"Pause screen".show()
 	$"Pause screen/Pause Screen Margin/Options Menu".show()
 	$"Pause screen/Pause Screen Margin/Pause Screen".hide()
@@ -131,10 +134,10 @@ func showOptions() -> void:
 		$"main menu".hide()
 
 func hideOptions() -> void:
-	$"Pause screen".set_process_mode(4)
 	$"Pause screen/Pause Screen Margin/Options Menu".hide()
 	$"Pause screen/Pause Screen Margin/Pause Screen".show()
 	if get_node_or_null("main menu"):
+		$"Pause screen".set_process_mode(4)
 		$"Pause screen".hide()
 		$"main menu".show()
 
@@ -152,4 +155,82 @@ func _on_pause_screen_show_options() -> void:
 
 func _on_pause_screen_hide_options() -> void:
 	hideOptions()
+	pass # Replace with function body.
+
+
+func _on_pause_screen_unpaused() -> void:
+	unpauseGame()
+	pass # Replace with function body.
+	
+func pauseGame() -> void:
+	get_tree().paused = true
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	$"Pause screen".show()
+	isPaused = true
+	if !get_node_or_null("tutorial"):
+		$"Ambiance".play()
+	$"Pause screen/Confirm Player".play()
+
+func unpauseGame() -> void:
+	get_tree().paused = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	$"Pause screen".hide()
+	isPaused = false
+	if !get_node_or_null("tutorial"):
+		$"Ambiance".stop()
+	$"Pause screen/Confirm Player".play()	
+
+func fetch_new_global_config() -> void:
+	global_config = $"Pause screen/Pause Screen Margin/Options Menu".loadOptions()
+	
+
+
+func _on_pause_screen_options_saved() -> void:
+	fetch_new_global_config()
+	effectuate_options()
+	
+
+func effectuate_options() -> void:
+		# effectuate all option changes
+	# GENERAL
+	if !global_config.general.vhs_effects:
+		$"Perfect Pixel Effects".hide()
+	elif global_config.general.vhs_effects:
+		$"Perfect Pixel Effects".show()
+	# TODO VHS Effect Intensity
+	$"Perfect Pixel Effects".material.set_shader_parameter("shake", lerp(min_shader_strength.shake, med_shader_strength.shake, global_config.general.vhs_effects_intensity))
+	$"Perfect Pixel Effects".material.set_shader_parameter("noiseQuality", lerp(min_shader_strength.noiseQuality, med_shader_strength.noiseQuality, global_config.general.vhs_effects_intensity))
+	$"Perfect Pixel Effects".material.set_shader_parameter("noiseIntensity", lerp(min_shader_strength.noiseIntensity, med_shader_strength.noiseIntensity, global_config.general.vhs_effects_intensity))
+	$"Perfect Pixel Effects".material.set_shader_parameter("offsetIntensity", lerp(min_shader_strength.offsetIntensity, med_shader_strength.offsetIntensity, global_config.general.vhs_effects_intensity))
+	$"Perfect Pixel Effects".material.set_shader_parameter("grainIntensity", lerp(min_shader_strength.grainIntensity, med_shader_strength.grainIntensity, global_config.general.vhs_effects_intensity))
+	$"Perfect Pixel Effects".material.set_shader_parameter("pixelSize", lerp(min_shader_strength.pixelSize, med_shader_strength.pixelSize, global_config.general.vhs_effects_intensity))
+
+	# SOUND
+	if global_config.sound.mute_all_sounds:
+		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), -100)
+
+	elif !global_config.sound.mute_all_sounds:
+		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear_to_db(global_config.sound.overall_volume))
+		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("ambiance"), linear_to_db(global_config.sound.ambiance_volume))
+
+		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("sfx"), linear_to_db(global_config.sound.sfx_volume))
+		
+	# TODO Cycle through the rest of options
+	# VHS Effect intensity
+	#
+	#Brightness
+	#Fullscreen
+	#
+
+	pass # Replace with function body.
+	
+
+
+func _on_ambiance_finished() -> void:
+	$Ambiance.play()
+	pass # Replace with function body.
+
+
+func _on_button_pressed() -> void:
+	$Audio/Click.play()
 	pass # Replace with function body.

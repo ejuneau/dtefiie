@@ -1,9 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://cmiu1lmmoj1io"]
+[gd_scene load_steps=17 format=3 uid="uid://cmiu1lmmoj1io"]
 
 [ext_resource type="Script" path="res://scripts/level_2.gd" id="1_47px5"]
 [ext_resource type="PackedScene" uid="uid://di3tkkgp5ujo8" path="res://assets/models/deer/deer.glb" id="3_d746y"]
 [ext_resource type="PackedScene" uid="uid://6jc0oj15ibsk" path="res://scenes/containment_chamber.tscn" id="3_ye03n"]
 [ext_resource type="FontFile" uid="uid://curgdoaj3yxfs" path="res://assets/fonts/VT323-Regular.ttf" id="4_0sbh3"]
+[ext_resource type="AudioStream" uid="uid://b8mgig58sesbl" path="res://assets/sounds/UI clicks/confirm01.mp3" id="5_7dshe"]
+[ext_resource type="AudioStream" uid="uid://b7x0tig33jwap" path="res://assets/sounds/UI clicks/confirm02.mp3" id="6_vv0lv"]
+[ext_resource type="AudioStream" uid="uid://cx8v23y2xwyop" path="res://assets/sounds/UI clicks/confirm03.mp3" id="7_7w0e5"]
+[ext_resource type="AudioStream" uid="uid://du1bh7c235q35" path="res://assets/sounds/UI clicks/confirm04.mp3" id="8_lug1c"]
+[ext_resource type="AudioStream" uid="uid://brguralusvuwp" path="res://assets/sounds/UI clicks/confirm05.mp3" id="9_c0rhm"]
+[ext_resource type="AudioStream" uid="uid://b4mmt5jsak3g6" path="res://assets/sounds/UI clicks/confirm06.mp3" id="10_gue5g"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vjnj3"]
 radius = 0.337277
@@ -50,6 +56,15 @@ _data = {
 default_font = ExtResource("4_0sbh3")
 default_font_size = 32
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_mwy1b"]
+streams_count = 6
+stream_0/stream = ExtResource("5_7dshe")
+stream_1/stream = ExtResource("6_vv0lv")
+stream_2/stream = ExtResource("7_7w0e5")
+stream_3/stream = ExtResource("8_lug1c")
+stream_4/stream = ExtResource("9_c0rhm")
+stream_5/stream = ExtResource("10_gue5g")
+
 [node name="level2" type="Node"]
 process_mode = 1
 script = ExtResource("1_47px5")
@@ -95,7 +110,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_r2qjp")
-theme_override_font_sizes/font_size = 300
+theme_override_font_sizes/font_size = 421
 text = "OH DEER"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -128,6 +143,10 @@ autostart = true
 [node name="TitleNotifier" type="VisibleOnScreenNotifier2D" parent="Title"]
 position = Vector2(576, 324)
 scale = Vector2(57.6, 32.4)
+
+[node name="ClickPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_mwy1b")
+autoplay = true
 
 [connection signal="timeout" from="Title/TitleTimer" to="." method="_on_title_timer_timeout"]
 [connection signal="timeout" from="Title/DayTimer" to="." method="_on_day_timer_timeout"]

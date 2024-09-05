@@ -2,6 +2,7 @@ extends Control
 
 signal new_game_pressed
 signal options_pressed
+signal button_pressed
 # Good luck with this one buddy
 var saveData
 
@@ -31,11 +32,11 @@ func _on_new_game_pressed() -> void:
 
 
 func _on_ambiance_finished() -> void:
-	$Ambiance.play()
+	#$Ambiance.play()
 	pass # Replace with function body.
 
 
 func _on_button_pressed() -> void:
 	options_pressed.emit()
-	$ClickPlayer.play()
+	button_pressed.emit()
 	pass # Replace with function body.

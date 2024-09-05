@@ -1,0 +1,81 @@
+[gd_scene load_steps=5 format=3 uid="uid://1qael3cjop3r"]
+
+[ext_resource type="Texture2D" uid="uid://cbsesq2emq5va" path="res://assets/images/puppies.jpg" id="1_1j6yx"]
+[ext_resource type="Theme" uid="uid://brc5wbswup5dd" path="res://pause_screen.tres" id="1_g1fxf"]
+[ext_resource type="Texture2D" uid="uid://dsbqeye7drvv4" path="res://assets/images/yourdidit.jpg" id="1_jbvk8"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_cfhs2"]
+diffuse_texture = ExtResource("1_1j6yx")
+specular_texture = ExtResource("1_1j6yx")
+specular_color = Color(0.217101, 0.217101, 0.217101, 1)
+specular_shininess = 0.1
+
+[node name="level1" type="MarginContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(630, 891)
+anchors_preset = -1
+anchor_right = 0.365
+anchor_bottom = 0.917
+offset_right = 209.52
+offset_bottom = 296.784
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 90
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="debug_background" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(451, 579)
+scale = Vector2(2.375, 2.253)
+texture = ExtResource("1_jbvk8")
+
+[node name="VSplitContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="IMAGE_NDR" type="HBoxContainer" parent="VSplitContainer"]
+layout_mode = 2
+
+[node name="Container" type="CenterContainer" parent="VSplitContainer/IMAGE_NDR"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+
+[node name="IMAGE" type="TextureRect" parent="VSplitContainer/IMAGE_NDR/Container"]
+custom_minimum_size = Vector2(183.35, 119.79)
+layout_mode = 2
+texture = SubResource("CanvasTexture_cfhs2")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="NAME_DANGER_RETRIEVED" type="VBoxContainer" parent="VSplitContainer/IMAGE_NDR"]
+layout_mode = 2
+alignment = 1
+
+[node name="NAME" type="Label" parent="VSplitContainer/IMAGE_NDR/NAME_DANGER_RETRIEVED"]
+layout_mode = 2
+theme = ExtResource("1_g1fxf")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 36
+text = "NAME: Just a bunch of puppies"
+
+[node name="DANGER" type="Label" parent="VSplitContainer/IMAGE_NDR/NAME_DANGER_RETRIEVED"]
+layout_mode = 2
+theme = ExtResource("1_g1fxf")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 36
+text = "DANGER: Unknown"
+
+[node name="RETRIEVED" type="Label" parent="VSplitContainer/IMAGE_NDR/NAME_DANGER_RETRIEVED"]
+layout_mode = 2
+theme = ExtResource("1_g1fxf")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 36
+text = "RETRIEVED: 04/09/20XX"
+
+[node name="Label" type="Label" parent="VSplitContainer"]
+layout_mode = 2
+theme = ExtResource("1_g1fxf")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 36
+text = "DESCRIPTION"
