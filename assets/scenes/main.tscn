@@ -19,15 +19,15 @@
 shader = ExtResource("3_3p64c")
 shader_parameter/shake = 0.015
 shader_parameter/noiseQuality = 250.0
-shader_parameter/noiseIntensity = 0.001
+shader_parameter/noiseIntensity = 0.01
 shader_parameter/offsetIntensity = 0.0045
 shader_parameter/colorOffsetIntensity = 0.2
-shader_parameter/pixelSize = 605.284
-shader_parameter/grainIntensity = 0.082
+shader_parameter/pixelSize = 200.0
+shader_parameter/grainIntensity = 0.04
 shader_parameter/use_overlay = true
 shader_parameter/use_lens_distortion = true
 shader_parameter/overlay_color = Color(1, 1, 1, 10)
-shader_parameter/lens_distortion_strength = 0.007
+shader_parameter/lens_distortion_strength = 0.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_lkxq5"]
 streams_count = 6
@@ -91,6 +91,7 @@ environment = ExtResource("14_h5aqq")
 [connection signal="confirmPressed" from="Pause screen" to="." method="_on_confirm_pressed"]
 [connection signal="errorPressed" from="Pause screen" to="." method="_on_error_pressed"]
 [connection signal="hideOptions" from="Pause screen" to="." method="_on_pause_screen_hide_options"]
+[connection signal="newSettings" from="Pause screen" to="." method="_on_new_settings"]
 [connection signal="optionsSaved" from="Pause screen" to="." method="_on_pause_screen_options_saved"]
 [connection signal="showOptions" from="Pause screen" to="." method="_on_pause_screen_show_options"]
 [connection signal="unpaused" from="Pause screen" to="." method="_on_pause_screen_unpaused"]

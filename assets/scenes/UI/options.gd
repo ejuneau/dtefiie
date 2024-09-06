@@ -5,11 +5,12 @@ signal optionsSaved
 signal click_pressed
 signal error_pressed
 signal confirm_pressed
+signal new_settings
 
 #TODO extract these options from config file
 
 #access config and save as variable
-var config = loadOptions
+var configFromDisk = getConfigFromDisk
 #@export_category("Default Options")
 #@export_group("General")
 #@export var VHSEffectsEnable: bool = config.general.vhs_effects
@@ -57,14 +58,14 @@ var DEFAULT_CONFIG = {
 @onready var ambiance_volume: HSlider = $"VSplit/TabContainer/Sound/MarginContainer/VBoxContainer/Ambiance Volume"
 @onready var overall_volume: HSlider = $"VSplit/TabContainer/Sound/MarginContainer/VBoxContainer/Overall Volume"
 
-var currentConfig = loadOptions()
+var currentConfig = getConfigFromDisk()
 
 func _ready() -> void:
 	
 	#set first tab to visible
 	general.show()
 	
-	# Set all options to default settings
+	# Set all options to default settings from disk
 	set_all_options(currentConfig)
 	$Back.show()
 
@@ -86,9 +87,6 @@ func _process(_delta: float) -> void:
 	elif !$Back.is_visible_in_tree() :
 		$Save.show()
 		$Discard.show()
-		
-
-	pass
 
 
 
@@ -102,8 +100,17 @@ func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
 	general.show()
 	pass # Replace with function body.
 
-func saveOptions() -> void:
-	var newConfigDict = {
+func saveConfigToDisk(configToSave: Dictionary) -> void:
+
+	var file = FileAccess.open("res://config.json", FileAccess.WRITE)
+	file.store_string(JSON.stringify(configToSave, "\t"))
+	file.close()
+	
+func getConfigFromDisk() -> Dictionary:
+	return JSON.parse_string(FileAccess.open("res://config.json", FileAccess.READ).get_as_text())
+
+func getConfigFromOptions() -> Dictionary:
+	return {
   "general": {
 	"vhs_effects": vhs_effects.button_pressed,
 	"vhs_effects_intensity": vhs_effect_intensity.value
@@ -120,21 +127,11 @@ func saveOptions() -> void:
 	"fullscreen": false
   }
 }
-	var file = FileAccess.open("res://config.json", FileAccess.WRITE)
-	file.store_string(JSON.stringify(newConfigDict, "\t"))
-	file.close()
-	
-func loadOptions() -> Dictionary:
-	#var file = FileAccess.open("res://config.json", FileAccess.READ)
-	#var config = JSON.parse_string(file.get_as_text())
-
-	
-	return JSON.parse_string(FileAccess.open("res://config.json", FileAccess.READ).get_as_text())
-	#return config
 
 
 func _on_options_changed(_option) -> void:
 	$Back.hide()
+	new_settings.emit()
 	pass # Replace with function body.
 	
 func set_all_options(configToSet) -> void:
@@ -148,6 +145,7 @@ func set_all_options(configToSet) -> void:
 
 func _on_discard_pressed() -> void:
 	set_all_options(currentConfig)
+	new_settings.emit()
 	$Back.show()
 	pass # Replace with function body.
 
@@ -155,7 +153,7 @@ func _on_discard_pressed() -> void:
 
 
 func _on_save_pressed() -> void:
-	saveOptions()
+	saveConfigToDisk(getConfigFromOptions())
 	optionsSaved.emit()
 	confirm_pressed.emit()
 	$Back.show()
@@ -174,7 +172,7 @@ func _on_error_pressed() -> void:
 
 func _on_defaults_pressed() -> void:
 	set_all_options(DEFAULT_CONFIG)
-	saveOptions()
+	saveConfigToDisk(DEFAULT_CONFIG)
 	optionsSaved.emit()
 	error_pressed.emit()
 	$Back.show()

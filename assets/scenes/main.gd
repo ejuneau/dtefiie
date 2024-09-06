@@ -2,12 +2,12 @@ extends Node
 
 var global_config
 var min_shader_strength = {
-	"shake": 0.015,
+	"shake": 0.0,
 	"noiseQuality":  250,
-	"noiseIntensity": 0.001,
-	"offsetIntensity": 0.0045,
-	"colorOffsetIntensity": 0.2,
-	"pixelSize": 605,
+	"noiseIntensity": 0.0,
+	"offsetIntensity": 0.0,
+	"colorOffsetIntensity": 0.0,
+	"pixelSize": 1024,
 	"grainIntensity": 0.0
 }
 var med_shader_strength = {
@@ -22,10 +22,10 @@ var med_shader_strength = {
 }
 var max_shader_strength = {
 	"shake": 0.015,
-	"noiseQuality":  250,
+	"noiseQuality":  250.0,
 	"noiseIntensity": 0.006,
 	"offsetIntensity": 0.0045,
-	"colorOffsetIntensity": 1,
+	"colorOffsetIntensity": 1.0,
 	"pixelSize": 300,
 	"grainIntensity":0.08,
 }
@@ -34,7 +34,7 @@ func _ready() -> void:
 	$"Pause screen".set_process_mode(Node.PROCESS_MODE_DISABLED)
 	#$"Pause screen/Ambiance".set_process_mode(4)
 	# establish global config
-	global_config = $"Pause screen/Pause Screen Margin/Options Menu".loadOptions()
+	global_config = $"Pause screen/Pause Screen Margin/Options Menu".getConfigFromDisk()
 	effectuate_options()
 	
 
@@ -193,7 +193,7 @@ func unpauseGame() -> void:
 	$"Audio/Confirm".play()
 
 func fetch_new_global_config() -> void:
-	global_config = $"Pause screen/Pause Screen Margin/Options Menu".loadOptions()
+	global_config = $"Pause screen/Pause Screen Margin/Options Menu".getConfigFromOptions()
 	
 
 
@@ -201,6 +201,9 @@ func _on_pause_screen_options_saved() -> void:
 	fetch_new_global_config()
 	effectuate_options()
 	
+func _on_new_settings() -> void:
+	fetch_new_global_config()
+	effectuate_options()
 
 func effectuate_options() -> void:
 		# effectuate all option changes

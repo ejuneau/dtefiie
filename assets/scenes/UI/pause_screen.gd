@@ -9,6 +9,7 @@ signal optionsSaved
 signal clickPressed
 signal errorPressed
 signal confirmPressed
+signal newSettings
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -89,4 +90,9 @@ func _on_error_pressed() -> void:
 
 func _on_confirm_pressed() -> void:
 	confirmPressed.emit()
+	pass # Replace with function body.
+
+
+func _on_new_settings() -> void:
+	newSettings.emit()
 	pass # Replace with function body.
