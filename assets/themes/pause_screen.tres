@@ -1,0 +1,57 @@
+[gd_resource type="Theme" load_steps=11 format=3 uid="uid://brc5wbswup5dd"]
+
+[ext_resource type="Texture2D" uid="uid://bbvb5opj8oray" path="res://assets/themes/icons/checkbox_unticked.png" id="1_7huoj"]
+[ext_resource type="FontFile" uid="uid://curgdoaj3yxfs" path="res://assets/fonts/VT323-Regular.ttf" id="1_e7qr4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eiy7e"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tdq8s"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ey2nx"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i4dpl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aorle"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1d5sy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_txtmc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3et00"]
+
+[resource]
+default_font = ExtResource("1_e7qr4")
+default_font_size = 32
+Button/styles/focus = SubResource("StyleBoxEmpty_eiy7e")
+Button/styles/normal = SubResource("StyleBoxFlat_tdq8s")
+Button/styles/pressed = SubResource("StyleBoxFlat_ey2nx")
+CheckBox/icons/unchecked = ExtResource("1_7huoj")
+CheckBox/styles/focus = SubResource("StyleBoxEmpty_i4dpl")
+CheckBox/styles/pressed = SubResource("StyleBoxEmpty_aorle")
+CheckButton/styles/focus = SubResource("StyleBoxEmpty_1d5sy")
+CheckButton/styles/pressed = SubResource("StyleBoxEmpty_txtmc")
+TabContainer/styles/tab_focus = SubResource("StyleBoxEmpty_3et00")

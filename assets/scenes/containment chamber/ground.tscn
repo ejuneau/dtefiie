@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://xed5a2r5d4ae"]
+
+[ext_resource type="Material" uid="uid://cdspjiqeukke3" path="res://assets/textures/metal-floor/metalFloor.tres" id="2_mcwfm"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_avguv"]
+size = Vector2(12, 15)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_68hpj"]
+data = PackedVector3Array(10, 0, 10, -10, 0, 10, 10, 0, -10, -10, 0, 10, -10, 0, -10, 10, 0, -10)
+
+[node name="ground" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_avguv")
+surface_material_override/0 = ExtResource("2_mcwfm")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_68hpj")

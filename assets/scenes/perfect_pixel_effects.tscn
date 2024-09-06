@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://bawet7n82a1tu"]
+
+[ext_resource type="Shader" path="res://assets/shaders/retropixel.gdshader" id="1_tiynt"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3dk3l"]
+shader = ExtResource("1_tiynt")
+shader_parameter/shake = 0.015
+shader_parameter/noiseQuality = 250.0
+shader_parameter/noiseIntensity = 0.001
+shader_parameter/offsetIntensity = 0.0045
+shader_parameter/colorOffsetIntensity = 0.2
+shader_parameter/pixelSize = 605.284
+shader_parameter/grainIntensity = 0.082
+shader_parameter/use_overlay = true
+shader_parameter/use_lens_distortion = true
+shader_parameter/overlay_color = Color(1, 1, 1, 10)
+shader_parameter/lens_distortion_strength = 0.007
+
+[node name="Perfect Pixel Effects" type="ColorRect"]
+z_index = 5
+material = SubResource("ShaderMaterial_3dk3l")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
