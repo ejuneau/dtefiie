@@ -31,7 +31,7 @@ var max_shader_strength = {
 }
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$"Pause screen".set_process_mode(4)
+	$"Pause screen".set_process_mode(Node.PROCESS_MODE_DISABLED)
 	#$"Pause screen/Ambiance".set_process_mode(4)
 	# establish global config
 	global_config = $"Pause screen/Pause Screen Margin/Options Menu".loadOptions()
@@ -43,8 +43,8 @@ func _ready() -> void:
 
 var isPaused: bool = false
 
-func _process(delta) -> void:
-	pass
+#func _process(delta) -> void:
+	#pass
 
 func _unhandled_input(event) -> void:
 	if event.is_action_pressed("ui_cancel"):
@@ -63,7 +63,7 @@ func _on_main_menu_new_game_pressed() -> void:
 	move_child(tutorial, 0)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	$"Main Menu".queue_free()
-	$"Pause screen".set_process_mode(3)
+	$"Pause screen".set_process_mode(Node.PROCESS_MODE_ALWAYS)
 	$"tutorial".load_level1.connect(_on_load_level1)
 	$"tutorial".confirmPressed.connect(_on_confirm_pressed)
 	$"tutorial".clickPressed.connect(_on_click_pressed)
@@ -91,6 +91,7 @@ func _on_load_level1() -> void:
 func _on_player_answer_confirmed(answer: bool) -> void:
 	
 	# TODO add state and keep track of correct/incorrect guesses
+	# CHOICES.append(day, level, answer)
 	if get_node_or_null("./level1"):
 		loadLevel(2)
 	elif get_node_or_null("./level2"):
@@ -136,7 +137,7 @@ func spawnPlayer() -> void:
 	$player.clipboard_answer_confirmed_player.connect(_on_player_answer_confirmed)
 	
 func showOptions() -> void:
-	$"Pause screen".set_process_mode(3)
+	$"Pause screen".set_process_mode(Node.PROCESS_MODE_ALWAYS)
 	$"Pause screen".show()
 	$"Pause screen/Pause Screen Margin/Options Menu".show()
 	$"Pause screen/Pause Screen Margin/Pause Screen".hide()
@@ -147,7 +148,7 @@ func hideOptions() -> void:
 	$"Pause screen/Pause Screen Margin/Options Menu".hide()
 	$"Pause screen/Pause Screen Margin/Pause Screen".show()
 	if get_node_or_null("Main Menu"):
-		$"Pause screen".set_process_mode(4)
+		$"Pause screen".set_process_mode(Node.PROCESS_MODE_DISABLED)
 		$"Pause screen".hide()
 		$"Main Menu".show()
 

@@ -79,7 +79,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if $Back.is_visible_in_tree() :
 		$Save.hide()
 		$Discard.hide()
@@ -133,18 +133,18 @@ func loadOptions() -> Dictionary:
 	#return config
 
 
-func _on_options_changed(option) -> void:
+func _on_options_changed(_option) -> void:
 	$Back.hide()
 	pass # Replace with function body.
 	
-func set_all_options(config) -> void:
-	vhs_effects.button_pressed = config.general.vhs_effects
-	vhs_effect_intensity.value = config.general.vhs_effects_intensity
+func set_all_options(configToSet) -> void:
+	vhs_effects.button_pressed = configToSet.general.vhs_effects
+	vhs_effect_intensity.value = configToSet.general.vhs_effects_intensity
 	
-	mute_all_sounds.button_pressed = config.sound.mute_all_sounds
-	overall_volume.value = config.sound.overall_volume
-	ambiance_volume.value = config.sound.ambiance_volume
-	sfx_volume.value = config.sound.sfx_volume
+	mute_all_sounds.button_pressed = configToSet.sound.mute_all_sounds
+	overall_volume.value = configToSet.sound.overall_volume
+	ambiance_volume.value = configToSet.sound.ambiance_volume
+	sfx_volume.value = configToSet.sound.sfx_volume
 
 func _on_discard_pressed() -> void:
 	set_all_options(currentConfig)
