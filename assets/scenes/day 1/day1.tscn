@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://ce2i21iini6lu"]
+[gd_scene load_steps=5 format=3 uid="uid://ce2i21iini6lu"]
 
+[ext_resource type="Script" path="res://assets/scenes/day 1/day_1.gd" id="1_hf8tt"]
 [ext_resource type="Theme" uid="uid://brc5wbswup5dd" path="res://assets/themes/pause_screen.tres" id="1_mgqrk"]
 [ext_resource type="FontFile" uid="uid://curgdoaj3yxfs" path="res://assets/fonts/VT323-Regular.ttf" id="2_2w4hp"]
 
@@ -14,6 +15,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_hf8tt")
 
 [node name="Overlay" type="ColorRect" parent="."]
 layout_mode = 1
@@ -108,10 +110,30 @@ offset_right = 889.0
 offset_bottom = 587.0
 theme_override_fonts/font = ExtResource("2_2w4hp")
 theme_override_font_sizes/font_size = 32
-text = "Sleep in;
+text = "Rest well;
 Arrive sharp"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Yes Tick" type="Label" parent="Overlay"]
+visible = false
+layout_mode = 2
+offset_left = 325.0
+offset_top = 460.0
+offset_right = 379.0
+offset_bottom = 559.0
+theme_override_font_sizes/font_size = 61
+text = "✓"
+
+[node name="No Tick" type="Label" parent="Overlay"]
+visible = false
+layout_mode = 2
+offset_left = 777.0
+offset_top = 422.0
+offset_right = 829.0
+offset_bottom = 529.0
+theme_override_font_sizes/font_size = 78
+text = "⨯"
 
 [node name="Choices Container" type="HBoxContainer" parent="Overlay"]
 layout_mode = 2
@@ -133,12 +155,6 @@ text = "☐"
 [node name="YesTickContainer" type="MarginContainer" parent="Overlay/Choices Container/Yes Box"]
 layout_mode = 2
 
-[node name="Yes Tick" type="Label" parent="Overlay/Choices Container/Yes Box/YesTickContainer"]
-visible = false
-layout_mode = 2
-theme_override_font_sizes/font_size = 72
-text = "✓"
-
 [node name="No Box" type="CenterContainer" parent="Overlay/Choices Container"]
 custom_minimum_size = Vector2(450, 0)
 layout_mode = 2
@@ -151,9 +167,3 @@ text = "☐"
 [node name="NoTickContainer" type="MarginContainer" parent="Overlay/Choices Container/No Box"]
 layout_mode = 2
 theme_override_constants/margin_bottom = 56
-
-[node name="No Tick" type="Label" parent="Overlay/Choices Container/No Box/NoTickContainer"]
-visible = false
-layout_mode = 2
-theme_override_font_sizes/font_size = 72
-text = "⨯"

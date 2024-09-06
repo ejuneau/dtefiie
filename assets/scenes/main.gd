@@ -64,7 +64,7 @@ func _on_main_menu_new_game_pressed() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	$"Main Menu".queue_free()
 	$"Pause screen".set_process_mode(Node.PROCESS_MODE_ALWAYS)
-	$"tutorial".load_level1.connect(_on_load_level1)
+	$"tutorial".loadDay1.connect(_on_load_day_1)
 	$"tutorial".confirmPressed.connect(_on_confirm_pressed)
 	$"tutorial".clickPressed.connect(_on_click_pressed)
 	$"tutorial".errorPressed.connect(_on_error_pressed)
@@ -78,7 +78,7 @@ func _on_load_level1() -> void:
 	add_child(level1)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	$Audio/Ambiance.stop()
-	$"tutorial".queue_free()
+	$day1.queue_free()
 	$"level1".confirmPressed.connect(_on_confirm_pressed)
 	$"level1".clickPressed.connect(_on_click_pressed)
 
@@ -261,3 +261,12 @@ func _on_error_pressed() -> void:
 
 func _on_confirm_pressed() -> void:
 	$Audio/Confirm.play()
+
+func _on_load_day_1() -> void:
+	var day1 = load("res://assets/scenes/day 1/day1.tscn").instantiate()
+	day1.set_name("day1")
+	add_child(day1)
+	$tutorial.queue_free()
+	$"day1".confirmPressed.connect(_on_confirm_pressed)
+	$"day1".clickPressed.connect(_on_click_pressed)
+	$"day1".loadLevel1.connect(_on_load_level1)

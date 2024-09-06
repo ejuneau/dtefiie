@@ -11,7 +11,7 @@ var shake_strength: float = 0.0
 var YN
 var currentPage
 
-signal load_level1
+signal loadDay1
 signal confirmPressed
 signal clickPressed
 signal errorPressed
@@ -122,7 +122,7 @@ func loadNextPage(page) -> void:
 	if nextPage:
 		nextPage.show()
 	else:
-		load_level1.emit()
+		loadDay1.emit()
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		self.queue_free()
 
