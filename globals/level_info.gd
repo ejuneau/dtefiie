@@ -125,25 +125,24 @@ var all_levels = [
 # Takes an Array of two numbers representing the index of the day and level in the above all_levels
 func load_level(dayLevelArray):
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	print("DEBUG: load_level received array: "+ str(dayLevelArray)) if globals.DEBUG_VERBOSE else print()
-	
+	print("DEBUG [load_level]: load_level received array: "+ str(dayLevelArray)) if globals.DEBUG_VERBOSE else print()
 	var dayNum = dayLevelArray[0]
 	var levelNum = dayLevelArray[1]
 	
-	# Load Tutorial
+	# Load Tutorial or Day Screen
 	if dayLevelArray[0] == 0 || dayLevelArray[1] == 0:
-		#print("DEBUG: Loading Tutorial") if globals.DEBUG_VERBOSE else print()
 		var level = load(all_levels[dayNum][levelNum].levelPath).instantiate()
-		#if dayLevelArray[0] > 1:
-		#if get_tree().root.get_node_or_null("Main/"+oldLevel):
-			#get_tree().root.get_node("Main/"+oldLevel).queue_free() 
+
 		level.set_name(all_levels[dayNum][levelNum].name)
 		get_tree().root.get_node("Main").add_child(level)
 		get_tree().root.get_node("Main").move_child(level, 0)
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		if get_tree().root.get_node_or_null("Main/Main Menu"):
 			get_tree().root.get_node("Main/Main Menu").queue_free()
-
+		# Delete previous level
+		if get_tree().root.get_node("Main").get_child(-1).name.match("level?"):
+			get_tree().root.get_node("Main").get_child(-1).queue_free()
+			get_tree().root.get_node("Main/player").queue_free()
 		get_tree().root.get_node("Main/Pause screen").set_process_mode(Node.PROCESS_MODE_ALWAYS)
 		get_tree().root.get_node("Main/"+all_levels[dayNum][levelNum].name).confirmPressed.connect(get_tree().root.get_node("Main")._on_confirm_pressed)
 		get_tree().root.get_node("Main/"+all_levels[dayNum][levelNum].name).clickPressed.connect(get_tree().root.get_node("Main")._on_click_pressed)
@@ -151,15 +150,8 @@ func load_level(dayLevelArray):
 	
 	else:
 
-			
-		#var dayStr = dayLevelArray[0][3]
-		#var levelNum = int(dayLevelArray[1][5])
-
-		#var dayStr = str(dayNum)
-		#print(currentDay, currentLevel)
-
 		get_tree().paused = true
-		print("DEBUG: Loading Level number "+str(all_levels[dayNum][levelNum].levelNum)+ " from path: "+all_levels[dayNum][levelNum].levelPath) if globals.DEBUG_VERBOSE else print()
+		print("DEBUG [load_level]: Loading Level number "+str(all_levels[dayNum][levelNum].levelNum)+ " from path: "+all_levels[dayNum][levelNum].levelPath) if globals.DEBUG_VERBOSE else print()
 		var newLevel = "level" + str(all_levels[dayNum][levelNum].levelNum)
 		var oldLevel = "level" + str(all_levels[dayNum][levelNum].levelNum - 1)
 		var level = load(all_levels[dayNum][levelNum].levelPath).instantiate()
@@ -178,4 +170,4 @@ func load_level(dayLevelArray):
 		save_info.currentLevel = all_levels[dayNum][levelNum].levelNum
 	
 func load_next_level():
-	load_level(save_info.getNextLevel())
+	load_level(save_info.get_next_level())

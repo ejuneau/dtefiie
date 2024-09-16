@@ -13,7 +13,7 @@ func _ready() -> void:
 
 #
 func _process(_delta):
-	if save_info.saveDataExists():
+	if save_info.save_data_exists():
 		$"MarginContainer/Main Menu/Options/Continue".show()
 		$"MarginContainer/Main Menu/Options/New Game".hide()
 	else:
@@ -63,5 +63,7 @@ func _on_options_pressed() -> void:
 
 func _on_continue_pressed() -> void:
 	
-	level_info.load_level(save_info.levelToLoad())
+	level_info.load_level(save_info.get_next_level())
+	get_tree().root.get_node("Main/Pause screen/Pause Screen Margin/Options Menu/VSplit/TabContainer/General/Delete All Save Data").disabled = true
+
 	pass # Replace with function body.

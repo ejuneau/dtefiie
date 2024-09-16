@@ -1,3 +1,3 @@
 extends Node;
 
-var DEBUG_VERBOSE:bool = true
+var DEBUG_VERBOSE:bool = false

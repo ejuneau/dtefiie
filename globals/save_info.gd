@@ -22,11 +22,17 @@ var dataToSave
 
 func _ready() -> void:
 	#saveProgressToDisk(PLACEHOLDER_SAVE_DATA)
-	saveDataFromDisk = getProgressFromDisk()
-	dataToSave = getProgressFromDisk()
-	print("DEBUG: saveDataFromDisk: "+str(saveDataFromDisk))
+	saveDataFromDisk = get_data_from_disk()
+	dataToSave = get_data_from_disk()
+	if save_data_exists():
+		currentDay = saveDataFromDisk[-1].dayNum
+		currentLevel = saveDataFromDisk[-1].levelNum
+	else:
+		currentDay = 0
+		currentLevel = 0
+	print("DEBUG [save_info _ready]: saveDataFromDisk: "+str(saveDataFromDisk))
 
-func deleteAllSaveData() -> void:
+func delete_all_save_data() -> void:
 	var dir = DirAccess.open("user://")
 	dir.remove("user://save.dat")
 	saveDataFromDisk = null
@@ -34,62 +40,71 @@ func deleteAllSaveData() -> void:
 	currentDay = 0
 	currentLevel = 0
 
-func saveProgressToDisk(dataToSave) -> void:
+func save_data_to_disk(dataToSave) -> void:
 
 	var file = FileAccess.open("user://save.dat", FileAccess.WRITE)
 	file.store_string(JSON.stringify(dataToSave, "\t"))
 	file.close()
-	saveDataFromDisk = getProgressFromDisk()
+	saveDataFromDisk = get_data_from_disk()
 	
-func getProgressFromDisk():
-	if FileAccess.file_exists("user://save.dat"):
-		#print(JSON.parse_string(FileAccess.open("user://save.dat", FileAccess.READ).get_as_text())) if globals.DEBUG_VERBOSE else print()
+func get_data_from_disk():
+	if save_data_exists():
 		return JSON.parse_string(FileAccess.open("user://save.dat", FileAccess.READ).get_as_text())
 	else:
-		#print("No save data exists!") if globals.DEBUG_VERBOSE else print()
+		print("DEBUG [get_data_from_disk] - No save data exists!") if globals.DEBUG_VERBOSE else print()
 		return null
 		
-func saveDataExists() -> bool:
+func save_data_exists() -> bool:
 	return true if FileAccess.file_exists("user://save.dat") else false
 	
 # Returns array of most recent day and most recent level
-func levelToLoad() -> Array:
-	saveDataFromDisk = getProgressFromDisk()
-	if saveDataFromDisk == null:
-		return [0, "tutorial"]
-	else:
-		print("DEBUG: LevelToLoad returning ["+str(saveDataFromDisk.size())+", "+str(saveDataFromDisk[saveDataFromDisk.size() - 1 ].size() + 1)+"]") if globals.DEBUG_VERBOSE else print()
-		var lastDay = saveDataFromDisk.size()
-		var lastLevel = saveDataFromDisk[lastDay - 1 ].size() + 1
-		print("Last Day: "+str(lastDay)+" | Last Level: "+str(lastLevel)) if globals.DEBUG_VERBOSE else print()
-		return [lastDay, lastLevel]
+#func level_to_load() -> Array:
+	#saveDataFromDisk = get_data_from_disk()
+	#if saveDataFromDisk == null:
+		#return [0, "tutorial"]
+	#else:
+		##print("DEBUG: LevelToLoad returning ["+str(saveDataFromDisk.size())+", "+str(saveDataFromDisk[saveDataFromDisk.size() - 1 ].size() + 1)+"]") if globals.DEBUG_VERBOSE else print()
+		##var lastDay = saveDataFromDisk.size()
+		##var lastLevel = saveDataFromDisk[lastDay - 1 ].size() + 1
+		##print("DEBUG: Last Day: "+str(lastDay)+" | Last Level: "+str(lastLevel)) if globals.DEBUG_VERBOSE else print()
+		##return [lastDay, lastLevel]
+		#var lastDay = saveDataFromDisk[-1].dayNum
+		#var lastLevel = saveDataFromDisk[-1].levelNum
+		#print("DEBUG: level_to_load returning ["+str(lastDay)+", "+str(lastLevel)+"]")
+		#currentDay = lastDay
+		#currentLevel = lastLevel
+		#return [lastDay, lastLevel]
 		
-func getNextLevel() -> Array: 
+func get_next_level() -> Array: 
 	# Read current day/level, and return the next level in the same day
 	# OR, if there are no more levels in that day, return the day screen 
 	# of the next day
+	print("DEBUG [get_next_level] - currentDay: "+str(currentDay)+" currentLevel: "+str(currentLevel))
 	if level_info.all_levels[currentDay].size() > currentLevel + 1:
 		return [currentDay, currentLevel+1]
 	else:
 		
 		return [currentDay+1, 0]
 		
-func recordNewProgress(answer: bool) -> void:
-	print("DEBUG: Recording Answer: " + str(answer))
-	var currentDayLevelArray = levelToLoad()
-	if saveDataExists():
-		if dataToSave.size() == currentDayLevelArray[0]:
-			dataToSave[currentDayLevelArray[0]].append({"doesEntityFit": answer})
-		else:
-			dataToSave.append({"doesEntityFit": answer})
+func save_answer(answer: bool) -> void:
+	print("DEBUG [save_answer]: answer: " + str(answer))
+	#var currentDayLevelArray = level_to_load()
+	if save_data_exists():
+			dataToSave.append(
+				{
+					"doesEntityFit": answer,
+					"dayNum": currentDay,
+					"levelNum": currentLevel
+				}
+			)
 	else:
 		dataToSave = [
-			[
 				{
-					"doesEntityFit": answer
+					"doesEntityFit": answer,
+					"dayNum": 0,
+					"levelNum": 1
 				}
-			]
 		]
-	saveProgressToDisk(dataToSave)
-	saveDataFromDisk = getProgressFromDisk()
+	save_data_to_disk(dataToSave)
+	saveDataFromDisk = get_data_from_disk()
 	

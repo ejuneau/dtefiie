@@ -123,7 +123,7 @@ func loadNextPage(page) -> void:
 		nextPage.show()
 	else:
 		level_info.load_level([1, 0])
-		save_info.recordNewProgress(false)
+		save_info.save_answer(false)
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		self.queue_free()
 

@@ -11,7 +11,7 @@ func _ready():
 	popup.connect("id_pressed", _on_item_pressed)
 
 func _on_item_pressed(_ID):
-	save_info.deleteAllSaveData()
+	save_info.delete_all_save_data()
 	errorPressed.emit()
 
 

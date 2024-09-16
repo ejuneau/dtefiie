@@ -62,6 +62,7 @@ func _unhandled_input(event) -> void:
 
 func _on_main_menu_new_game_pressed() -> void:
 	level_info.load_level([0, 0])
+	$"Pause screen/Pause Screen Margin/Options Menu/VSplit/TabContainer/General/Delete All Save Data".disabled = true
 
 
 
@@ -86,7 +87,7 @@ func _on_answer_confirmed(answer: bool) -> void:
 	#print("CONFIRMED") if globals.DEBUG_VERBOSE else print()
 	# TODO add state and keep track of correct/incorrect guesses
 	# CHOICES.append(day, level, answer)
-	save_info.recordNewProgress(answer)
+	save_info.save_answer(answer)
 	level_info.load_next_level()
 	#if get_tree().root.get_node_or_null("Main/level1"):
 		## Trying loading from all_levels

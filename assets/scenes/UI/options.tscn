@@ -36,11 +36,10 @@ dragger_visibility = 2
 [node name="TabContainer" type="TabContainer" parent="VSplit"]
 layout_mode = 2
 theme = ExtResource("1_53rmt")
-current_tab = 2
+current_tab = 0
 tab_focus_mode = 0
 
 [node name="General" type="Control" parent="VSplit/TabContainer"]
-visible = false
 layout_mode = 2
 theme = ExtResource("1_53rmt")
 metadata/_tab_index = 0
@@ -174,6 +173,7 @@ theme = ExtResource("1_53rmt")
 text = "Ambiance Volume"
 
 [node name="Display" type="Control" parent="VSplit/TabContainer"]
+visible = false
 layout_mode = 2
 focus_mode = 2
 metadata/_tab_index = 2
