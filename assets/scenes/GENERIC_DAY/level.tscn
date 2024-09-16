@@ -1,0 +1,134 @@
+[gd_scene load_steps=10 format=3 uid="uid://s8oo0bsj2ynu"]
+
+[ext_resource type="Script" path="res://assets/scenes/GENERIC_DAY/level.gd" id="1_e52mu"]
+[ext_resource type="PackedScene" uid="uid://6jc0oj15ibsk" path="res://assets/scenes/containment chamber/containment_chamber.tscn" id="2_isi5l"]
+[ext_resource type="PackedScene" uid="uid://di3tkkgp5ujo8" path="res://assets/models/deer/deer.glb" id="3_a5l6p"]
+[ext_resource type="FontFile" uid="uid://curgdoaj3yxfs" path="res://assets/fonts/VT323-Regular.ttf" id="4_8r0s5"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vjnj3"]
+radius = 0.337277
+height = 2.13749
+
+[sub_resource type="Animation" id="Animation_pv3rg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Deer:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -1.5708, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_wplj5"]
+resource_name = "spin that deer!"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Deer:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -1.5708, 0), Vector3(6.28319, -1.5708, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_161ea"]
+_data = {
+"RESET": SubResource("Animation_pv3rg"),
+"spin that deer!": SubResource("Animation_wplj5")
+}
+
+[sub_resource type="Theme" id="Theme_r2qjp"]
+default_font = ExtResource("4_8r0s5")
+default_font_size = 32
+
+[node name="level" type="Node"]
+process_mode = 1
+script = ExtResource("1_e52mu")
+
+[node name="Containment Chamber" parent="." instance=ExtResource("2_isi5l")]
+
+[node name="Deer" parent="Containment Chamber" instance=ExtResource("3_a5l6p")]
+transform = Transform3D(-3.61999e-06, 0, -1, 0, 1, 0, 1, 0, -3.61999e-06, 0, 0, -2.99317)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Containment Chamber/Deer"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Containment Chamber/Deer/StaticBody3D"]
+transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, -1, -4.37114e-08, 4.37114e-08, 4.37114e-08, -4.37114e-08, 1, 0.0190785, 1.22365, -8.3395e-10)
+shape = SubResource("CapsuleShape3D_vjnj3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Containment Chamber"]
+libraries = {
+"": SubResource("AnimationLibrary_161ea")
+}
+autoplay = "spin that deer!"
+
+[node name="Title" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="Title"]
+layout_mode = 2
+offset_left = -648.0
+offset_top = -363.0
+offset_right = 1825.0
+offset_bottom = 1102.0
+color = Color(0, 0, 0, 0.654902)
+
+[node name="Title" type="Label" parent="Title"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_r2qjp")
+theme_override_font_sizes/font_size = 421
+text = "OH DEER"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="Day Label" type="Label" parent="Title"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -75.0
+offset_bottom = -75.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_r2qjp")
+theme_override_font_sizes/font_size = 72
+text = "Day 1"
+horizontal_alignment = 1
+vertical_alignment = 2
+clip_text = true
+uppercase = true
+
+[node name="TitleTimer" type="Timer" parent="Title"]
+
+[node name="DayTimer" type="Timer" parent="Title"]
+wait_time = 0.5
+autostart = true
+
+[node name="TitleNotifier" type="VisibleOnScreenNotifier2D" parent="Title"]
+position = Vector2(576, 324)
+scale = Vector2(57.6, 32.4)
+
+[connection signal="timeout" from="Title/TitleTimer" to="." method="_on_title_timer_timeout"]
+[connection signal="timeout" from="Title/DayTimer" to="." method="_on_day_timer_timeout"]
+[connection signal="screen_entered" from="Title/TitleNotifier" to="." method="_on_title_notifier_screen_entered"]

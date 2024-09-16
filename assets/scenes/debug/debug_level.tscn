@@ -1,10 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bjdft7bcwpnt6"]
+[gd_scene load_steps=8 format=3 uid="uid://bjdft7bcwpnt6"]
 
-[ext_resource type="Script" path="res://scenes/debug_level.gd" id="1_ufycv"]
-[ext_resource type="PackedScene" uid="uid://ce7hf8flai85b" path="res://scenes/player.tscn" id="1_uobwy"]
-[ext_resource type="PackedScene" uid="uid://6jc0oj15ibsk" path="res://scenes/containment_chamber.tscn" id="2_qkbli"]
-[ext_resource type="Shader" path="res://shaders/retropixel.gdshader" id="3_7rmmw"]
-[ext_resource type="Environment" uid="uid://j3yw0ieb1hv8" path="res://scenes/containment_chamber.tres" id="5_dif34"]
+[ext_resource type="Script" path="res://assets/scenes/debug/debug_level.gd" id="1_ufycv"]
+[ext_resource type="PackedScene" uid="uid://ce7hf8flai85b" path="res://assets/scenes/player/player.tscn" id="1_uobwy"]
+[ext_resource type="PackedScene" uid="uid://6jc0oj15ibsk" path="res://assets/scenes/containment chamber/containment_chamber.tscn" id="2_qkbli"]
+[ext_resource type="Shader" path="res://assets/shaders/retropixel.gdshader" id="3_7rmmw"]
+[ext_resource type="PackedScene" uid="uid://b51uk2h1t8l33" path="res://addons/Mirror/Mirror/MirrorContainer.tscn" id="5_asf4p"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a5qul"]
 shader = ExtResource("3_7rmmw")
@@ -19,6 +19,8 @@ shader_parameter/use_overlay = true
 shader_parameter/use_lens_distortion = true
 shader_parameter/overlay_color = Color(1, 1, 1, 10)
 shader_parameter/lens_distortion_strength = 0.007
+
+[sub_resource type="Environment" id="Environment_utdv7"]
 
 [node name="DEBUG_LEVEL" type="Node"]
 script = ExtResource("1_ufycv")
@@ -42,8 +44,9 @@ color = Color(1, 1, 1, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4.11156, 0)
-light_energy = 0.133
 light_cull_mask = 4293918751
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
-environment = ExtResource("5_dif34")
+environment = SubResource("Environment_utdv7")
+
+[node name="MirrorContainer" parent="." instance=ExtResource("5_asf4p")]

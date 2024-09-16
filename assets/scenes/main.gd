@@ -34,9 +34,12 @@ func _ready() -> void:
 	$"Pause screen".set_process_mode(Node.PROCESS_MODE_DISABLED)
 	#$"Pause screen/Ambiance".set_process_mode(4)
 	# establish global config
-	global_config = $"Pause screen/Pause Screen Margin/Options Menu".getConfigFromDisk()
-	effectuate_options()
+
 	
+	# DEBUG PURPOSES DELETE THIS DELETE THIS
+	global_config = config_info.getConfigFromDisk()
+	effectuate_options()
+
 
 	pass
 	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -48,39 +51,30 @@ var isPaused: bool = false
 
 func _unhandled_input(event) -> void:
 	if event.is_action_pressed("ui_cancel"):
-		isPaused = !isPaused
-		if isPaused:
-			pauseGame()
-		elif !isPaused:
-			unpauseGame()
+		if !$"Pause screen".get_process_mode() == 4:
+			isPaused = !isPaused
+			if isPaused:
+				pauseGame()
+			elif !isPaused:
+				unpauseGame()
 
 
 
 func _on_main_menu_new_game_pressed() -> void:
-	var tutorial = load("res://assets/scenes/UI/tutorial.tscn").instantiate()
-	tutorial.set_name("tutorial")
-	add_child(tutorial)
-	move_child(tutorial, 0)
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	$"Main Menu".queue_free()
-	$"Pause screen".set_process_mode(Node.PROCESS_MODE_ALWAYS)
-	$"tutorial".loadDay1.connect(_on_load_day_1)
-	$"tutorial".confirmPressed.connect(_on_confirm_pressed)
-	$"tutorial".clickPressed.connect(_on_click_pressed)
-	$"tutorial".errorPressed.connect(_on_error_pressed)
+	level_info.load_level([0, 0])
 
 
 
 func _on_load_level1() -> void:
 	var level1 = load("res://assets/scenes/day 1/level1.tscn").instantiate()
 	level1.set_name("level1")
-	spawnPlayer()
+	#spawnPlayer()
 	add_child(level1)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	$Audio/Ambiance.stop()
 	$day1.queue_free()
 	$"level1".confirmPressed.connect(_on_confirm_pressed)
-	$"level1".clickPressed.connect(_on_click_pressed)
+	#$"level1".clickPressed.connect(_on_click_pressed)
 
 	await get_tree().create_timer(1).timeout
 	var clipboard = get_node("player/Neck/Camera3D/Clipboard Container/Clipboard")
@@ -88,43 +82,49 @@ func _on_load_level1() -> void:
 	#$AudioStreamPlayer2D.queue_free()
 	
 	
-func _on_player_answer_confirmed(answer: bool) -> void:
-	
+func _on_answer_confirmed(answer: bool) -> void:
+	#print("CONFIRMED") if globals.DEBUG_VERBOSE else print()
 	# TODO add state and keep track of correct/incorrect guesses
 	# CHOICES.append(day, level, answer)
-	if get_node_or_null("./level1"):
-		loadLevel(2)
-	elif get_node_or_null("./level2"):
-		loadLevel(3)
-	elif get_node_or_null("./level3"):
-		loadLevel(4)
+	save_info.recordNewProgress(answer)
+	level_info.load_next_level()
+	#if get_tree().root.get_node_or_null("Main/level1"):
+		## Trying loading from all_levels
+		#level_info.load_level([0, 1])
+		#
+		#
+		#
+	#elif get_tree().root.get_node_or_null("Main/level2"):
+		#level_info.load_level([0,2])
+	#elif get_tree().root.get_node_or_null("Main/level3"):
+		#level_info.load_level([0,3])
 
 	pass # Replace with function body.
 
 
 	
-func loadLevel(levelNum) -> void:
-	# TODO Incorporate DaySystem here
-	get_tree().paused = true
-	var newLevel = "level" + str(levelNum)
-	var oldLevel = "level" + str(levelNum - 1)
-	var level = load("res://assets/scenes/day 1/"+newLevel+".tscn").instantiate()
-	level.set_name(newLevel)
-	get_node(oldLevel).queue_free()
-	add_child(level)
-	resetPlayer()
-	get_node(newLevel).confirmPressed.connect(_on_confirm_pressed)
-	get_node(newLevel).clickPressed.connect(_on_click_pressed)
-	await get_tree().create_timer(1).timeout
-	var clipboard = get_node("player/Neck/Camera3D/Clipboard Container/Clipboard")
-	clipboard.load_text(levelNum)
-	get_tree().paused = false
+#func loadLevel(levelNum) -> void:
+	## TODO Incorporate DaySystem here
+	#get_tree().paused = true
+	#var newLevel = "level" + str(levelNum)
+	#var oldLevel = "level" + str(levelNum - 1)
+	#var level = load("res://assets/scenes/day 1/"+newLevel+".tscn").instantiate()
+	#level.set_name(newLevel)
+	#get_node(oldLevel).queue_free()
+	#add_child(level)
+	#resetPlayer()
+	#get_node(newLevel).confirmPressed.connect(_on_confirm_pressed)
+	#get_node(newLevel).clickPressed.connect(_on_click_pressed)
+	#await get_tree().create_timer(1).timeout
+	#var clipboard = get_node("player/Neck/Camera3D/Clipboard Container/Clipboard")
+	#clipboard.load_text(levelNum)
+	#get_tree().paused = false
 	
 func resetPlayer() -> void:
 	# TODO pass down variable to tell the clipboard what data to show?
 	get_tree().paused = true
-	$player.set_name("oldPlayer")
-	$oldPlayer.queue_free()
+	get_tree().root.get_node("Main/player").set_name("oldPlayer")
+	get_tree().root.get_node("Main/oldPlayer").queue_free()
 	spawnPlayer()
 	get_tree().paused = false
 	
@@ -133,8 +133,8 @@ func spawnPlayer() -> void:
 	var player = load("res://assets/scenes/player/player.tscn").instantiate()
 	player.set_name("player")
 	add_child(player)
+	player.answerConfirmed.connect(_on_answer_confirmed)
 	move_child(player, 1)
-	$player.clipboard_answer_confirmed_player.connect(_on_player_answer_confirmed)
 	
 func showOptions() -> void:
 	$"Pause screen".set_process_mode(Node.PROCESS_MODE_ALWAYS)
@@ -236,8 +236,14 @@ func effectuate_options() -> void:
 	# TODO Cycle through the rest of options
 	#
 	#Brightness
-	# Something like this $Environment/WorldEnvironment.environment.adjustment_brightness(global_config.display_brightness)
+	# Something like this 
+	$Environment/WorldEnvironment.environment.adjustment_brightness = global_config.display.brightness
 	#Fullscreen
+	match global_config.display.display_mode:
+		0:
+			DisplayServer.window_set_mode(DisplayServer.WindowMode.WINDOW_MODE_FULLSCREEN);
+		1:
+			DisplayServer.window_set_mode(DisplayServer.WindowMode.WINDOW_MODE_WINDOWED);
 	#
 
 	pass # Replace with function body.
@@ -269,4 +275,4 @@ func _on_load_day_1() -> void:
 	$tutorial.queue_free()
 	$"day1".confirmPressed.connect(_on_confirm_pressed)
 	$"day1".clickPressed.connect(_on_click_pressed)
-	$"day1".loadLevel1.connect(_on_load_level1)
+	#$"day1".loadLevel1.connect(_on_load_level1)

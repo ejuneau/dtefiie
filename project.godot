@@ -17,9 +17,18 @@ boot_splash/image="res://assets/images/splash.png"
 config/icon="res://assets/images/icon-distorted.png"
 boot_splash/minimum_display_time=1000
 
+[audio]
+
+buses/default_bus_layout="res://assets/default_bus_layout.tres"
+
 [autoload]
 
-SaveSystem="*res://addons/save_system/save_system.gd"
+SaveSystem="res://addons/save_system/save_system.gd"
+save_info="*res://globals/save_info.gd"
+config_info="*res://globals/config_info.gd"
+entity_info="*res://globals/entity_info.gd"
+level_info="*res://globals/level_info.gd"
+globals="*res://globals/globals.gd"
 
 [display]
 

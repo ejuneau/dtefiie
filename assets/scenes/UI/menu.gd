@@ -8,12 +8,17 @@ var saveData
 
 # TODO implement save state data.
 func _ready() -> void:
-	if saveData:
-		$MarginContainer/VSplitContainer/Options/Continue.show()
-	pass # Replace with function body.
+	#save_info.saveProgressToDisk(save_info.PLACEHOLDER_SAVE_DATA)
+	pass
 
 #
-		
+func _process(_delta):
+	if save_info.saveDataExists():
+		$"MarginContainer/Main Menu/Options/Continue".show()
+		$"MarginContainer/Main Menu/Options/New Game".hide()
+	else:
+		$"MarginContainer/Main Menu/Options/Continue".hide()
+		$"MarginContainer/Main Menu/Options/New Game".show()
 
 
 
@@ -53,4 +58,10 @@ func _on_show_credits_pressed() -> void:
 
 func _on_options_pressed() -> void:
 	options_pressed.emit()
+	pass # Replace with function body.
+
+
+func _on_continue_pressed() -> void:
+	
+	level_info.load_level(save_info.levelToLoad())
 	pass # Replace with function body.

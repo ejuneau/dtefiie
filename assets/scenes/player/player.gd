@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 signal step_taken(type)
-signal clipboard_answer_confirmed_player(answer: bool)
+signal answerConfirmed(answer: bool)
 
 @export_category("Movement Variables")
 @export var SPEED = 5.0
@@ -194,10 +194,11 @@ func _on_step_taken(type = "step") -> void:
 
 
 func _on_clipboard_answer_confirmed(answer: bool) -> void:
-	clipboard_answer_confirmed_player.emit(answer)
+	answerConfirmed.emit(answer)
 	pass # Replace with function body.
 	
 func rotate_model(x, y, cameraRot) -> void:
+	# TODO implement model neck rotation
 	# x and y are event.relative.x/y respectively
 	model.rotate_y(-x * 0.01)
 	#rotate neck up/down

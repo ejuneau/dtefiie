@@ -2,15 +2,15 @@ extends Control
 
 signal exitOptions
 signal optionsSaved
-signal click_pressed
-signal error_pressed
-signal confirm_pressed
-signal new_settings
+signal clickPressed
+signal errorPressed
+signal confirmPressed
+signal newSettings
 
 #TODO extract these options from config file
 
 #access config and save as variable
-var configFromDisk = getConfigFromDisk
+var configFromDisk = config_info.getConfigFromDisk()
 #@export_category("Default Options")
 #@export_group("General")
 #@export var VHSEffectsEnable: bool = config.general.vhs_effects
@@ -31,22 +31,6 @@ var configFromDisk = getConfigFromDisk
 
 # Called when the node enters the scene tree for the first time.
 
-var DEFAULT_CONFIG = {
-	"display": {
-		"brightness": 50,
-		"fullscreen": false
-	},
-	"general": {
-		"vhs_effects": true,
-		"vhs_effects_intensity": 1
-	},
-	"sound": {
-		"ambiance_volume": 5,
-		"mute_all_sounds": false,
-		"overall_volume": 5,
-		"sfx_volume": 5
-	}
-}
 
 
 @onready var general: Control = $VSplit/TabContainer/General
@@ -57,8 +41,10 @@ var DEFAULT_CONFIG = {
 @onready var sfx_volume: HSlider = $"VSplit/TabContainer/Sound/MarginContainer/VBoxContainer/SFX Volume"
 @onready var ambiance_volume: HSlider = $"VSplit/TabContainer/Sound/MarginContainer/VBoxContainer/Ambiance Volume"
 @onready var overall_volume: HSlider = $"VSplit/TabContainer/Sound/MarginContainer/VBoxContainer/Overall Volume"
+@onready var display_mode: OptionButton = $"VSplit/TabContainer/Display/MarginContainer/VBoxContainer/Display Mode"
+@onready var brightness: HSlider = $VSplit/TabContainer/Display/MarginContainer/VBoxContainer/Brightness
 
-var currentConfig = getConfigFromDisk()
+var currentConfig = configFromDisk
 
 func _ready() -> void:
 	
@@ -100,15 +86,6 @@ func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
 	general.show()
 	pass # Replace with function body.
 
-func saveConfigToDisk(configToSave: Dictionary) -> void:
-
-	var file = FileAccess.open("res://config.json", FileAccess.WRITE)
-	file.store_string(JSON.stringify(configToSave, "\t"))
-	file.close()
-	
-func getConfigFromDisk() -> Dictionary:
-	return JSON.parse_string(FileAccess.open("res://config.json", FileAccess.READ).get_as_text())
-
 func getConfigFromOptions() -> Dictionary:
 	return {
   "general": {
@@ -123,15 +100,16 @@ func getConfigFromOptions() -> Dictionary:
 	"ambiance_volume": ambiance_volume.value
   },
   "display": {
-	"brightness": 50,
-	"fullscreen": false
+	"brightness": brightness.value,
+	"display_mode": display_mode.selected
   }
 }
 
 
 func _on_options_changed(_option) -> void:
+	clickPressed.emit()
 	$Back.hide()
-	new_settings.emit()
+	newSettings.emit()
 	pass # Replace with function body.
 	
 func set_all_options(configToSet) -> void:
@@ -142,10 +120,13 @@ func set_all_options(configToSet) -> void:
 	overall_volume.value = configToSet.sound.overall_volume
 	ambiance_volume.value = configToSet.sound.ambiance_volume
 	sfx_volume.value = configToSet.sound.sfx_volume
+	
+	display_mode.selected = configToSet.display.display_mode
+	brightness.value = configToSet.display.brightness
 
 func _on_discard_pressed() -> void:
 	set_all_options(currentConfig)
-	new_settings.emit()
+	newSettings.emit()
 	$Back.show()
 	pass # Replace with function body.
 
@@ -153,27 +134,27 @@ func _on_discard_pressed() -> void:
 
 
 func _on_save_pressed() -> void:
-	saveConfigToDisk(getConfigFromOptions())
+	config_info.saveConfigToDisk(getConfigFromOptions())
 	optionsSaved.emit()
-	confirm_pressed.emit()
+	confirmPressed.emit()
 	$Back.show()
 	pass # Replace with function body.
 
 
 func _on_click_pressed() -> void:
-	click_pressed.emit()
+	clickPressed.emit()
 	pass # Replace with function body.
 
 
 func _on_error_pressed() -> void:
-	error_pressed.emit()
+	errorPressed.emit()
 	pass # Replace with function body.
 
 
 func _on_defaults_pressed() -> void:
-	set_all_options(DEFAULT_CONFIG)
-	saveConfigToDisk(DEFAULT_CONFIG)
+	set_all_options(config_info.DEFAULT_CONFIG)
+	config_info.saveConfigToDisk(config_info.DEFAULT_CONFIG)
 	optionsSaved.emit()
-	error_pressed.emit()
+	errorPressed.emit()
 	$Back.show()
 	pass # Replace with function body.

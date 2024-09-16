@@ -2,8 +2,6 @@ extends Control
 
 signal confirmPressed
 signal clickPressed
-signal errorPressed
-#signal loadLevel1
 
 var YN
 @onready var yes_tick: Label = $"Overlay/Yes Tick"
@@ -20,9 +18,7 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("select"):
 		if YN:
 			confirmPressed.emit()
-			self.queue_free()
-			#loadLevel1.emit()
-			level_info.load_level([1, 1])
+			level_info.loadlevel()
 
 
 func _unhandled_input(event: InputEvent) -> void:

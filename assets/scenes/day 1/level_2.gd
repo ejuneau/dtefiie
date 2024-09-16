@@ -4,12 +4,14 @@ signal clickPressed
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	if get_tree().root.get_node_or_null("Main/player"):
+		get_tree().root.get_node("Main").resetPlayer()
+	else:
+		get_tree().root.get_node("Main").spawnPlayer()
+	await get_tree().create_timer(1).timeout
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	var clipboard = get_tree().root.get_node("Main/player/Neck/Camera3D/Clipboard Container/Clipboard")
+	clipboard.load_text(2)
 
 func _on_title_notifier_screen_entered() -> void:
 	clickPressed.emit()

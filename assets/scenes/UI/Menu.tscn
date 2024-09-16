@@ -210,11 +210,12 @@ theme_override_fonts/font = ExtResource("3_b21va")
 theme_override_font_sizes/font_size = 64
 text = "Back"
 
+[connection signal="pressed" from="MarginContainer/Main Menu/Options/Continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="MarginContainer/Main Menu/Options/Continue" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="MarginContainer/Main Menu/Options/New Game" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="MarginContainer/Main Menu/Options/New Game" to="." method="_on_new_game_pressed"]
-[connection signal="pressed" from="MarginContainer/Main Menu/Options/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="MarginContainer/Main Menu/Options/New Game" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="MarginContainer/Main Menu/Options/Options" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/Main Menu/Options/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="MarginContainer/Main Menu/Options/Credits" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="MarginContainer/Main Menu/Options/Credits" to="." method="_on_show_credits_pressed"]
 [connection signal="pressed" from="MarginContainer/Main Menu/Options/Quit" to="." method="_on_quit_pressed"]

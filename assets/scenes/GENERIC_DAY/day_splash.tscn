@@ -1,0 +1,169 @@
+[gd_scene load_steps=5 format=3 uid="uid://tbhq6sh56cmw"]
+
+[ext_resource type="Script" path="res://assets/scenes/GENERIC_DAY/day_splash.gd" id="1_nkac0"]
+[ext_resource type="FontFile" uid="uid://curgdoaj3yxfs" path="res://assets/fonts/VT323-Regular.ttf" id="2_pgbwq"]
+[ext_resource type="Theme" uid="uid://brc5wbswup5dd" path="res://assets/themes/pause_screen.tres" id="3_qgymt"]
+
+[sub_resource type="Theme" id="Theme_i4ew4"]
+default_font = ExtResource("2_pgbwq")
+default_font_size = 32
+
+[node name="Day PLACEHOLDER" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nkac0")
+
+[node name="Overlay" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.513726)
+
+[node name="Title" type="Label" parent="Overlay"]
+layout_mode = 2
+offset_left = -9.0
+offset_top = 36.0
+offset_right = 1152.0
+offset_bottom = 216.0
+theme = SubResource("Theme_i4ew4")
+theme_override_font_sizes/font_size = 146
+text = "First day on the job."
+clip_text = true
+uppercase = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Overlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 37.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_qgymt")
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="Vboxcontainer" type="VBoxContainer" parent="Overlay/MarginContainer"]
+layout_mode = 2
+
+[node name="Vboxcontainer" type="VBoxContainer" parent="Overlay/MarginContainer/Vboxcontainer"]
+custom_minimum_size = Vector2(0, 485.92)
+layout_mode = 2
+
+[node name="Text" type="Label" parent="Overlay/MarginContainer/Vboxcontainer/Vboxcontainer"]
+custom_minimum_size = Vector2(0.64, 179.185)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_pgbwq")
+theme_override_font_sizes/font_size = 32
+text = "You've waited your  whole life to make it here. You look up to the members of the Facility. They don't even know your name."
+vertical_alignment = 2
+autowrap_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Overlay/MarginContainer/Vboxcontainer/Vboxcontainer"]
+layout_mode = 2
+
+[node name="Correct Entity Assessments" type="Label" parent="Overlay/MarginContainer/Vboxcontainer/Vboxcontainer/HBoxContainer"]
+custom_minimum_size = Vector2(360.97, 133.665)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_pgbwq")
+theme_override_font_sizes/font_size = 32
+text = "Correct Entity Assessments:"
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="CHANGETHISVALUE" type="Label" parent="Overlay/MarginContainer/Vboxcontainer/Vboxcontainer/HBoxContainer"]
+custom_minimum_size = Vector2(413.07, 133.665)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_pgbwq")
+theme_override_font_sizes/font_size = 32
+text = "[PLACEHOLDER] / [PLACEHOLDER]"
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Option 1 Text" type="Label" parent="Overlay"]
+layout_mode = 2
+offset_left = 265.0
+offset_top = 518.0
+offset_right = 431.0
+offset_bottom = 587.0
+theme_override_fonts/font = ExtResource("2_pgbwq")
+theme_override_font_sizes/font_size = 32
+text = "Wake up early; 
+Arrive eager"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Option 2 Text" type="Label" parent="Overlay"]
+layout_mode = 2
+offset_left = 723.0
+offset_top = 518.0
+offset_right = 889.0
+offset_bottom = 587.0
+theme_override_fonts/font = ExtResource("2_pgbwq")
+theme_override_font_sizes/font_size = 32
+text = "Rest well;
+Arrive sharp"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Yes Tick" type="Label" parent="Overlay"]
+visible = false
+layout_mode = 2
+offset_left = 325.0
+offset_top = 460.0
+offset_right = 379.0
+offset_bottom = 559.0
+theme_override_font_sizes/font_size = 61
+text = "✓"
+
+[node name="No Tick" type="Label" parent="Overlay"]
+visible = false
+layout_mode = 2
+offset_left = 777.0
+offset_top = 422.0
+offset_right = 829.0
+offset_bottom = 529.0
+theme_override_font_sizes/font_size = 78
+text = "⨯"
+
+[node name="Choices Container" type="HBoxContainer" parent="Overlay"]
+layout_mode = 2
+offset_left = 100.0
+offset_top = 431.0
+offset_right = 1052.0
+offset_bottom = 580.0
+alignment = 1
+
+[node name="Yes Box" type="CenterContainer" parent="Overlay/Choices Container"]
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 2
+
+[node name="Yes Box" type="Label" parent="Overlay/Choices Container/Yes Box"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 72
+text = "☐"
+
+[node name="YesTickContainer" type="MarginContainer" parent="Overlay/Choices Container/Yes Box"]
+layout_mode = 2
+
+[node name="No Box" type="CenterContainer" parent="Overlay/Choices Container"]
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 2
+
+[node name="No Box" type="Label" parent="Overlay/Choices Container/No Box"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 72
+text = "☐"
+
+[node name="NoTickContainer" type="MarginContainer" parent="Overlay/Choices Container/No Box"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 56

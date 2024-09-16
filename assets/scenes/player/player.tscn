@@ -65,6 +65,7 @@ WalkingSway_StepsPerSecond = 2.0
 WalkingSway_MaxSwayDistance = 0.005
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("CapsuleMesh_4wqt8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

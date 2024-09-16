@@ -2,7 +2,6 @@ extends Control
 
 signal confirmPressed
 signal clickPressed
-signal errorPressed
 #signal loadLevel1
 
 var YN
@@ -22,7 +21,7 @@ func _process(_delta: float) -> void:
 			confirmPressed.emit()
 			self.queue_free()
 			#loadLevel1.emit()
-			level_info.load_level([1, 1])
+			level_info.load_level([1, 0])
 
 
 func _unhandled_input(event: InputEvent) -> void:
