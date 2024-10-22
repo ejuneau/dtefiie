@@ -1,0 +1,146 @@
+[gd_scene load_steps=15 format=3 uid="uid://b4xhlgk2thg0v"]
+
+[ext_resource type="Script" path="res://assets/scenes/debug/mirror_new.gd" id="1_30sdg"]
+[ext_resource type="Shader" path="res://assets/scenes/deco/new_mirror.gdshader" id="2_3jsat"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_x3owx"]
+size = Vector3(0.5, 0.5, 0.6)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5lfwg"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_qqnvo"]
+top_radius = 0.0
+bottom_radius = 0.2
+height = 0.712
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qn140"]
+albedo_color = Color(0.28968, 0.6021, 0.516495, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_0f7xl"]
+top_radius = 0.15
+bottom_radius = 0.15
+height = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6favc"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_w0nyr"]
+size = Vector3(6.5, 0.53, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_im3gq"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_fra62"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yug76"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_3jsat")
+shader_parameter/viewport_texture = SubResource("ViewportTexture_fra62")
+shader_parameter/TR = Vector2(0, 0)
+shader_parameter/TL = Vector2(0, 0)
+shader_parameter/BR = Vector2(0, 0)
+shader_parameter/BL = Vector2(0, 0)
+shader_parameter/tiling = Vector2(0.5, 0.5)
+shader_parameter/offset = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iooqt"]
+render_priority = 0
+shader = ExtResource("2_3jsat")
+shader_parameter/TR = Vector2(0, 0)
+shader_parameter/TL = Vector2(0, 0)
+shader_parameter/BR = Vector2(0, 0)
+shader_parameter/BL = Vector2(0, 0)
+shader_parameter/tiling = Vector2(1, 1)
+shader_parameter/offset = Vector2(0, 0)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_dmbg1"]
+material = SubResource("ShaderMaterial_iooqt")
+size = Vector2(3.2, 5)
+orientation = 2
+
+[node name="Mirror" type="Node3D"]
+transform = Transform3D(3.01992e-08, 0, -0.4, 0, 0.4, 0, 0.4, 0, 3.01992e-08, 0, 0, -12.9093)
+script = ExtResource("1_30sdg")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+size = Vector2i(320, 512)
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 1.88124, -17.7593)
+cull_mask = 1032191
+current = true
+
+[node name="Camera Model" type="Node3D" parent="SubViewport/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.61138e-08, 0, -0.413094)
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport/Camera3D/Camera Model"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.01397e-07, 0, 1.15985)
+mesh = SubResource("BoxMesh_x3owx")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_5lfwg")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="SubViewport/Camera3D/Camera Model"]
+transform = Transform3D(1, 8.74228e-08, -8.74228e-08, -8.74228e-08, -4.37114e-08, -1, -8.74228e-08, 1, -4.37114e-08, 7.82625e-08, 0, 0.895219)
+mesh = SubResource("CylinderMesh_qqnvo")
+surface_material_override/0 = SubResource("StandardMaterial3D_qn140")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="SubViewport/Camera3D/Camera Model"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 8.95834e-08, 0.398697, 1.02472)
+mesh = SubResource("CylinderMesh_0f7xl")
+surface_material_override/0 = SubResource("StandardMaterial3D_6favc")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="SubViewport/Camera3D/Camera Model"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 1.15046e-07, 0.398697, 1.31597)
+mesh = SubResource("CylinderMesh_0f7xl")
+surface_material_override/0 = SubResource("StandardMaterial3D_6favc")
+
+[node name="Mirror Frame" type="MeshInstance3D" parent="."]
+transform = Transform3D(-2.98023e-08, 1, 0, 4.37114e-08, 1.3027e-15, -1, -1, -2.98023e-08, -4.37114e-08, 0, 5, 0)
+layers = 16384
+mesh = SubResource("BoxMesh_w0nyr")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_im3gq")
+
+[node name="Mirror Center" type="Marker3D" parent="Mirror Frame"]
+transform = Transform3D(-2.98023e-08, 4.37114e-08, -1, 1, 1.3027e-15, -2.98023e-08, -6.35275e-22, -1, -4.37114e-08, 5.72009e-08, -0.355423, 0)
+
+[node name="Viewport Texture" type="MeshInstance3D" parent="Mirror Frame"]
+transform = Transform3D(1.845, 1.38678e-15, 4.26326e-14, -4.26326e-14, -8.06475e-08, 1.845, 6.41145e-22, -1.845, -8.06475e-08, 6.48015e-11, 0.265385, 0)
+layers = 16384
+material_overlay = SubResource("ShaderMaterial_yug76")
+mesh = SubResource("PlaneMesh_dmbg1")
+
+[node name="TR" type="Marker3D" parent="Mirror Frame/Viewport Texture"]
+transform = Transform3D(-0.542005, -4.26326e-14, -8.18405e-08, 8.18405e-08, -2.36918e-08, -0.542005, 7.10543e-15, -0.542005, 2.36918e-08, 1.6, 2.5, 0)
+
+[node name="Label" type="Label3D" parent="Mirror Frame/Viewport Texture/TR"]
+transform = Transform3D(-1, -8.74229e-08, -2.13163e-14, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 0.821479, -0.0200939, 0.297671)
+text = "(0, 0)"
+font_size = 82
+
+[node name="TL" type="Marker3D" parent="Mirror Frame/Viewport Texture"]
+transform = Transform3D(-0.542005, -3.55271e-14, -8.18405e-08, 8.18404e-08, -2.36918e-08, -0.542005, 7.10543e-15, -0.542005, 2.36918e-08, -1.6, 2.5, 0)
+
+[node name="Label" type="Label3D" parent="Mirror Frame/Viewport Texture/TL"]
+transform = Transform3D(-1, -8.74229e-08, -4.9738e-14, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, -0.702599, -0.0200806, 0.297671)
+text = "(0, 0)"
+font_size = 82
+
+[node name="BL" type="Marker3D" parent="Mirror Frame/Viewport Texture"]
+transform = Transform3D(-0.542005, -2.84217e-14, -8.18405e-08, 8.18404e-08, -2.36918e-08, -0.542005, 7.10543e-15, -0.542005, 2.36918e-08, -1.6, -2.5, 0)
+
+[node name="Label" type="Label3D" parent="Mirror Frame/Viewport Texture/BL"]
+transform = Transform3D(-1, -8.74229e-08, -6.39488e-14, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, -0.7026, -0.0200806, -0.311556)
+text = "(0, 0)"
+font_size = 82
+
+[node name="BR" type="Marker3D" parent="Mirror Frame/Viewport Texture"]
+transform = Transform3D(-0.542005, -3.55271e-14, -8.18405e-08, 8.18404e-08, -2.36918e-08, -0.542005, 7.10543e-15, -0.542005, 2.36918e-08, 1.6, -2.5, 0)
+
+[node name="Label" type="Label3D" parent="Mirror Frame/Viewport Texture/BR"]
+transform = Transform3D(-1, -8.74229e-08, -4.9738e-14, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 0.821479, -0.0200806, -0.311555)
+text = "(0, 0)"
+font_size = 82

@@ -1,0 +1,97 @@
+[gd_scene load_steps=17 format=3 uid="uid://cclw1wvrcc5s7"]
+
+[ext_resource type="Script" path="res://assets/scenes/main.gd" id="1_8v2e7"]
+[ext_resource type="PackedScene" uid="uid://cv63n5anpa81i" path="res://assets/scenes/UI/Menu.tscn" id="2_0v5m8"]
+[ext_resource type="Shader" path="res://assets/shaders/retropixel.gdshader" id="3_3p64c"]
+[ext_resource type="PackedScene" uid="uid://ce1ony8rmdpak" path="res://assets/scenes/UI/pause_screen.tscn" id="3_ew01b"]
+[ext_resource type="AudioStream" uid="uid://6kj3lguqsmu5" path="res://assets/sounds/Menu ambient/609357__florstristi__vhs_vcr-hum-c.wav" id="5_ugfdb"]
+[ext_resource type="AudioStream" uid="uid://dd3cv0ni8623" path="res://assets/sounds/UI clicks/error.mp3" id="6_rw3g7"]
+[ext_resource type="AudioStream" uid="uid://cmyouajrgakxm" path="res://assets/themes/confirm_randomizer.tres" id="7_vwkic"]
+[ext_resource type="AudioStream" uid="uid://b8mgig58sesbl" path="res://assets/sounds/UI clicks/confirm01.mp3" id="8_rwxvh"]
+[ext_resource type="AudioStream" uid="uid://b7x0tig33jwap" path="res://assets/sounds/UI clicks/confirm02.mp3" id="9_78cgs"]
+[ext_resource type="AudioStream" uid="uid://cx8v23y2xwyop" path="res://assets/sounds/UI clicks/confirm03.mp3" id="10_kbm3t"]
+[ext_resource type="AudioStream" uid="uid://du1bh7c235q35" path="res://assets/sounds/UI clicks/confirm04.mp3" id="11_6o3k7"]
+[ext_resource type="AudioStream" uid="uid://brguralusvuwp" path="res://assets/sounds/UI clicks/confirm05.mp3" id="12_cjfw7"]
+[ext_resource type="AudioStream" uid="uid://b4mmt5jsak3g6" path="res://assets/sounds/UI clicks/confirm06.mp3" id="13_gu3ha"]
+[ext_resource type="Environment" uid="uid://j3yw0ieb1hv8" path="res://assets/themes/containment_chamber.tres" id="14_h5aqq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_huvq6"]
+shader = ExtResource("3_3p64c")
+shader_parameter/shake = 0.015
+shader_parameter/noiseQuality = 250.0
+shader_parameter/noiseIntensity = 0.01
+shader_parameter/offsetIntensity = 0.0045
+shader_parameter/colorOffsetIntensity = 0.2
+shader_parameter/pixelSize = 200.0
+shader_parameter/grainIntensity = 0.04
+shader_parameter/use_overlay = true
+shader_parameter/use_lens_distortion = true
+shader_parameter/overlay_color = Color(1, 1, 1, 10)
+shader_parameter/lens_distortion_strength = 0.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_lkxq5"]
+streams_count = 6
+stream_0/stream = ExtResource("8_rwxvh")
+stream_1/stream = ExtResource("9_78cgs")
+stream_2/stream = ExtResource("10_kbm3t")
+stream_3/stream = ExtResource("11_6o3k7")
+stream_4/stream = ExtResource("12_cjfw7")
+stream_5/stream = ExtResource("13_gu3ha")
+
+[node name="Main" type="Node"]
+process_mode = 3
+script = ExtResource("1_8v2e7")
+
+[node name="Pause screen" parent="." instance=ExtResource("3_ew01b")]
+visible = false
+
+[node name="Main Menu" parent="." instance=ExtResource("2_0v5m8")]
+
+[node name="Perfect Pixel Effects" type="ColorRect" parent="."]
+z_index = 5
+material = SubResource("ShaderMaterial_huvq6")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="Ambiance" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("5_ugfdb")
+volume_db = -25.0
+autoplay = true
+playback_type = 1
+
+[node name="Error" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("6_rw3g7")
+
+[node name="Confirm" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("7_vwkic")
+volume_db = -10.0
+
+[node name="Click" type="AudioStreamPlayer2D" parent="Audio"]
+stream = SubResource("AudioStreamRandomizer_lkxq5")
+volume_db = -10.0
+
+[node name="Environment" type="Node" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4.11156, 0)
+light_energy = 0.1
+light_cull_mask = 4293918751
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = ExtResource("14_h5aqq")
+
+[connection signal="hideOptions" from="Pause screen" to="." method="_on_pause_screen_hide_options"]
+[connection signal="newSettings" from="Pause screen" to="." method="_on_new_settings"]
+[connection signal="optionsSaved" from="Pause screen" to="." method="_on_pause_screen_options_saved"]
+[connection signal="showOptions" from="Pause screen" to="." method="_on_pause_screen_show_options"]
+[connection signal="unpaused" from="Pause screen" to="." method="_on_pause_screen_unpaused"]
+[connection signal="new_game_pressed" from="Main Menu" to="." method="_on_main_menu_new_game_pressed"]
+[connection signal="options_pressed" from="Main Menu" to="." method="_on_main_menu_options_pressed"]
+[connection signal="finished" from="Audio/Ambiance" to="." method="_on_ambiance_finished"]

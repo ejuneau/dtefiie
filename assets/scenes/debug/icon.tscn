@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://cekxvh6dvgjrt"]
+
+[ext_resource type="PackedScene" uid="uid://bawet7n82a1tu" path="res://scenes/perfect_pixel_effects.tscn" id="1_5kick"]
+[ext_resource type="Texture2D" uid="uid://cullbvnl4w4gw" path="res://assets/images/icon.png" id="2_v2o83"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Perfect Pixel Effects" parent="." instance=ExtResource("1_5kick")]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.595
+anchor_bottom = 0.584
+offset_left = 1.0
+offset_right = 466.56
+offset_bottom = 267.568
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(570, 321)
+scale = Vector2(2.177, 2.177)
+texture = ExtResource("2_v2o83")

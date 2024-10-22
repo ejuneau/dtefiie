@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dt3wh2hqd1bjp"
+path="res://.godot/imported/day song.wav-c1f3646a534c81f97cc897ea80a87bbc.sample"
+
+[deps]
+
+source_file="res://assets/music/day song.wav"
+dest_files=["res://.godot/imported/day song.wav-c1f3646a534c81f97cc897ea80a87bbc.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

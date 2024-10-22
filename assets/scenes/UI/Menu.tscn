@@ -1,0 +1,237 @@
+[gd_scene load_steps=6 format=3 uid="uid://cv63n5anpa81i"]
+
+[ext_resource type="Script" path="res://assets/scenes/UI/menu.gd" id="1_76wdd"]
+[ext_resource type="Theme" uid="uid://brc5wbswup5dd" path="res://assets/themes/pause_screen.tres" id="2_wwkv2"]
+[ext_resource type="FontFile" uid="uid://curgdoaj3yxfs" path="res://assets/fonts/VT323-Regular.ttf" id="3_b21va"]
+[ext_resource type="AudioStream" uid="uid://bnxi8fvovm87n" path="res://assets/music/menu loop.wav" id="4_vc48j"]
+
+[sub_resource type="Theme" id="Theme_1kv8n"]
+default_font = ExtResource("3_b21va")
+default_font_size = 32
+
+[node name="Menu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_76wdd")
+
+[node name="Overlay" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.188235, 0.188235, 0.188235, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_wwkv2")
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="Main Menu" type="VSplitContainer" parent="MarginContainer"]
+layout_mode = 2
+split_offset = 165
+dragger_visibility = 2
+
+[node name="Label2" type="Label" parent="MarginContainer/Main Menu"]
+layout_mode = 2
+theme = SubResource("Theme_1kv8n")
+theme_override_font_sizes/font_size = 86
+text = "Does the Entity fit in its Enclosure?"
+clip_text = true
+
+[node name="Options" type="GridContainer" parent="MarginContainer/Main Menu"]
+layout_mode = 2
+
+[node name="Continue" type="Button" parent="MarginContainer/Main Menu/Options"]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_b21va")
+theme_override_font_sizes/font_size = 64
+text = "Continue
+"
+alignment = 0
+
+[node name="New Game" type="Button" parent="MarginContainer/Main Menu/Options"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_b21va")
+theme_override_font_sizes/font_size = 64
+text = "New Game
+"
+alignment = 0
+
+[node name="Options" type="Button" parent="MarginContainer/Main Menu/Options"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_b21va")
+theme_override_font_sizes/font_size = 64
+text = "Options"
+alignment = 0
+
+[node name="Credits" type="Button" parent="MarginContainer/Main Menu/Options"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_b21va")
+theme_override_font_sizes/font_size = 64
+text = "Credits"
+alignment = 0
+
+[node name="Quit" type="Button" parent="MarginContainer/Main Menu/Options"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_b21va")
+theme_override_font_sizes/font_size = 64
+text = "Quit
+"
+alignment = 0
+
+[node name="Credits" type="Node2D" parent="."]
+visible = false
+
+[node name="TextureRect" type="ColorRect" parent="Credits"]
+visible = false
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.212, 0.212, 0.212, 1)
+
+[node name="Title" type="Label" parent="Credits"]
+offset_left = 100.0
+offset_top = 128.0
+offset_right = 1152.0
+offset_bottom = 219.0
+theme = SubResource("Theme_1kv8n")
+theme_override_font_sizes/font_size = 86
+text = "Does the Entity fit in its Enclosure?"
+clip_text = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Credits"]
+offset_right = 1011.0
+offset_bottom = 648.0
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 230
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Credits/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Credits/MarginContainer/ScrollContainer"]
+layout_mode = 2
+
+[node name="CREDITS" type="Label" parent="Credits/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_wwkv2")
+text = "CREDITS
+"
+horizontal_alignment = 1
+
+[node name="credits" type="Label" parent="Credits/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_wwkv2")
+text = "Developed by Eve Juneau"
+
+[node name="ASSETS USED" type="Label" parent="Credits/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_wwkv2")
+text = "
+ASSETS USED"
+horizontal_alignment = 1
+
+[node name="Licenses" type="Label" parent="Credits/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_wwkv2")
+text = "All assets are used under Creative Commons License
+All fonts are used under Open Font License"
+
+[node name="SOUND" type="Label" parent="Credits/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_wwkv2")
+text = "
+SOUND"
+horizontal_alignment = 1
+
+[node name="SOUND Credits" type="Label" parent="Credits/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_wwkv2")
+text = "Forcefield Hum.wav by Zeraora
+Fole_Mechanism_Light_Buzz_Short_Loop_Mono_DR05.wav by Nox_Sound
+Electricity Sound by Duasun
+Fridge buzz (loop) by Matislav"
+
+[node name="SHADERS" type="Label" parent="Credits/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_wwkv2")
+text = "
+SHADERS"
+horizontal_alignment = 1
+
+[node name="SHADER Credits" type="Label" parent="Credits/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_wwkv2")
+text = "Perfect Retro Pixel Shader - Godot 4 by ReVybes"
+
+[node name="MODELS" type="Label" parent="Credits/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_wwkv2")
+text = "
+MODELS"
+horizontal_alignment = 1
+
+[node name="MODELS Credits" type="Label" parent="Credits/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_wwkv2")
+text = "All Models are placeholder and therefore are not yet credited. Sorry"
+
+[node name="TEXTURES" type="Label" parent="Credits/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_wwkv2")
+text = "
+TEXTURES"
+horizontal_alignment = 1
+
+[node name="MODELS Credits2" type="Label" parent="Credits/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_wwkv2")
+text = "All textures are placeholder and therefore are not yet credited. Sorry"
+
+[node name="Credits back" type="Button" parent="Credits"]
+offset_left = 997.0
+offset_top = 519.0
+offset_right = 1107.0
+offset_bottom = 592.0
+theme = ExtResource("2_wwkv2")
+theme_override_fonts/font = ExtResource("3_b21va")
+theme_override_font_sizes/font_size = 64
+text = "Back"
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Credits"]
+
+[node name="Menu Music Player" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_vc48j")
+volume_db = -30.0
+autoplay = true
+bus = &"Music"
+
+[connection signal="pressed" from="MarginContainer/Main Menu/Options/Continue" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/Main Menu/Options/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="MarginContainer/Main Menu/Options/New Game" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/Main Menu/Options/New Game" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="MarginContainer/Main Menu/Options/Options" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/Main Menu/Options/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="MarginContainer/Main Menu/Options/Credits" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/Main Menu/Options/Credits" to="." method="_on_show_credits_pressed"]
+[connection signal="pressed" from="MarginContainer/Main Menu/Options/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="MarginContainer/Main Menu/Options/Quit" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Credits/Credits back" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Credits/Credits back" to="." method="_on_credits_back_pressed"]
+[connection signal="screen_entered" from="Credits/VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="Credits/VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://8ush7uom3egu"]
+
+[ext_resource type="PackedScene" uid="uid://bmql8hsicxi5y" path="res://assets/models/human/planar_human_base_rigs.glb" id="1_vb6ig"]
+
+[node name="Sketchfab_Scene" instance=ExtResource("1_vb6ig")]
+
+[node name="rig_35" parent="Sketchfab_model/root/GLTF_SceneRootNode" index="1"]
+visible = false
+
+[node name="light_keyLight_72" parent="Sketchfab_model/root/GLTF_SceneRootNode" index="3"]
+visible = false

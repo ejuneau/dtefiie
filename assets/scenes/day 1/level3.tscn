@@ -1,0 +1,135 @@
+[gd_scene load_steps=20 format=3 uid="uid://qjgx2jjf1pxq"]
+
+[ext_resource type="Script" path="res://assets/scenes/day 1/level_3.gd" id="1_rygpe"]
+[ext_resource type="PackedScene" uid="uid://6jc0oj15ibsk" path="res://assets/scenes/containment chamber/containment_chamber.tscn" id="3_cyegj"]
+[ext_resource type="Texture2D" uid="uid://bcjfqcuh0778u" path="res://assets/models/shrimp/RGB_a0cd01ef8b7a45b7989182aba5493bc5_Q11583-1all-3-body_2.jpeg" id="4_25mtf"]
+[ext_resource type="Shader" path="res://assets/shaders/floatLobster.gdshader" id="4_dt10o"]
+[ext_resource type="FontFile" uid="uid://curgdoaj3yxfs" path="res://assets/fonts/VT323-Regular.ttf" id="4_h6rai"]
+[ext_resource type="ArrayMesh" uid="uid://cpxyc5bm4p85c" path="res://assets/models/shrimp/model.obj" id="5_xdu2t"]
+[ext_resource type="AudioStream" uid="uid://b8mgig58sesbl" path="res://assets/sounds/UI clicks/confirm01.mp3" id="6_4svhr"]
+[ext_resource type="AudioStream" uid="uid://b7x0tig33jwap" path="res://assets/sounds/UI clicks/confirm02.mp3" id="7_pasio"]
+[ext_resource type="AudioStream" uid="uid://cx8v23y2xwyop" path="res://assets/sounds/UI clicks/confirm03.mp3" id="8_515m0"]
+[ext_resource type="AudioStream" uid="uid://du1bh7c235q35" path="res://assets/sounds/UI clicks/confirm04.mp3" id="9_ens15"]
+[ext_resource type="AudioStream" uid="uid://brguralusvuwp" path="res://assets/sounds/UI clicks/confirm05.mp3" id="10_gdgsm"]
+[ext_resource type="AudioStream" uid="uid://b4mmt5jsak3g6" path="res://assets/sounds/UI clicks/confirm06.mp3" id="11_8bgjf"]
+
+[sub_resource type="Animation" id="Animation_pv3rg"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_wplj5"]
+resource_name = "spin that deer!"
+loop_mode = 1
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_161ea"]
+_data = {
+&"RESET": SubResource("Animation_pv3rg"),
+&"spin that deer!": SubResource("Animation_wplj5")
+}
+
+[sub_resource type="Theme" id="Theme_r2qjp"]
+default_font = ExtResource("4_h6rai")
+default_font_size = 32
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qwd0k"]
+transparency = 1
+albedo_color = Color(1, 0.29, 0.29, 0)
+grow_amount = -0.762
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s62kj"]
+render_priority = 0
+shader = ExtResource("4_dt10o")
+shader_parameter/shrimpTexture = ExtResource("4_25mtf")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_7quph"]
+streams_count = 6
+stream_0/stream = ExtResource("6_4svhr")
+stream_1/stream = ExtResource("7_pasio")
+stream_2/stream = ExtResource("8_515m0")
+stream_3/stream = ExtResource("9_ens15")
+stream_4/stream = ExtResource("10_gdgsm")
+stream_5/stream = ExtResource("11_8bgjf")
+
+[node name="level3" type="Node"]
+process_mode = 1
+script = ExtResource("1_rygpe")
+
+[node name="Containment Chamber" parent="." instance=ExtResource("3_cyegj")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Containment Chamber"]
+libraries = {
+&"": SubResource("AnimationLibrary_161ea")
+}
+autoplay = "spin that deer!"
+
+[node name="Title" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="Title"]
+layout_mode = 2
+offset_left = -648.0
+offset_top = -363.0
+offset_right = 1825.0
+offset_bottom = 1102.0
+color = Color(0.188235, 0.188235, 0.188235, 1)
+
+[node name="I Sea" type="Label" parent="Title"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -36.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_r2qjp")
+theme_override_font_sizes/font_size = 619
+text = "I SEA"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="Day 1" type="Label" parent="Title"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -75.0
+offset_bottom = -75.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_r2qjp")
+theme_override_font_sizes/font_size = 72
+text = "Day 1"
+horizontal_alignment = 1
+vertical_alignment = 2
+clip_text = true
+uppercase = true
+
+[node name="TitleTimer" type="Timer" parent="Title"]
+
+[node name="DayTimer" type="Timer" parent="Title"]
+wait_time = 0.5
+autostart = true
+
+[node name="TitleNotifier" type="VisibleOnScreenNotifier2D" parent="Title"]
+position = Vector2(576, 324)
+scale = Vector2(57.6, 32.4)
+
+[node name="Model" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0755039, 0, 0.484148, 0, 0.49, 0, -0.484148, 0, 0.0755039, 0, 1.95722, -3.17876)
+material_override = SubResource("StandardMaterial3D_qwd0k")
+material_overlay = SubResource("ShaderMaterial_s62kj")
+mesh = ExtResource("5_xdu2t")
+
+[node name="ClickPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_7quph")
+autoplay = true
+
+[connection signal="timeout" from="Title/TitleTimer" to="." method="_on_title_timer_timeout"]
+[connection signal="timeout" from="Title/DayTimer" to="." method="_on_day_timer_timeout"]
+[connection signal="screen_entered" from="Title/TitleNotifier" to="." method="_on_title_notifier_screen_entered"]

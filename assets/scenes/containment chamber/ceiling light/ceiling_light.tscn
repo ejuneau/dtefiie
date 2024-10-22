@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://cdvk5ukt4vfd8"]
+
+[ext_resource type="Script" path="res://assets/scenes/containment chamber/ceiling light/ceiling_light.gd" id="1_gxw7n"]
+[ext_resource type="AudioStream" uid="uid://kaifxvuwb3jv" path="res://assets/sounds/712127__duasun__electricity-sound.wav" id="2_lhbg6"]
+[ext_resource type="PackedScene" uid="uid://c81g6e6r7er0s" path="res://assets/scenes/containment chamber/ceiling light/ceiling_light_model.tscn" id="2_oik5o"]
+
+[node name="Ceiling Light" type="Node3D"]
+script = ExtResource("1_gxw7n")
+
+[node name="Sketchfab_Scene2" parent="." instance=ExtResource("2_oik5o")]
+transform = Transform3D(-1.09278e-09, 0, 0.025, 0, 0.025, 0, -0.025, 0, -1.09278e-09, -0.0920677, -0.301834, -0.0643054)
+
+[node name="Ceiling Light Hum" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+stream = ExtResource("2_lhbg6")
+volume_db = -60.0
+unit_size = 4.94
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.123214, 0)
+layers = 16
+light_energy = 3.144
+light_cull_mask = 4293918721
+shadow_enabled = true
+spot_range = 20.954
+spot_attenuation = 3.05
+spot_angle = 50.43

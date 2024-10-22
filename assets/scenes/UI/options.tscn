@@ -1,0 +1,301 @@
+[gd_scene load_steps=8 format=3 uid="uid://chu4f2ph7qea"]
+
+[ext_resource type="Theme" uid="uid://c6aikkouvidpq" path="res://assets/themes/theme2.tres" id="1_53rmt"]
+[ext_resource type="Theme" uid="uid://brc5wbswup5dd" path="res://assets/themes/pause_screen.tres" id="1_lsd5l"]
+[ext_resource type="Script" path="res://assets/scenes/UI/options.gd" id="2_lhfwf"]
+[ext_resource type="Script" path="res://assets/scenes/UI/delete_all_save_data.gd" id="3_gmo7u"]
+[ext_resource type="StyleBox" uid="uid://d4i22ujvlxotl" path="res://assets/scenes/UI/red.tres" id="3_ru1ef"]
+[ext_resource type="Script" path="res://assets/scenes/UI/display_mode.gd" id="4_3caqg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4rvke"]
+bg_color = Color(0.545098, 0.129412, 0.0666667, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[node name="Options" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 0
+theme = ExtResource("1_53rmt")
+script = ExtResource("2_lhfwf")
+
+[node name="VSplit" type="VSplitContainer" parent="."]
+layout_mode = 2
+offset_right = 952.0
+offset_bottom = 448.0
+theme = ExtResource("1_53rmt")
+split_offset = 165
+dragger_visibility = 2
+
+[node name="TabContainer" type="TabContainer" parent="VSplit"]
+layout_mode = 2
+theme = ExtResource("1_53rmt")
+current_tab = 0
+tab_focus_mode = 0
+
+[node name="General" type="Control" parent="VSplit/TabContainer"]
+layout_mode = 2
+theme = ExtResource("1_53rmt")
+metadata/_tab_index = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="VSplit/TabContainer/General"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 500
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VSplit/TabContainer/General/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 90
+
+[node name="VHS Effects Container" type="HBoxContainer" parent="VSplit/TabContainer/General/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VHS Effects" type="CheckBox" parent="VSplit/TabContainer/General/MarginContainer/VBoxContainer/VHS Effects Container" groups=["options"]]
+layout_mode = 2
+theme = ExtResource("1_53rmt")
+
+[node name="Label" type="Label" parent="VSplit/TabContainer/General/MarginContainer/VBoxContainer/VHS Effects Container"]
+layout_mode = 2
+text = "VHS Effects
+"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VSplit/TabContainer/General/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VSplit/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "VHS Effect Intensity
+"
+
+[node name="VHS Effect Intensity" type="HSlider" parent="VSplit/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer" groups=["options"]]
+layout_mode = 2
+max_value = 1.0
+step = 0.1
+
+[node name="Delete All Save Data" type="MenuButton" parent="VSplit/TabContainer/General/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_lsd5l")
+theme_type_variation = &"RedButton"
+theme_override_styles/hover = ExtResource("3_ru1ef")
+theme_override_styles/pressed = ExtResource("3_ru1ef")
+text = "DELETE ALL SAVE DATA"
+flat = false
+item_count = 1
+popup/item_0/text = "ARE YOU SURE?"
+popup/item_0/id = 0
+script = ExtResource("3_gmo7u")
+
+[node name="Sound" type="Control" parent="VSplit/TabContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("1_53rmt")
+metadata/_tab_index = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="VSplit/TabContainer/Sound"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -3.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 500
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VSplit/TabContainer/Sound/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 21
+
+[node name="Mute All Sounds Container" type="HBoxContainer" parent="VSplit/TabContainer/Sound/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Mute All Sounds" type="CheckBox" parent="VSplit/TabContainer/Sound/MarginContainer/VBoxContainer/Mute All Sounds Container" groups=["options"]]
+layout_mode = 2
+theme = ExtResource("1_53rmt")
+
+[node name="Label" type="Label" parent="VSplit/TabContainer/Sound/MarginContainer/VBoxContainer/Mute All Sounds Container"]
+layout_mode = 2
+text = "Mute all sounds
+"
+
+[node name="Overall Volume Container" type="VBoxContainer" parent="VSplit/TabContainer/Sound/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VSplit/TabContainer/Sound/MarginContainer/VBoxContainer/Overall Volume Container"]
+layout_mode = 2
+text = "Overall Volume
+"
+
+[node name="Overall Volume" type="HSlider" parent="VSplit/TabContainer/Sound/MarginContainer/VBoxContainer/Overall Volume Container" groups=["options"]]
+layout_mode = 2
+max_value = 10.0
+
+[node name="Music Volume Container" type="VBoxContainer" parent="VSplit/TabContainer/Sound/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VSplit/TabContainer/Sound/MarginContainer/VBoxContainer/Music Volume Container"]
+layout_mode = 2
+theme = ExtResource("1_53rmt")
+text = "Music Volume"
+
+[node name="Music Volume" type="HSlider" parent="VSplit/TabContainer/Sound/MarginContainer/VBoxContainer/Music Volume Container" groups=["options"]]
+layout_mode = 2
+theme = ExtResource("1_53rmt")
+max_value = 10.0
+
+[node name="Ambiance Volume Container" type="VBoxContainer" parent="VSplit/TabContainer/Sound/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VSplit/TabContainer/Sound/MarginContainer/VBoxContainer/Ambiance Volume Container"]
+layout_mode = 2
+theme = ExtResource("1_53rmt")
+text = "Ambiance Volume"
+
+[node name="Ambiance Volume" type="HSlider" parent="VSplit/TabContainer/Sound/MarginContainer/VBoxContainer/Ambiance Volume Container" groups=["options"]]
+layout_mode = 2
+theme = ExtResource("1_53rmt")
+max_value = 10.0
+
+[node name="SFX Volume Container" type="VBoxContainer" parent="VSplit/TabContainer/Sound/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VSplit/TabContainer/Sound/MarginContainer/VBoxContainer/SFX Volume Container"]
+layout_mode = 2
+text = "SFX Volume"
+
+[node name="SFX Volume" type="HSlider" parent="VSplit/TabContainer/Sound/MarginContainer/VBoxContainer/SFX Volume Container" groups=["options"]]
+layout_mode = 2
+max_value = 10.0
+
+[node name="Display" type="Control" parent="VSplit/TabContainer"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+metadata/_tab_index = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VSplit/TabContainer/Display"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 500
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VSplit/TabContainer/Display/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 35
+alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VSplit/TabContainer/Display/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VSplit/TabContainer/Display/MarginContainer/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("1_53rmt")
+text = "Display Mode"
+
+[node name="Display Mode" type="OptionButton" parent="VSplit/TabContainer/Display/MarginContainer/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("1_lsd5l")
+item_count = 2
+popup/item_0/text = "Fullscreen"
+popup/item_0/id = 0
+popup/item_1/text = "Windowed"
+popup/item_1/id = 1
+script = ExtResource("4_3caqg")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VSplit/TabContainer/Display/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VSplit/TabContainer/Display/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_53rmt")
+text = "Brightness"
+
+[node name="Brightness" type="HSlider" parent="VSplit/TabContainer/Display/MarginContainer/VBoxContainer/VBoxContainer" groups=["options"]]
+layout_mode = 2
+theme = ExtResource("1_53rmt")
+max_value = 2.0
+step = 0.2
+value = 1.0
+
+[node name="Save" type="Button" parent="."]
+layout_mode = 0
+offset_left = 779.0
+offset_top = 309.0
+offset_right = 838.0
+offset_bottom = 350.0
+theme = ExtResource("1_53rmt")
+text = "Save
+"
+
+[node name="Back" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 779.0
+offset_top = 309.0
+offset_right = 838.0
+offset_bottom = 350.0
+theme = ExtResource("1_53rmt")
+text = "Back
+"
+
+[node name="Discard" type="Button" parent="."]
+layout_mode = 0
+offset_left = 779.0
+offset_top = 259.0
+offset_right = 877.0
+offset_bottom = 300.0
+theme = ExtResource("1_53rmt")
+theme_override_styles/hover = SubResource("StyleBoxFlat_4rvke")
+text = "Discard"
+
+[node name="Defaults" type="Button" parent="."]
+layout_mode = 0
+offset_left = 779.0
+offset_top = 367.0
+offset_right = 889.0
+offset_bottom = 408.0
+theme = ExtResource("1_53rmt")
+theme_override_styles/hover = SubResource("StyleBoxFlat_4rvke")
+text = "Defaults"
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="tab_changed" from="VSplit/TabContainer" to="." method="_on_tab_container_tab_changed"]
+[connection signal="toggled" from="VSplit/TabContainer/General/MarginContainer/VBoxContainer/VHS Effects Container/VHS Effects" to="." method="_on_options_changed"]
+[connection signal="value_changed" from="VSplit/TabContainer/General/MarginContainer/VBoxContainer/VBoxContainer/VHS Effect Intensity" to="." method="_on_options_changed"]
+[connection signal="about_to_popup" from="VSplit/TabContainer/General/MarginContainer/VBoxContainer/Delete All Save Data" to="." method="_on_focus_entered"]
+[connection signal="toggled" from="VSplit/TabContainer/Sound/MarginContainer/VBoxContainer/Mute All Sounds Container/Mute All Sounds" to="." method="_on_options_changed"]
+[connection signal="value_changed" from="VSplit/TabContainer/Sound/MarginContainer/VBoxContainer/Overall Volume Container/Overall Volume" to="." method="_on_options_changed"]
+[connection signal="value_changed" from="VSplit/TabContainer/Sound/MarginContainer/VBoxContainer/Music Volume Container/Music Volume" to="." method="_on_options_changed"]
+[connection signal="value_changed" from="VSplit/TabContainer/Sound/MarginContainer/VBoxContainer/Ambiance Volume Container/Ambiance Volume" to="." method="_on_options_changed"]
+[connection signal="value_changed" from="VSplit/TabContainer/Sound/MarginContainer/VBoxContainer/SFX Volume Container/SFX Volume" to="." method="_on_options_changed"]
+[connection signal="item_selected" from="VSplit/TabContainer/Display/MarginContainer/VBoxContainer/VBoxContainer2/Display Mode" to="." method="_on_options_changed"]
+[connection signal="pressed" from="VSplit/TabContainer/Display/MarginContainer/VBoxContainer/VBoxContainer2/Display Mode" to="." method="_on_display_mode_pressed"]
+[connection signal="value_changed" from="VSplit/TabContainer/Display/MarginContainer/VBoxContainer/VBoxContainer/Brightness" to="." method="_on_options_changed"]
+[connection signal="pressed" from="Save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="Discard" to="." method="_on_discard_pressed"]
+[connection signal="pressed" from="Defaults" to="." method="_on_defaults_pressed"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]

@@ -1,0 +1,556 @@
+[gd_scene load_steps=6 format=3 uid="uid://nsagvjr1uvpa"]
+
+[ext_resource type="Script" path="res://assets/scenes/UI/tutorial.gd" id="1_srb2t"]
+[ext_resource type="Theme" uid="uid://brc5wbswup5dd" path="res://assets/themes/pause_screen.tres" id="2_r7d54"]
+[ext_resource type="FontFile" uid="uid://curgdoaj3yxfs" path="res://assets/fonts/VT323-Regular.ttf" id="3_to3n5"]
+
+[sub_resource type="Theme" id="Theme_1kv8n"]
+default_font = ExtResource("3_to3n5")
+default_font_size = 32
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6msik"]
+
+[node name="Tutorial" type="Control"]
+process_mode = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_srb2t")
+
+[node name="Overlay" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -514.0
+offset_top = -254.0
+offset_right = 579.0
+offset_bottom = 514.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.188235, 0.188235, 0.188235, 1)
+
+[node name="Page 1" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Margins" type="MarginContainer" parent="Page 1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 909.0
+offset_bottom = 264.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_r7d54")
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+
+[node name="VSplitContainer" type="VSplitContainer" parent="Page 1/Margins"]
+layout_mode = 2
+split_offset = 165
+dragger_visibility = 2
+
+[node name="Ground Rules" type="Label" parent="Page 1/Margins/VSplitContainer"]
+layout_mode = 2
+theme = SubResource("Theme_1kv8n")
+theme_override_font_sizes/font_size = 72
+text = "Ground Rules:"
+clip_text = true
+
+[node name="Body" type="GridContainer" parent="Page 1/Margins/VSplitContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Page 1/Margins/VSplitContainer/Body"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Use the scroll wheel to choose options in this game."
+
+[node name="Label2" type="Label" parent="Page 1/Margins/VSplitContainer/Body"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Scroll up for yes, down for no."
+
+[node name="Label3" type="Label" parent="Page 1/Margins/VSplitContainer/Body"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Confirm your selection by left-clicking."
+
+[node name="HSplitContainer" type="HSplitContainer" parent="Page 1"]
+layout_mode = 2
+offset_left = 100.0
+offset_top = 328.0
+offset_right = 1052.0
+offset_bottom = 648.0
+split_offset = 430
+dragger_visibility = 2
+
+[node name="Yes Ensemble" type="CenterContainer" parent="Page 1/HSplitContainer"]
+layout_mode = 2
+
+[node name="CenterContainer3" type="CenterContainer" parent="Page 1/HSplitContainer/Yes Ensemble"]
+layout_mode = 2
+
+[node name="Yes Box" type="Label" parent="Page 1/HSplitContainer/Yes Ensemble/CenterContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 72
+text = "☐"
+
+[node name="Yes" type="Label" parent="Page 1/HSplitContainer/Yes Ensemble/CenterContainer3"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_to3n5")
+theme_override_font_sizes/font_size = 72
+text = "
+Yes"
+
+[node name="YesTickContainer" type="MarginContainer" parent="Page 1/HSplitContainer/Yes Ensemble/CenterContainer3"]
+layout_mode = 2
+
+[node name="Yes Tick" type="Label" parent="Page 1/HSplitContainer/Yes Ensemble/CenterContainer3/YesTickContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 72
+text = "✓"
+
+[node name="No Ensemble" type="CenterContainer" parent="Page 1/HSplitContainer"]
+layout_mode = 2
+
+[node name="CenterContainer3" type="CenterContainer" parent="Page 1/HSplitContainer/No Ensemble"]
+layout_mode = 2
+
+[node name="No Box" type="Label" parent="Page 1/HSplitContainer/No Ensemble/CenterContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 72
+text = "☐"
+
+[node name="No" type="Label" parent="Page 1/HSplitContainer/No Ensemble/CenterContainer3"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_to3n5")
+theme_override_font_sizes/font_size = 72
+text = "
+No
+"
+
+[node name="NoTickContainer" type="MarginContainer" parent="Page 1/HSplitContainer/No Ensemble/CenterContainer3"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 56
+
+[node name="No Tick" type="Label" parent="Page 1/HSplitContainer/No Ensemble/CenterContainer3/NoTickContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 72
+text = "⨯"
+
+[node name="Page1Notifier" type="VisibleOnScreenNotifier2D" parent="Page 1"]
+position = Vector2(576, 324)
+scale = Vector2(57.6, 32.4)
+
+[node name="Page 1_5" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Page 1_5"]
+layout_mode = 2
+offset_left = -648.0
+offset_top = -363.0
+offset_right = 1825.0
+offset_bottom = 1102.0
+color = Color(0, 0, 0, 0.654902)
+
+[node name="PanelContainer" type="PanelContainer" parent="Page 1_5"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.119
+anchor_top = -0.116
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 137.088
+offset_top = 75.168
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_6msik")
+
+[node name="Ground Rules" type="Label" parent="Page 1_5/PanelContainer"]
+layout_mode = 2
+theme = SubResource("Theme_1kv8n")
+theme_override_font_sizes/font_size = 325
+text = "TRY
+AGAIN"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Page 1_5"]
+root_node = NodePath("../Page1_5Timer")
+
+[node name="Page1_5Timer" type="Timer" parent="Page 1_5"]
+
+[node name="Page1_5Notifier" type="VisibleOnScreenNotifier2D" parent="Page 1_5"]
+position = Vector2(576, 324)
+scale = Vector2(57.6, 32.4)
+
+[node name="Page 2" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Margins" type="MarginContainer" parent="Page 2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_r7d54")
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+
+[node name="VSplitContainer" type="VSplitContainer" parent="Page 2/Margins"]
+layout_mode = 2
+split_offset = 165
+dragger_visibility = 2
+
+[node name="Ground Rules" type="Label" parent="Page 2/Margins/VSplitContainer"]
+layout_mode = 2
+theme = SubResource("Theme_1kv8n")
+theme_override_font_sizes/font_size = 72
+text = "Ground Rules:"
+clip_text = true
+
+[node name="Body" type="GridContainer" parent="Page 2/Margins/VSplitContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Page 2/Margins/VSplitContainer/Body"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Right Click toggles your clipboard."
+
+[node name="Label2" type="Label" parent="Page 2/Margins/VSplitContainer/Body"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "The choice you have to make is simple."
+
+[node name="Label3" type="Label" parent="Page 2/Margins/VSplitContainer/Body"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "The deduction may be anything but."
+
+[node name="HSplitContainer" type="HSplitContainer" parent="Page 2"]
+layout_mode = 2
+offset_left = 100.0
+offset_top = 328.0
+offset_right = 1052.0
+offset_bottom = 648.0
+split_offset = 430
+dragger_visibility = 2
+
+[node name="Yes Ensemble" type="CenterContainer" parent="Page 2/HSplitContainer"]
+layout_mode = 2
+
+[node name="CenterContainer3" type="CenterContainer" parent="Page 2/HSplitContainer/Yes Ensemble"]
+layout_mode = 2
+
+[node name="Yes Box" type="Label" parent="Page 2/HSplitContainer/Yes Ensemble/CenterContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 72
+text = "☐"
+
+[node name="Yes" type="Label" parent="Page 2/HSplitContainer/Yes Ensemble/CenterContainer3"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_to3n5")
+theme_override_font_sizes/font_size = 72
+text = "
+Got it"
+
+[node name="YesTickContainer" type="MarginContainer" parent="Page 2/HSplitContainer/Yes Ensemble/CenterContainer3"]
+layout_mode = 2
+
+[node name="Yes Tick" type="Label" parent="Page 2/HSplitContainer/Yes Ensemble/CenterContainer3/YesTickContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 72
+text = "✓"
+
+[node name="No Ensemble" type="CenterContainer" parent="Page 2/HSplitContainer"]
+layout_mode = 2
+
+[node name="CenterContainer3" type="CenterContainer" parent="Page 2/HSplitContainer/No Ensemble"]
+layout_mode = 2
+
+[node name="No Box" type="Label" parent="Page 2/HSplitContainer/No Ensemble/CenterContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 72
+text = "☐"
+
+[node name="No" type="Label" parent="Page 2/HSplitContainer/No Ensemble/CenterContainer3"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_to3n5")
+theme_override_font_sizes/font_size = 72
+text = "
+Not really
+"
+
+[node name="NoTickContainer" type="MarginContainer" parent="Page 2/HSplitContainer/No Ensemble/CenterContainer3"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 56
+
+[node name="No Tick" type="Label" parent="Page 2/HSplitContainer/No Ensemble/CenterContainer3/NoTickContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 72
+text = "⨯"
+
+[node name="Page2Notifier" type="VisibleOnScreenNotifier2D" parent="Page 2"]
+position = Vector2(576, 324)
+scale = Vector2(57.6, 32.4)
+
+[node name="Page 2_5" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Page 2_5"]
+layout_mode = 2
+offset_left = -648.0
+offset_top = -363.0
+offset_right = 1825.0
+offset_bottom = 1102.0
+color = Color(0, 0, 0, 0.654902)
+
+[node name="PanelContainer" type="PanelContainer" parent="Page 2_5"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.119
+anchor_top = -0.116
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 137.088
+offset_top = 75.168
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_6msik")
+
+[node name="Ground Rules" type="Label" parent="Page 2_5/PanelContainer"]
+layout_mode = 2
+theme = SubResource("Theme_1kv8n")
+theme_override_font_sizes/font_size = 325
+text = "VERY
+FUNNY"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Page 2_5"]
+root_node = NodePath("../Page2_5Timer")
+
+[node name="Page2_5Timer" type="Timer" parent="Page 2_5"]
+
+[node name="Page2_5Notifier" type="VisibleOnScreenNotifier2D" parent="Page 2_5"]
+position = Vector2(576, 324)
+scale = Vector2(57.6, 32.4)
+
+[node name="Page 3" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Margins" type="MarginContainer" parent="Page 3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_r7d54")
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+
+[node name="VSplitContainer" type="VSplitContainer" parent="Page 3/Margins"]
+layout_mode = 2
+split_offset = 165
+dragger_visibility = 2
+
+[node name="Ground Rules" type="Label" parent="Page 3/Margins/VSplitContainer"]
+layout_mode = 2
+theme = SubResource("Theme_1kv8n")
+theme_override_font_sizes/font_size = 72
+text = "One last thing"
+clip_text = true
+
+[node name="Body" type="GridContainer" parent="Page 3/Margins/VSplitContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Page 3/Margins/VSplitContainer/Body"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Some of the Entities may be dangerous."
+
+[node name="Label2" type="Label" parent="Page 3/Margins/VSplitContainer/Body"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "By agreeing, you waive your right to pursure legal"
+
+[node name="Label3" type="Label" parent="Page 3/Margins/VSplitContainer/Body"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "action in the case of death or grievous harm."
+clip_text = true
+
+[node name="HSplitContainer" type="HSplitContainer" parent="Page 3"]
+layout_mode = 2
+offset_left = 100.0
+offset_top = 328.0
+offset_right = 1052.0
+offset_bottom = 648.0
+split_offset = 430
+dragger_visibility = 2
+
+[node name="Yes Ensemble" type="CenterContainer" parent="Page 3/HSplitContainer"]
+layout_mode = 2
+
+[node name="CenterContainer3" type="CenterContainer" parent="Page 3/HSplitContainer/Yes Ensemble"]
+layout_mode = 2
+
+[node name="Yes Box" type="Label" parent="Page 3/HSplitContainer/Yes Ensemble/CenterContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 72
+text = "☐"
+
+[node name="Yes" type="Label" parent="Page 3/HSplitContainer/Yes Ensemble/CenterContainer3"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_to3n5")
+theme_override_font_sizes/font_size = 72
+text = "
+I consent"
+
+[node name="YesTickContainer" type="MarginContainer" parent="Page 3/HSplitContainer/Yes Ensemble/CenterContainer3"]
+layout_mode = 2
+
+[node name="Yes Tick" type="Label" parent="Page 3/HSplitContainer/Yes Ensemble/CenterContainer3/YesTickContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 72
+text = "✓"
+
+[node name="No Ensemble" type="CenterContainer" parent="Page 3/HSplitContainer"]
+layout_mode = 2
+
+[node name="CenterContainer3" type="CenterContainer" parent="Page 3/HSplitContainer/No Ensemble"]
+layout_mode = 2
+
+[node name="No Box" type="Label" parent="Page 3/HSplitContainer/No Ensemble/CenterContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 72
+text = "☐"
+
+[node name="No" type="Label" parent="Page 3/HSplitContainer/No Ensemble/CenterContainer3"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_to3n5")
+theme_override_font_sizes/font_size = 72
+text = "
+No way
+"
+
+[node name="NoTickContainer" type="MarginContainer" parent="Page 3/HSplitContainer/No Ensemble/CenterContainer3"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 56
+
+[node name="No Tick" type="Label" parent="Page 3/HSplitContainer/No Ensemble/CenterContainer3/NoTickContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 72
+text = "⨯"
+
+[node name="Page3Notifier" type="VisibleOnScreenNotifier2D" parent="Page 3"]
+position = Vector2(576, 324)
+scale = Vector2(57.6, 32.4)
+
+[node name="Page 3_5" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Page 3_5"]
+layout_mode = 2
+offset_left = -648.0
+offset_top = -363.0
+offset_right = 1825.0
+offset_bottom = 1102.0
+color = Color(0, 0, 0, 0.654902)
+
+[node name="PanelContainer" type="PanelContainer" parent="Page 3_5"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.119
+anchor_top = -0.116
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 137.088
+offset_top = 75.168
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_6msik")
+
+[node name="Ground Rules" type="Label" parent="Page 3_5/PanelContainer"]
+layout_mode = 2
+theme = SubResource("Theme_1kv8n")
+theme_override_font_sizes/font_size = 215
+text = "YOU THINK YOU
+HAVE A CHOICE"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Page 3_5"]
+root_node = NodePath("../Page3_5Timer")
+
+[node name="Page3_5Timer" type="Timer" parent="Page 3_5"]
+
+[node name="Page3_5Notifier" type="VisibleOnScreenNotifier2D" parent="Page 3_5"]
+position = Vector2(576, 324)
+scale = Vector2(57.6, 32.4)
+
+[connection signal="screen_entered" from="Page 1/Page1Notifier" to="." method="_on_page_1_notifier_screen_entered"]
+[connection signal="timeout" from="Page 1_5/Page1_5Timer" to="." method="_on_page_1_5_timer_timeout"]
+[connection signal="screen_entered" from="Page 1_5/Page1_5Notifier" to="." method="_on_page_1_5_notifier_screen_entered"]
+[connection signal="screen_entered" from="Page 2/Page2Notifier" to="." method="_on_page_2_notifier_screen_entered"]
+[connection signal="timeout" from="Page 2_5/Page2_5Timer" to="." method="_on_page_2_5_timer_timeout"]
+[connection signal="screen_entered" from="Page 2_5/Page2_5Notifier" to="." method="_on_page_2_5_notifier_screen_entered"]
+[connection signal="screen_entered" from="Page 3/Page3Notifier" to="." method="_on_page_3_notifier_screen_entered"]
+[connection signal="timeout" from="Page 3_5/Page3_5Timer" to="." method="_on_page_3_5_timer_timeout"]
+[connection signal="screen_entered" from="Page 3_5/Page3_5Notifier" to="." method="_on_page_3_5_notifier_screen_entered"]

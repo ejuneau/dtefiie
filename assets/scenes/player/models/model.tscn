@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://c1goxluh42fgw"]
+
+[ext_resource type="Script" path="res://assets/scenes/player/models/model.gd" id="1_pd3w2"]
+[ext_resource type="PackedScene" uid="uid://m1qguircqw5b" path="res://assets/scenes/player/models/masc.tscn" id="2_2c5y8"]
+[ext_resource type="PackedScene" uid="uid://y5gmlxr2u6mb" path="res://assets/scenes/player/models/fem.tscn" id="3_gnqmk"]
+
+[node name="model" type="Node3D"]
+script = ExtResource("1_pd3w2")
+
+[node name="masc" parent="." instance=ExtResource("2_2c5y8")]
+visible = false
+
+[node name="fem" parent="." instance=ExtResource("3_gnqmk")]
+transform = Transform3D(0.69, 0, 0, 0, 0.69, 0, 0, 0, 0.69, 0, 0, 0)

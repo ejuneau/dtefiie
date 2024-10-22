@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dax27145k36jm"
+path="res://.godot/imported/click05.mp3-1cd28fc53107e9e277a891fec43f1600.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/UI clicks/click05.mp3"
+dest_files=["res://.godot/imported/click05.mp3-1cd28fc53107e9e277a891fec43f1600.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

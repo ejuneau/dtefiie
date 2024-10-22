@@ -1,0 +1,151 @@
+[gd_scene load_steps=23 format=3 uid="uid://d2sf4221u84mj"]
+
+[ext_resource type="PackedScene" uid="uid://b4xhlgk2thg0v" path="res://assets/scenes/deco/mirror.tscn" id="1_e61k4"]
+[ext_resource type="Script" path="res://assets/scenes/debug/mirror_test_scene.gd" id="1_gun5g"]
+[ext_resource type="PackedScene" uid="uid://ce7hf8flai85b" path="res://assets/scenes/player/player.tscn" id="2_0jnqe"]
+[ext_resource type="Shader" path="res://assets/scenes/debug/testgradient.gdshader" id="3_03u47"]
+[ext_resource type="PackedScene" uid="uid://xed5a2r5d4ae" path="res://assets/scenes/containment chamber/ground.tscn" id="3_oql0t"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_qld7l"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4t2mj"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kd4fi"]
+albedo_color = Color(0.16302, 0.516249, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nl7d7"]
+albedo_color = Color(0, 0.647896, 0.168131, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ynpbf"]
+albedo_color = Color(0.717619, 0.48005, 1.92523e-07, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7v5te"]
+albedo_color = Color(0.824075, 0.260873, 0.749868, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6sk88"]
+albedo_color = Color(0, 0.617153, 0.580506, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_poitk"]
+albedo_color = Color(0.33366, 0.000732935, 0.875104, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pmay4"]
+albedo_color = Color(0.906163, 0.791208, 0.874776, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u7bhc"]
+albedo_color = Color(0.232723, 0.276105, 9.62615e-08, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ywix4"]
+size = Vector2(50, 10)
+orientation = 0
+
+[sub_resource type="Gradient" id="Gradient_wd6fu"]
+offsets = PackedFloat32Array(0, 0.14, 0.28, 0.42, 0.56, 0.7, 0.85, 1)
+colors = PackedColorArray(0.870387, 2.88785e-07, 1.2514e-06, 1, 0.831254, 0.368629, 7.70092e-07, 1, 1, 0.816667, 0, 1, 0.716667, 1, 0, 1, 0, 0.718667, 0.98, 1, 0, 0.0333333, 1, 1, 1, 0.00999999, 0.6535, 1, 1, 0.04, 0.0559998, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_c1dl3"]
+gradient = SubResource("Gradient_wd6fu")
+fill_to = Vector2(1, 0.119658)
+repeat = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3ycsa"]
+render_priority = 0
+shader = ExtResource("3_03u47")
+shader_parameter/gradient = SubResource("GradientTexture2D_c1dl3")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cpv7s"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_hbtuc"]
+sky_material = SubResource("ProceduralSkyMaterial_cpv7s")
+
+[sub_resource type="Environment" id="Environment_8133v"]
+background_mode = 2
+sky = SubResource("Sky_hbtuc")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Mirror Test" type="Node3D"]
+script = ExtResource("1_gun5g")
+
+[node name="Mirror" parent="." node_paths=PackedStringArray("player") instance=ExtResource("1_e61k4")]
+player = NodePath("../Player")
+
+[node name="Ground + Cubes" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground + Cubes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.485307, 0)
+mesh = SubResource("BoxMesh_qld7l")
+surface_material_override/0 = SubResource("StandardMaterial3D_4t2mj")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Ground + Cubes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.68296, 0.485307, -7.35503)
+mesh = SubResource("BoxMesh_qld7l")
+surface_material_override/0 = SubResource("StandardMaterial3D_kd4fi")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Ground + Cubes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.38921, 0.485306, 5.10959)
+mesh = SubResource("BoxMesh_qld7l")
+surface_material_override/0 = SubResource("StandardMaterial3D_nl7d7")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Ground + Cubes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.07641, 0.485306, -4.73311)
+mesh = SubResource("BoxMesh_qld7l")
+surface_material_override/0 = SubResource("StandardMaterial3D_ynpbf")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Ground + Cubes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.600581, 0.485306, -16.2218)
+mesh = SubResource("BoxMesh_qld7l")
+surface_material_override/0 = SubResource("StandardMaterial3D_7v5te")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Ground + Cubes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.84096, 0.485306, 13.4582)
+mesh = SubResource("BoxMesh_qld7l")
+surface_material_override/0 = SubResource("StandardMaterial3D_6sk88")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Ground + Cubes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.2071, 0.485306, 6.63695)
+mesh = SubResource("BoxMesh_qld7l")
+surface_material_override/0 = SubResource("StandardMaterial3D_poitk")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="Ground + Cubes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.97586, 0.485306, -11.0219)
+mesh = SubResource("BoxMesh_qld7l")
+surface_material_override/0 = SubResource("StandardMaterial3D_pmay4")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="Ground + Cubes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.30109, 0.485306, 7.05376)
+mesh = SubResource("BoxMesh_qld7l")
+surface_material_override/0 = SubResource("StandardMaterial3D_u7bhc")
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="Ground + Cubes"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 17, 0, 2.22928e-06)
+mesh = SubResource("PlaneMesh_ywix4")
+surface_material_override/0 = SubResource("ShaderMaterial_3ycsa")
+
+[node name="ground" parent="Ground + Cubes" instance=ExtResource("3_oql0t")]
+transform = Transform3D(2.78, 0, 0, 0, 2.78, 0, 0, 0, 2.78, 0, 0, 0)
+
+[node name="Environment" type="Node" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_8133v")
+
+[node name="Player" parent="." instance=ExtResource("2_0jnqe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.73359, -6.5058)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+offset_right = 219.0
+offset_bottom = 166.0
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 18.72, -8.675)
+visible = false

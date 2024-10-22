@@ -1,0 +1,531 @@
+[gd_scene load_steps=22 format=3 uid="uid://c0a71s75g5xh8"]
+
+[ext_resource type="Script" path="res://assets/scenes/player/clipboard/clipboard.gd" id="1_nilc4"]
+[ext_resource type="PackedScene" uid="uid://cbx0gw3fw65pm" path="res://assets/models/clipboard/clipboard.glb" id="2_2ghuc"]
+[ext_resource type="Material" uid="uid://coecg01nwi8tv" path="res://assets/textures/puppies.tres" id="3_ja63j"]
+[ext_resource type="FontFile" uid="uid://curgdoaj3yxfs" path="res://assets/fonts/VT323-Regular.ttf" id="3_mncxb"]
+[ext_resource type="Material" uid="uid://didhc4g6ybdof" path="res://assets/textures/deer.tres" id="5_0wrbl"]
+[ext_resource type="AudioStream" uid="uid://b4p1vlb6yvl32" path="res://assets/sounds/Pen Strokes/pen01.mp3" id="5_vasbm"]
+[ext_resource type="Texture2D" uid="uid://bw6ej1lbaui1" path="res://assets/images/placeholder.png" id="6_0jcvf"]
+[ext_resource type="AudioStream" uid="uid://lhntg346fvvw" path="res://assets/sounds/Pen Strokes/pen02.mp3" id="6_im470"]
+[ext_resource type="AudioStream" uid="uid://bejvgkfxn1jw1" path="res://assets/sounds/Pen Strokes/pen03.mp3" id="7_hpeqo"]
+[ext_resource type="AudioStream" uid="uid://b17b1an643vad" path="res://assets/sounds/Pen Strokes/pen04.mp3" id="8_cvgfp"]
+[ext_resource type="AudioStream" uid="uid://bgbfbi7alfp60" path="res://assets/sounds/Pen Strokes/pen05.mp3" id="9_gkxas"]
+[ext_resource type="AudioStream" uid="uid://bk1lf83gqy3ho" path="res://assets/sounds/Pen Strokes/pen06.mp3" id="10_gopaa"]
+[ext_resource type="AudioStream" uid="uid://btdboixwg1m6j" path="res://assets/sounds/Pen Strokes/pen07.mp3" id="11_mq6tn"]
+
+[sub_resource type="Animation" id="Animation_0g8lp"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.263, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-0.261, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-0.401426, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:rotation:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-0.561996, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:rotation:z")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-0.015708, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_eeben"]
+resource_name = "Put Back"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-0.154, -0.25, 0, 0.25, 0, 0.265, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.166667, 0.7)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -0.04, -0.25, 0, 0.25, 0, -0.261, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.466667, 0.833333)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-0.10821, -0.25, 0, 0.25, 0, -0.401426, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.333333, 0.966667)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:rotation:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0.253073, -0.25, 0, 0.25, 0, -0.561996, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.2, 0.9)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:rotation:z")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0.0628319, -0.25, 0, 0.25, 0, -0.015708, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.4, 0.7)
+}
+
+[sub_resource type="Animation" id="Animation_uyvm2"]
+resource_name = "Hold Up"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0.263, -0.25, 0, 0.25, 0, -0.184, 0, 0, 0, 0, -0.154, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4, 0.833333)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-0.261, -0.25, 0, 0.25, 0, 0.06, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.1, 0.7, 1)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-0.401426, -0.25, 0, 0.25, 0, -0.10821, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.366667, 0.766667)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:rotation:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-0.561996, -0.25, 0, 0.25, 0, 0.253073, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.2, 0.733333)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:rotation:z")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-0.015708, -0.25, 0, 0.25, 0, 0.0628319, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.4, 0.633333)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cujlj"]
+_data = {
+&"RESET": SubResource("Animation_0g8lp"),
+&"Hold Up": SubResource("Animation_uyvm2"),
+&"Put Back": SubResource("Animation_eeben")
+}
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_o4ahl"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_ih10s"]
+size = Vector2(0.05, 0.05)
+center_offset = Vector3(0, 0, 0.01)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r4osk"]
+albedo_color = Color(0.361575, 0.361575, 0.361575, 0.108)
+albedo_texture = ExtResource("6_0jcvf")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1cdrv"]
+streams_count = 7
+stream_0/stream = ExtResource("5_vasbm")
+stream_1/stream = ExtResource("6_im470")
+stream_2/stream = ExtResource("7_hpeqo")
+stream_3/stream = ExtResource("8_cvgfp")
+stream_4/stream = ExtResource("9_gkxas")
+stream_5/stream = ExtResource("10_gopaa")
+stream_6/stream = ExtResource("11_mq6tn")
+
+[node name="Clipboard" type="Node3D"]
+script = ExtResource("1_nilc4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.842818, 0.221477, -0.490515, -0.0144587, 0.920391, 0.390731, 0.538004, -0.322223, 0.778925, 0.263, -0.261, -0.265)
+
+[node name="Sketchfab_Scene" parent="MeshInstance3D" instance=ExtResource("2_2ghuc")]
+transform = Transform3D(0.454999, -0.000794124, 0, -3.47123e-11, -1.98887e-08, -0.455, 0.000794124, 0.454999, -1.98887e-08, 0, 0.035, -0.01)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MeshInstance3D"]
+libraries = {
+&"": SubResource("AnimationLibrary_cujlj")
+}
+speed_scale = 1.559
+
+[node name="AnimationTree" type="AnimationTree" parent="MeshInstance3D/AnimationPlayer"]
+root_node = NodePath("../..")
+tree_root = SubResource("AnimationNodeBlendTree_o4ahl")
+anim_player = NodePath("..")
+
+[node name="level1text" type="Node3D" parent="MeshInstance3D"]
+visible = false
+
+[node name="Image" type="MeshInstance3D" parent="MeshInstance3D/level1text"]
+transform = Transform3D(1, 1.49012e-08, 0, -2.98023e-08, 1, 0, 0, 2.98023e-08, 1, -0.0649286, 0.0754567, -0.00192878)
+mesh = SubResource("QuadMesh_ih10s")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("3_ja63j")
+
+[node name="Name" type="Label3D" parent="MeshInstance3D/level1text"]
+transform = Transform3D(1, 1.49012e-08, 0, -2.98023e-08, 1, 0, 0, 2.98023e-08, 1, -0.0348671, 0.0915362, 0.00640687)
+pixel_size = 0.001
+modulate = Color(0, 0, 0, 1)
+text = "NAME: Just a bunch of puppies"
+font = ExtResource("3_mncxb")
+font_size = 11
+outline_size = 0
+horizontal_alignment = 0
+
+[node name="Safety" type="Label3D" parent="MeshInstance3D/level1text"]
+transform = Transform3D(1, 1.49012e-08, 0, -2.98023e-08, 1, 0, 0, 2.98023e-08, 1, -0.034867, 0.0715361, 0.00640684)
+pixel_size = 0.001
+modulate = Color(0, 0, 0, 1)
+text = "SAFETY: [unknown]"
+font = ExtResource("3_mncxb")
+font_size = 12
+outline_size = 0
+horizontal_alignment = 0
+width = 210.0
+
+[node name="Description" type="Label3D" parent="MeshInstance3D/level1text"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 2.98023e-08, 1, -0.00999999, 0.015, 0.00999999)
+pixel_size = 0.001
+offset = Vector2(-82, 29.13)
+modulate = Color(0, 0, 0, 1)
+text = "DESCRIPTION:
+Puppies are not the cutest animal in the world, however they do have a special place in the hearts of facility staff. They are likely not too dangerous, and as a matter of fact have been ranked less deadly than influenza, which has killed 30 active facility members in the last year.
+"
+font = ExtResource("3_mncxb")
+font_size = 11
+outline_size = 0
+horizontal_alignment = 0
+vertical_alignment = 0
+autowrap_mode = 2
+width = 190.0
+
+[node name="Blackout" type="Label3D" parent="MeshInstance3D/level1text"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 2.98023e-08, 1, -0.00999999, 0.015, 0.00999999)
+visible = false
+pixel_size = 0.001
+offset = Vector2(-82, 29.13)
+modulate = Color(0, 0, 0, 1)
+text = "DESCRIPTION:
+Puppies ██ ███ █████ █ █ ███, however they do have a special place in the hearts of facility staff. ███ ██ ████ too dangerous, and as a matter of fact have been ranked less deadly than influenza, which has killed 30 active facility members in the last year.
+"
+font = ExtResource("3_mncxb")
+font_size = 11
+outline_size = 0
+horizontal_alignment = 0
+vertical_alignment = 0
+autowrap_mode = 2
+width = 190.0
+
+[node name="level2text" type="Node3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 2.98023e-08, 1, 0, 0, 0)
+visible = false
+
+[node name="Image" type="MeshInstance3D" parent="MeshInstance3D/level2text"]
+transform = Transform3D(1, 1.49012e-08, 0, -2.98023e-08, 1, 0, 0, 2.98023e-08, 1, -0.0649286, 0.0754567, -0.00192878)
+mesh = SubResource("QuadMesh_ih10s")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("5_0wrbl")
+
+[node name="Name" type="Label3D" parent="MeshInstance3D/level2text"]
+transform = Transform3D(1, 1.49012e-08, 0, -2.98023e-08, 1, 0, 0, 2.98023e-08, 1, -0.0348671, 0.0915362, 0.00640687)
+pixel_size = 0.001
+modulate = Color(0, 0, 0, 1)
+text = "NAME: Herd of Deer"
+font = ExtResource("3_mncxb")
+font_size = 11
+outline_size = 0
+horizontal_alignment = 0
+
+[node name="Safety" type="Label3D" parent="MeshInstance3D/level2text"]
+transform = Transform3D(1, 1.49012e-08, 0, -2.98023e-08, 1, 0, 0, 2.98023e-08, 1, -0.034867, 0.0715361, 0.00640684)
+pixel_size = 0.001
+modulate = Color(0, 0, 0, 1)
+text = "SAFETY: AGGRESSIVE*"
+font = ExtResource("3_mncxb")
+font_size = 12
+outline_size = 0
+horizontal_alignment = 0
+width = 210.0
+
+[node name="Description" type="Label3D" parent="MeshInstance3D/level2text"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 2.98023e-08, 1, -0.00999999, 0.015, 0.00999999)
+pixel_size = 0.001
+offset = Vector2(-82, 29.13)
+modulate = Color(0, 0, 0, 1)
+text = "DESCRIPTION:
+When observed directly, this herd of deer appear rather tranquil. The quanity of bodies recorded when this deer is in proximity of a mirror (or any reflective surface) indicate a possible super-entity that is summoned when viewed indirectly. Caution is advised when interacting with this entity.
+"
+font = ExtResource("3_mncxb")
+font_size = 11
+outline_size = 0
+horizontal_alignment = 0
+vertical_alignment = 0
+autowrap_mode = 2
+width = 190.0
+
+[node name="Blackout" type="Label3D" parent="MeshInstance3D/level2text"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 2.98023e-08, 1, -0.00999999, 0.015, 0.00999999)
+visible = false
+pixel_size = 0.001
+offset = Vector2(-82, 29.13)
+modulate = Color(0, 0, 0, 1)
+text = "DESCRIPTION:
+Puppies ██ ███ █████ █ █ ███, however they do have a special place in the hearts of facility staff. ███ ██ ████ too dangerous, and as a matter of fact have been ranked less deadly than influenza, which has killed 30 active facility members in the last year.
+"
+font = ExtResource("3_mncxb")
+font_size = 11
+outline_size = 0
+horizontal_alignment = 0
+vertical_alignment = 0
+autowrap_mode = 2
+width = 190.0
+
+[node name="level3text" type="Node3D" parent="MeshInstance3D"]
+visible = false
+
+[node name="Image" type="MeshInstance3D" parent="MeshInstance3D/level3text"]
+transform = Transform3D(1, 1.49012e-08, 0, -2.98023e-08, 1, 0, 0, 2.98023e-08, 1, -0.0649286, 0.0754567, -0.00192878)
+mesh = SubResource("QuadMesh_ih10s")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_r4osk")
+
+[node name="Name" type="Label3D" parent="MeshInstance3D/level3text"]
+transform = Transform3D(1, 1.49012e-08, 0, -2.98023e-08, 1, 0, 0, 2.98023e-08, 1, -0.0348671, 0.0915362, 0.00640687)
+pixel_size = 0.001
+modulate = Color(0, 0, 0, 1)
+text = "NAME: ██ █ ███"
+font = ExtResource("3_mncxb")
+font_size = 11
+outline_size = 0
+horizontal_alignment = 0
+
+[node name="Safety" type="Label3D" parent="MeshInstance3D/level3text"]
+transform = Transform3D(1, 1.49012e-08, 0, -2.98023e-08, 1, 0, 0, 2.98023e-08, 1, -0.034867, 0.0715361, 0.00640684)
+pixel_size = 0.001
+modulate = Color(0, 0, 0, 1)
+text = "SAFETY: ???"
+font = ExtResource("3_mncxb")
+font_size = 12
+outline_size = 0
+horizontal_alignment = 0
+width = 210.0
+
+[node name="Description" type="Label3D" parent="MeshInstance3D/level3text"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 2.98023e-08, 1, -0.00999999, 0.015, 0.00999999)
+pixel_size = 0.001
+offset = Vector2(-82, 29.13)
+modulate = Color(0, 0, 0, 1)
+text = "DESCRIPTION:
+██ ███ █ █████ ██ ████ ████ █ ███ ██ █ ██████ ███████ ███ ██ ███ underwater ████ █ ██
+███ █ ███ ████ ██ ██ ██ ███ ███ ██ ████"
+font = ExtResource("3_mncxb")
+font_size = 11
+outline_size = 0
+horizontal_alignment = 0
+vertical_alignment = 0
+autowrap_mode = 2
+width = 190.0
+
+[node name="Blackout" type="Label3D" parent="MeshInstance3D/level3text"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 2.98023e-08, 1, -0.00999999, 0.015, 0.00999999)
+visible = false
+pixel_size = 0.001
+offset = Vector2(-82, 29.13)
+modulate = Color(0, 0, 0, 1)
+text = "DESCRIPTION:
+Puppies ██ ███ █████ █ █ ███, however they do have a special place in the hearts of facility staff. ███ ██ ████ too dangerous, and as a matter of fact have been ranked less deadly than influenza, which has killed 30 active facility members in the last year.
+"
+font = ExtResource("3_mncxb")
+font_size = 11
+outline_size = 0
+horizontal_alignment = 0
+vertical_alignment = 0
+autowrap_mode = 2
+width = 190.0
+
+[node name="Assessment" type="Label3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 1.49012e-08, 0, -1.49012e-08, 1, 0, -2.98023e-08, 2.98023e-08, 1, -0.0897758, -0.0842727, 0.00394082)
+pixel_size = 0.001
+offset = Vector2(0, 11.36)
+modulate = Color(0, 0, 0, 1)
+text = "ASSESSMENT:  (check one)
+Does the entity fit in its enclosure?
+"
+font = ExtResource("3_mncxb")
+font_size = 12
+outline_size = 0
+horizontal_alignment = 0
+vertical_alignment = 0
+width = 210.0
+
+[node name="Yes" type="Label3D" parent="MeshInstance3D/Assessment"]
+transform = Transform3D(1, 1.49012e-08, 0, -1.49012e-08, 1, -2.98023e-08, -2.98023e-08, 0, 1, 0, 0, 0)
+pixel_size = 0.001
+offset = Vector2(16.36, -50)
+modulate = Color(0, 0, 0, 1)
+text = "\"YES\""
+font = ExtResource("3_mncxb")
+font_size = 12
+outline_size = 0
+horizontal_alignment = 0
+vertical_alignment = 0
+width = 210.0
+
+[node name="Yes Box" type="Label3D" parent="MeshInstance3D/Assessment"]
+transform = Transform3D(1, 1.49012e-08, 0, -1.49012e-08, 1, -2.98023e-08, -2.98023e-08, 0, 1, 0, 0, 0)
+pixel_size = 0.001
+offset = Vector2(16.865, -27.925)
+modulate = Color(0, 0, 0, 1)
+text = "☐"
+font = ExtResource("3_mncxb")
+font_size = 27
+outline_size = 0
+horizontal_alignment = 0
+vertical_alignment = 0
+width = 210.0
+
+[node name="Yes Tick" type="Label3D" parent="MeshInstance3D/Assessment/Yes Box"]
+transform = Transform3D(1, 2.98023e-08, -2.98023e-08, 0, 1, 0, -2.98023e-08, 2.98023e-08, 1, 0, 0, 0)
+visible = false
+pixel_size = 0.001
+offset = Vector2(18.65, -27.925)
+modulate = Color(0, 0, 0, 1)
+text = "✓"
+font = ExtResource("3_mncxb")
+font_size = 27
+outline_size = 0
+horizontal_alignment = 0
+vertical_alignment = 0
+width = 210.0
+
+[node name="No" type="Label3D" parent="MeshInstance3D/Assessment"]
+transform = Transform3D(1, 1.49012e-08, 0, -1.49012e-08, 1, -2.98023e-08, -2.98023e-08, 0, 1, 0, 0, 0)
+pixel_size = 0.001
+offset = Vector2(135, -50)
+modulate = Color(0, 0, 0, 1)
+text = "\"NO\"
+"
+font = ExtResource("3_mncxb")
+font_size = 12
+outline_size = 0
+horizontal_alignment = 0
+vertical_alignment = 0
+width = 210.0
+
+[node name="No Box" type="Label3D" parent="MeshInstance3D/Assessment"]
+transform = Transform3D(1, 4.47035e-08, 0, -2.98023e-08, 1, -5.96046e-08, -2.98023e-08, 0, 1, 0, 0, 0)
+pixel_size = 0.001
+offset = Vector2(133.64, -27.925)
+modulate = Color(0, 0, 0, 1)
+text = "☐"
+font = ExtResource("3_mncxb")
+font_size = 27
+outline_size = 0
+horizontal_alignment = 0
+vertical_alignment = 0
+width = 210.0
+
+[node name="No Tick" type="Label3D" parent="MeshInstance3D/Assessment/No Box"]
+transform = Transform3D(1, 1.49012e-08, -2.98023e-08, -1.49012e-08, 1, 0, -2.98023e-08, 0, 1, 0, 0, 0)
+visible = false
+pixel_size = 0.001
+offset = Vector2(135.255, -21.855)
+modulate = Color(0, 0, 0, 1)
+text = "╳"
+font = ExtResource("3_mncxb")
+font_size = 19
+outline_size = 0
+horizontal_alignment = 0
+vertical_alignment = 0
+width = 210.0
+
+[node name="debug camera" type="Camera3D" parent="."]
+transform = Transform3D(0.829037, 0.212189, -0.517371, 0, 0.92521, 0.379456, 0.559193, -0.314584, 0.767034, 0.0901148, -0.17, -0.035)
+visible = false
+
+[node name="scribble player" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_1cdrv")
+
+[connection signal="animation_finished" from="MeshInstance3D/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

@@ -1,0 +1,135 @@
+[gd_scene load_steps=10 format=3 uid="uid://d2urrlsle1qqm"]
+
+[ext_resource type="Script" path="res://assets/scenes/day 1/level_1.gd" id="1_thu0m"]
+[ext_resource type="FontFile" uid="uid://curgdoaj3yxfs" path="res://assets/fonts/VT323-Regular.ttf" id="4_cg3d7"]
+[ext_resource type="PackedScene" uid="uid://bylljs228vt35" path="res://assets/models/labrador-dog/Labrador.glb" id="4_ybumy"]
+[ext_resource type="PackedScene" uid="uid://6jc0oj15ibsk" path="res://assets/scenes/containment chamber/containment_chamber.tscn" id="5_mbe43"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gwvqw"]
+radius = 1.233
+height = 3.934
+
+[sub_resource type="Animation" id="Animation_63kn2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_b053c"]
+resource_name = "spin that dog!"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 6.28319, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g50x4"]
+_data = {
+&"RESET": SubResource("Animation_63kn2"),
+&"spin that dog!": SubResource("Animation_b053c")
+}
+
+[sub_resource type="Theme" id="Theme_r2qjp"]
+default_font = ExtResource("4_cg3d7")
+default_font_size = 32
+
+[node name="level1" type="Node"]
+process_mode = 1
+script = ExtResource("1_thu0m")
+
+[node name="Containment Chamber" parent="." instance=ExtResource("5_mbe43")]
+
+[node name="Labrador" parent="Containment Chamber" instance=ExtResource("4_ybumy")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, -3.23861)
+
+[node name="RigidBody3D" type="RigidBody3D" parent="Containment Chamber/Labrador"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Containment Chamber/Labrador/RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 2.98615, 0.516127)
+visible = false
+shape = SubResource("CapsuleShape3D_gwvqw")
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Containment Chamber/Labrador"]
+libraries = {
+&"": SubResource("AnimationLibrary_g50x4")
+}
+autoplay = "spin that dog!"
+
+[node name="Title" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="Title"]
+layout_mode = 2
+offset_left = -648.0
+offset_top = -363.0
+offset_right = 1825.0
+offset_bottom = 1102.0
+color = Color(0.188235, 0.188235, 0.188235, 1)
+
+[node name="Good Dog" type="Label" parent="Title"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_r2qjp")
+theme_override_font_sizes/font_size = 368
+text = "GOOD DOG"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="Day 1" type="Label" parent="Title"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -75.0
+offset_bottom = -75.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_r2qjp")
+theme_override_font_sizes/font_size = 72
+text = "DAY 1
+"
+horizontal_alignment = 1
+vertical_alignment = 2
+clip_text = true
+
+[node name="TitleTimer" type="Timer" parent="Title"]
+
+[node name="Day Timer" type="Timer" parent="Title"]
+wait_time = 0.5
+autostart = true
+
+[node name="TitleNotifier" type="VisibleOnScreenNotifier2D" parent="Title"]
+position = Vector2(576, 324)
+scale = Vector2(57.6, 32.4)
+
+[connection signal="timeout" from="Title/TitleTimer" to="." method="_on_title_timer_timeout"]
+[connection signal="timeout" from="Title/Day Timer" to="." method="_on_day_timer_timeout"]
+[connection signal="screen_entered" from="Title/TitleNotifier" to="." method="_on_title_notifier_screen_entered"]

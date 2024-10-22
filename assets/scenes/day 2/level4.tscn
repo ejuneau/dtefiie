@@ -1,0 +1,202 @@
+[gd_scene load_steps=20 format=3 uid="uid://d3yeqh75fm08n"]
+
+[ext_resource type="Script" path="res://assets/scenes/day 2/level_4.gd" id="1_wddvg"]
+[ext_resource type="PackedScene" uid="uid://6jc0oj15ibsk" path="res://assets/scenes/containment chamber/containment_chamber.tscn" id="2_lyrfn"]
+[ext_resource type="Theme" uid="uid://c6aikkouvidpq" path="res://assets/themes/theme2.tres" id="3_p5gmn"]
+[ext_resource type="FontFile" uid="uid://curgdoaj3yxfs" path="res://assets/fonts/VT323-Regular.ttf" id="4_ps3et"]
+[ext_resource type="AudioStream" uid="uid://b8mgig58sesbl" path="res://assets/sounds/UI clicks/confirm01.mp3" id="5_nqxl5"]
+[ext_resource type="AudioStream" uid="uid://b7x0tig33jwap" path="res://assets/sounds/UI clicks/confirm02.mp3" id="6_agqgq"]
+[ext_resource type="AudioStream" uid="uid://cx8v23y2xwyop" path="res://assets/sounds/UI clicks/confirm03.mp3" id="7_pfhbw"]
+[ext_resource type="AudioStream" uid="uid://du1bh7c235q35" path="res://assets/sounds/UI clicks/confirm04.mp3" id="8_iyc0r"]
+[ext_resource type="AudioStream" uid="uid://brguralusvuwp" path="res://assets/sounds/UI clicks/confirm05.mp3" id="9_x4v73"]
+[ext_resource type="AudioStream" uid="uid://b4mmt5jsak3g6" path="res://assets/sounds/UI clicks/confirm06.mp3" id="10_b1xf1"]
+[ext_resource type="Texture2D" uid="uid://dsbqeye7drvv4" path="res://assets/images/yourdidit.jpg" id="11_o3n0l"]
+
+[sub_resource type="Animation" id="Animation_pv3rg"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_wplj5"]
+resource_name = "spin that deer!"
+loop_mode = 1
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_161ea"]
+_data = {
+&"RESET": SubResource("Animation_pv3rg"),
+&"spin that deer!": SubResource("Animation_wplj5")
+}
+
+[sub_resource type="Theme" id="Theme_r2qjp"]
+default_font = ExtResource("4_ps3et")
+default_font_size = 32
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_mbkr0"]
+streams_count = 6
+stream_0/stream = ExtResource("5_nqxl5")
+stream_1/stream = ExtResource("6_agqgq")
+stream_2/stream = ExtResource("7_pfhbw")
+stream_3/stream = ExtResource("8_iyc0r")
+stream_4/stream = ExtResource("9_x4v73")
+stream_5/stream = ExtResource("10_b1xf1")
+
+[sub_resource type="Animation" id="Animation_1cefw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.419]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1, -3)]
+}
+
+[sub_resource type="Animation" id="Animation_qw78t"]
+resource_name = "yourdidit"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:light_energy")
+tracks/0/interp = 2
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [2.419, 7.971, 2.419]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1, -3), Vector3(0, 0.8, -3), Vector3(0, 1, -3)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s2iic"]
+_data = {
+&"RESET": SubResource("Animation_1cefw"),
+&"yourdidit": SubResource("Animation_qw78t")
+}
+
+[node name="level4" type="Node"]
+process_mode = 1
+script = ExtResource("1_wddvg")
+
+[node name="Containment Chamber" parent="." instance=ExtResource("2_lyrfn")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Containment Chamber"]
+libraries = {
+&"": SubResource("AnimationLibrary_161ea")
+}
+autoplay = "spin that deer!"
+
+[node name="TextEdit" type="Label" parent="."]
+visible = false
+offset_right = 1152.0
+offset_bottom = 648.0
+theme = ExtResource("3_p5gmn")
+text = "This is the end of the build. 
+Please press alt + f4 to conclude your experience."
+
+[node name="Title" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="Title"]
+layout_mode = 2
+offset_left = -648.0
+offset_top = -363.0
+offset_right = 1825.0
+offset_bottom = 1102.0
+color = Color(0, 0, 0, 1)
+
+[node name="Level Title" type="Label" parent="Title"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_r2qjp")
+theme_override_font_sizes/font_size = 198
+text = "END OF THE LINE"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="Day Text" type="Label" parent="Title"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -75.0
+offset_bottom = -75.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_r2qjp")
+theme_override_font_sizes/font_size = 72
+text = "Day 2"
+horizontal_alignment = 1
+vertical_alignment = 2
+clip_text = true
+uppercase = true
+
+[node name="TitleTimer" type="Timer" parent="Title"]
+
+[node name="DayTimer" type="Timer" parent="Title"]
+wait_time = 0.5
+autostart = true
+
+[node name="TitleNotifier" type="VisibleOnScreenNotifier2D" parent="Title"]
+position = Vector2(576, 324)
+scale = Vector2(57.6, 32.4)
+
+[node name="ClickPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_mbkr0")
+autoplay = true
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -3)
+pixel_size = 0.001
+texture = ExtResource("11_o3n0l")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Sprite3D"]
+light_energy = 2.419
+omni_range = 3.495
+omni_attenuation = -0.232
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite3D/OmniLight3D"]
+libraries = {
+&"": SubResource("AnimationLibrary_s2iic")
+}
+
+[connection signal="timeout" from="Title/TitleTimer" to="." method="_on_title_timer_timeout"]
+[connection signal="timeout" from="Title/DayTimer" to="." method="_on_day_timer_timeout"]
+[connection signal="screen_entered" from="Title/TitleNotifier" to="." method="_on_title_notifier_screen_entered"]

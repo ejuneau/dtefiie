@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bftimjdnr4h0q"]
+
+[ext_resource type="PackedScene" uid="uid://cey4gf2b1xtei" path="res://assets/models/security-camera/source/lcctv_public.fbx" id="1_7cxqk"]
+
+[node name="lcctv_public" instance=ExtResource("1_7cxqk")]
+
+[node name="Skeleton3D" parent="lcctv" index="0"]
+bones/1/rotation = Quaternion(0.199964, 0.373612, -0.0828279, 0.90198)

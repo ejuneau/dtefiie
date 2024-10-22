@@ -1,0 +1,148 @@
+[gd_scene load_steps=9 format=3 uid="uid://ce1ony8rmdpak"]
+
+[ext_resource type="Script" path="res://assets/scenes/UI/pause_screen.gd" id="1_qott6"]
+[ext_resource type="Theme" uid="uid://brc5wbswup5dd" path="res://assets/themes/pause_screen.tres" id="2_6w1ci"]
+[ext_resource type="FontFile" uid="uid://curgdoaj3yxfs" path="res://assets/fonts/VT323-Regular.ttf" id="2_w68ol"]
+[ext_resource type="PackedScene" uid="uid://chu4f2ph7qea" path="res://assets/scenes/UI/options.tscn" id="4_hj05d"]
+
+[sub_resource type="Theme" id="Theme_1kv8n"]
+default_font = ExtResource("2_w68ol")
+default_font_size = 32
+
+[sub_resource type="Animation" id="Animation_fm84p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_xmx0b"]
+resource_name = "pause flash"
+length = 0.5
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 106463),
+"update": 1,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_old2y"]
+_data = {
+"RESET": SubResource("Animation_fm84p"),
+"pause flash": SubResource("Animation_xmx0b")
+}
+
+[node name="Pause screen" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qott6")
+
+[node name="Overlay" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.513726)
+
+[node name="Pause Screen Margin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_6w1ci")
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="Pause Screen" type="VSplitContainer" parent="Pause Screen Margin"]
+layout_mode = 2
+
+[node name="HSplitContainer" type="HSplitContainer" parent="Pause Screen Margin/Pause Screen"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Pause Screen Margin/Pause Screen/HSplitContainer"]
+layout_mode = 2
+theme = SubResource("Theme_1kv8n")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 120
+text = "||"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Pause Screen Margin/Pause Screen/HSplitContainer/Label"]
+libraries = {
+"": SubResource("AnimationLibrary_old2y")
+}
+autoplay = "pause flash"
+
+[node name="Label2" type="Label" parent="Pause Screen Margin/Pause Screen/HSplitContainer"]
+layout_mode = 2
+theme = SubResource("Theme_1kv8n")
+theme_override_font_sizes/font_size = 120
+text = "PAUSED"
+
+[node name="Pause Screen Buttons" type="GridContainer" parent="Pause Screen Margin/Pause Screen"]
+layout_mode = 2
+
+[node name="Resume" type="Button" parent="Pause Screen Margin/Pause Screen/Pause Screen Buttons"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_w68ol")
+theme_override_font_sizes/font_size = 64
+text = "Resume"
+alignment = 0
+
+[node name="Options" type="Button" parent="Pause Screen Margin/Pause Screen/Pause Screen Buttons"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_w68ol")
+theme_override_font_sizes/font_size = 64
+text = "Options"
+alignment = 0
+
+[node name="WIP label" type="Label" parent="Pause Screen Margin/Pause Screen/Pause Screen Buttons"]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_w68ol")
+theme_override_font_sizes/font_size = 24
+text = "working on it"
+
+[node name="Quit" type="Button" parent="Pause Screen Margin/Pause Screen/Pause Screen Buttons"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_w68ol")
+theme_override_font_sizes/font_size = 64
+text = "Quit
+"
+alignment = 0
+
+[node name="Options Menu" parent="Pause Screen Margin" instance=ExtResource("4_hj05d")]
+visible = false
+layout_mode = 2
+
+[connection signal="pressed" from="Pause Screen Margin/Pause Screen/Pause Screen Buttons/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="Pause Screen Margin/Pause Screen/Pause Screen Buttons/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="Pause Screen Margin/Pause Screen/Pause Screen Buttons/Quit" to="." method="_on_quit_pressed"]
+[connection signal="exitOptions" from="Pause Screen Margin/Options Menu" to="." method="_on_options_menu_exit_options"]
+[connection signal="newSettings" from="Pause Screen Margin/Options Menu" to="." method="_on_new_settings"]
+[connection signal="optionsSaved" from="Pause Screen Margin/Options Menu" to="." method="_on_options_menu_options_saved"]

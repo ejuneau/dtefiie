@@ -1,0 +1,236 @@
+[gd_scene load_steps=6 format=3 uid="uid://dfggh3t6kug62"]
+
+[ext_resource type="Script" path="res://assets/scenes/day 2/day_2.gd" id="1_3jnw2"]
+[ext_resource type="FontFile" uid="uid://curgdoaj3yxfs" path="res://assets/fonts/VT323-Regular.ttf" id="2_0qxoe"]
+[ext_resource type="Theme" uid="uid://brc5wbswup5dd" path="res://assets/themes/pause_screen.tres" id="3_bsure"]
+
+[sub_resource type="Theme" id="Theme_i4ew4"]
+default_font = ExtResource("2_0qxoe")
+default_font_size = 32
+
+[sub_resource type="Theme" id="Theme_65loe"]
+default_font = ExtResource("2_0qxoe")
+default_font_size = 32
+
+[node name="Day 2" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3jnw2")
+
+[node name="Overlay" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.188235, 0.188235, 0.188235, 1)
+
+[node name="Title" type="Label" parent="Overlay"]
+layout_mode = 2
+offset_left = -9.0
+offset_top = -49.0
+offset_right = 1152.0
+offset_bottom = 161.0
+theme = SubResource("Theme_i4ew4")
+theme_override_font_sizes/font_size = 209
+text = "SO FAR SO GOOD"
+clip_text = true
+uppercase = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Overlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 37.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_bsure")
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="Vboxcontainer" type="VBoxContainer" parent="Overlay/MarginContainer"]
+layout_mode = 2
+
+[node name="Vboxcontainer" type="VBoxContainer" parent="Overlay/MarginContainer/Vboxcontainer"]
+layout_mode = 2
+
+[node name="Text" type="Label" parent="Overlay/MarginContainer/Vboxcontainer/Vboxcontainer"]
+custom_minimum_size = Vector2(0.64, 179.185)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_0qxoe")
+theme_override_font_sizes/font_size = 32
+text = "You receive a report on your way in. Despite hiring you to assess the containment procedures of the Entities, the correct assment values not only exist already, but have also been provided to you."
+vertical_alignment = 2
+autowrap_mode = 3
+
+[node name="Previous Day Assessments" type="HBoxContainer" parent="Overlay/MarginContainer/Vboxcontainer/Vboxcontainer"]
+layout_mode = 2
+
+[node name="Correct Entity Assessments" type="Label" parent="Overlay/MarginContainer/Vboxcontainer/Vboxcontainer/Previous Day Assessments"]
+custom_minimum_size = Vector2(360.97, 100)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_0qxoe")
+theme_override_font_sizes/font_size = 32
+text = "Correct Entity Assessments:"
+vertical_alignment = 1
+autowrap_mode = 3
+uppercase = true
+
+[node name="CHANGETHISVALUE (DAY)" type="Label" parent="Overlay/MarginContainer/Vboxcontainer/Vboxcontainer/Previous Day Assessments"]
+custom_minimum_size = Vector2(413.07, 100)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_0qxoe")
+theme_override_font_sizes/font_size = 32
+text = "[PLACEHOLDER] / [PLACEHOLDER]"
+vertical_alignment = 1
+autowrap_mode = 3
+uppercase = true
+
+[node name="Cumulative Entity Assessments" type="HBoxContainer" parent="Overlay/MarginContainer/Vboxcontainer/Vboxcontainer"]
+visible = false
+layout_mode = 2
+
+[node name="Correct Entity Assessments" type="Label" parent="Overlay/MarginContainer/Vboxcontainer/Vboxcontainer/Cumulative Entity Assessments"]
+custom_minimum_size = Vector2(394.325, 1)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_0qxoe")
+theme_override_font_sizes/font_size = 32
+text = "Cumulative Entity Assessments:"
+autowrap_mode = 3
+uppercase = true
+
+[node name="CHANGETHISVALUE" type="Label" parent="Overlay/MarginContainer/Vboxcontainer/Vboxcontainer/Cumulative Entity Assessments"]
+custom_minimum_size = Vector2(413.07, 1)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_0qxoe")
+theme_override_font_sizes/font_size = 32
+text = "[PLACEHOLDER] / [PLACEHOLDER]"
+autowrap_mode = 3
+uppercase = true
+
+[node name="Yes Text" type="Label" parent="Overlay"]
+layout_mode = 2
+offset_left = 160.0
+offset_top = 518.0
+offset_right = 531.0
+offset_bottom = 587.0
+theme_override_fonts/font = ExtResource("2_0qxoe")
+theme_override_font_sizes/font_size = 32
+text = "Lodge a complaint; 
+You are more useful elsewhere"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="No Text" type="Label" parent="Overlay"]
+layout_mode = 2
+offset_left = 670.0
+offset_top = 518.0
+offset_right = 938.0
+offset_bottom = 587.0
+theme_override_fonts/font = ExtResource("2_0qxoe")
+theme_override_font_sizes/font_size = 32
+text = "Say nothing;
+Trust their judgement"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Yes Tick" type="Label" parent="Overlay"]
+visible = false
+layout_mode = 2
+offset_left = 325.0
+offset_top = 460.0
+offset_right = 379.0
+offset_bottom = 559.0
+theme_override_font_sizes/font_size = 61
+text = "✓"
+
+[node name="No Tick" type="Label" parent="Overlay"]
+visible = false
+layout_mode = 2
+offset_left = 777.0
+offset_top = 422.0
+offset_right = 829.0
+offset_bottom = 529.0
+theme_override_font_sizes/font_size = 78
+text = "⨯"
+
+[node name="Choices Container" type="HBoxContainer" parent="Overlay"]
+layout_mode = 2
+offset_left = 100.0
+offset_top = 431.0
+offset_right = 1052.0
+offset_bottom = 580.0
+alignment = 1
+
+[node name="Yes Box" type="CenterContainer" parent="Overlay/Choices Container"]
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 2
+
+[node name="Yes Box" type="Label" parent="Overlay/Choices Container/Yes Box"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 72
+text = "☐"
+
+[node name="YesTickContainer" type="MarginContainer" parent="Overlay/Choices Container/Yes Box"]
+layout_mode = 2
+
+[node name="No Box" type="CenterContainer" parent="Overlay/Choices Container"]
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 2
+
+[node name="No Box" type="Label" parent="Overlay/Choices Container/No Box"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 72
+text = "☐"
+
+[node name="NoTickContainer" type="MarginContainer" parent="Overlay/Choices Container/No Box"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 56
+
+[node name="Title" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="Title"]
+layout_mode = 2
+offset_left = -648.0
+offset_top = -363.0
+offset_right = 1825.0
+offset_bottom = 1102.0
+color = Color(0.188235, 0.188235, 0.188235, 1)
+
+[node name="END OF DAY" type="Label" parent="Title"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_65loe")
+theme_override_font_sizes/font_size = 248
+text = "END OF DAY 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="TitleTimer" type="Timer" parent="Title"]
+
+[node name="TitleNotifier" type="VisibleOnScreenNotifier2D" parent="Title"]
+position = Vector2(576, 324)
+scale = Vector2(57.6, 32.4)
+
+[connection signal="timeout" from="Title/TitleTimer" to="." method="_on_title_timer_timeout"]
+[connection signal="screen_entered" from="Title/TitleNotifier" to="." method="_on_title_notifier_screen_entered"]

@@ -1,0 +1,280 @@
+[gd_scene load_steps=25 format=3 uid="uid://djds3ksnmptvg"]
+
+[ext_resource type="Script" path="res://assets/models/security-camera/security_camera.gd" id="1_4hhu8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kruel"]
+albedo_color = Color(1, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 15.0
+
+[sub_resource type="Animation" id="Animation_ykivq"]
+resource_name = "blink_light"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("My Model/trackingCam/Model Camera/Light:surface_material_override/0:emission_enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [SubResource("StandardMaterial3D_kruel"), false, SubResource("StandardMaterial3D_kruel")]
+}
+
+[sub_resource type="Animation" id="Animation_a4vtn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("My Model/trackingCam/Model Camera/Light:surface_material_override/0:emission_enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("StandardMaterial3D_kruel")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_suk4l"]
+_data = {
+&"RESET": SubResource("Animation_a4vtn"),
+&"blink_light": SubResource("Animation_ykivq")
+}
+
+[sub_resource type="BoxMesh" id="BoxMesh_tw28t"]
+size = Vector3(0.342, 0.24, 0.04)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ynl5s"]
+size = Vector3(0.02, 0.02, 0.02)
+
+[sub_resource type="PrismMesh" id="PrismMesh_lri8i"]
+left_to_right = 0.3
+size = Vector3(0.15, 0.532, 0.176)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_akl52"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.06
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_1uecy"]
+top_radius = 0.06
+bottom_radius = 0.06
+height = 0.06
+
+[sub_resource type="BoxMesh" id="BoxMesh_oafwf"]
+size = Vector3(0.05, 0.532, 0.176)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_wytfb"]
+top_radius = 0.001
+bottom_radius = 0.001
+height = 0.001
+
+[sub_resource type="PrismMesh" id="PrismMesh_shgd0"]
+left_to_right = 1.0
+size = Vector3(0.06, 0.05, 0.12)
+
+[sub_resource type="PrismMesh" id="PrismMesh_ck6xv"]
+left_to_right = 0.0
+size = Vector3(0.06, 0.05, 0.12)
+
+[sub_resource type="BoxMesh" id="BoxMesh_sng1b"]
+size = Vector3(0.125, 0.039, 0.12)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kfqw3"]
+size = Vector3(0.27, 0.27, 0.63)
+
+[sub_resource type="BoxMesh" id="BoxMesh_sl0b8"]
+size = Vector3(0.01, 0.251, 0.63)
+
+[sub_resource type="PrismMesh" id="PrismMesh_q0dot"]
+left_to_right = 0.0
+size = Vector3(0.01, 0.01, 0.63)
+
+[sub_resource type="PrismMesh" id="PrismMesh_ojv5q"]
+left_to_right = 0.0
+size = Vector3(0.013, 0.126, 0.63)
+
+[sub_resource type="PrismMesh" id="PrismMesh_lva5v"]
+left_to_right = 0.0
+size = Vector3(0.01, 0.01, 0.63)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_wq476"]
+top_radius = 0.134
+bottom_radius = 0.134
+height = 0.01
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_1su88"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.195
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_5tj72"]
+top_radius = 0.1
+bottom_radius = 0.134
+height = 0.05
+
+[sub_resource type="TorusMesh" id="TorusMesh_8v3qk"]
+inner_radius = 0.1
+outer_radius = 0.11
+rings = 15
+ring_segments = 3
+
+[node name="Security Camera" type="Node3D"]
+script = ExtResource("1_4hhu8")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_suk4l")
+}
+autoplay = "blink_light"
+
+[node name="My Model" type="Node3D" parent="."]
+
+[node name="Base" type="Node3D" parent="My Model"]
+
+[node name="WallMount" type="MeshInstance3D" parent="My Model/Base"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0193434)
+mesh = SubResource("BoxMesh_tw28t")
+skeleton = NodePath("../../root/@EditorNode@17036/@Panel@13/@VBoxContainer@14/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@25/DockVSplitCenter/@VSplitContainer@52/@VBoxContainer@53/@EditorMainScreen@98/MainScreen/@CanvasItemEditor@9336/@VSplitContainer@9158/@HSplitContainer@9160/@HSplitContainer@9162/@Control@9163/@SubViewportContainer@9164/@SubViewport@9165/Security Camera/My Model")
+
+[node name="Screw" type="MeshInstance3D" parent="My Model/Base/WallMount"]
+transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 0.13463, 0.0871733, 0.0133598)
+mesh = SubResource("BoxMesh_ynl5s")
+
+[node name="Screw2" type="MeshInstance3D" parent="My Model/Base/WallMount"]
+transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 0.13463, -0.0873803, 0.0133598)
+mesh = SubResource("BoxMesh_ynl5s")
+
+[node name="Screw3" type="MeshInstance3D" parent="My Model/Base/WallMount"]
+transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, -0.134239, 0.0871733, 0.0133598)
+mesh = SubResource("BoxMesh_ynl5s")
+
+[node name="Screw4" type="MeshInstance3D" parent="My Model/Base/WallMount"]
+transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, -0.134239, -0.0873803, 0.0133598)
+mesh = SubResource("BoxMesh_ynl5s")
+
+[node name="Neck" type="MeshInstance3D" parent="My Model/Base"]
+transform = Transform3D(-4.37114e-08, 0, -1, -1, -4.37114e-08, 4.37114e-08, -4.37114e-08, 1, 1.91069e-15, 0, -0.0107619, 0.305968)
+mesh = SubResource("PrismMesh_lri8i")
+skeleton = NodePath("../../root/@EditorNode@17036/@Panel@13/@VBoxContainer@14/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@25/DockVSplitCenter/@VSplitContainer@52/@VBoxContainer@53/@EditorMainScreen@98/MainScreen/@CanvasItemEditor@9336/@VSplitContainer@9158/@HSplitContainer@9160/@HSplitContainer@9162/@Control@9163/@SubViewportContainer@9164/@SubViewport@9165/Security Camera/My Model")
+
+[node name="Neck Base" type="MeshInstance3D" parent="My Model/Base"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0393439, 0.569253)
+mesh = SubResource("CylinderMesh_akl52")
+skeleton = NodePath("../../root/@EditorNode@17036/@Panel@13/@VBoxContainer@14/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@25/DockVSplitCenter/@VSplitContainer@52/@VBoxContainer@53/@EditorMainScreen@98/MainScreen/@CanvasItemEditor@9336/@VSplitContainer@9158/@HSplitContainer@9160/@HSplitContainer@9162/@Control@9163/@SubViewportContainer@9164/@SubViewport@9165/Security Camera/My Model")
+
+[node name="Neck Base2" type="MeshInstance3D" parent="My Model/Base"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0991721, 0.575123)
+mesh = SubResource("CylinderMesh_1uecy")
+skeleton = NodePath("../../root/@EditorNode@17036/@Panel@13/@VBoxContainer@14/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@25/DockVSplitCenter/@VSplitContainer@52/@VBoxContainer@53/@EditorMainScreen@98/MainScreen/@CanvasItemEditor@9336/@VSplitContainer@9158/@HSplitContainer@9160/@HSplitContainer@9162/@Control@9163/@SubViewportContainer@9164/@SubViewport@9165/Security Camera/My Model")
+
+[node name="Neck2" type="MeshInstance3D" parent="My Model/Base"]
+transform = Transform3D(-4.37114e-08, 0, -1, -1, -4.37114e-08, 4.37114e-08, -4.37114e-08, 1, 1.91069e-15, 0, 0.0440889, 0.305968)
+mesh = SubResource("BoxMesh_oafwf")
+skeleton = NodePath("../../root/@EditorNode@17036/@Panel@13/@VBoxContainer@14/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@25/DockVSplitCenter/@VSplitContainer@52/@VBoxContainer@53/@EditorMainScreen@98/MainScreen/@CanvasItemEditor@9336/@VSplitContainer@9158/@HSplitContainer@9160/@HSplitContainer@9162/@Control@9163/@SubViewportContainer@9164/@SubViewport@9165/Security Camera/My Model")
+
+[node name="trackingCam" type="Camera3D" parent="My Model"]
+transform = Transform3D(-1, 8.74228e-08, 0, 8.74228e-08, 1, 8.74228e-08, 7.64274e-15, 8.74228e-08, -1, 0, 0.277159, 0.501608)
+
+[node name="Model Camera" type="Node3D" parent="My Model/trackingCam"]
+transform = Transform3D(-1, 8.74228e-08, 7.64274e-15, 8.74228e-08, 1, 8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0)
+
+[node name="Light" type="MeshInstance3D" parent="My Model/trackingCam/Model Camera"]
+transform = Transform3D(15.5, 0, 0, 0, -6.77527e-07, 15.5, 0, -15.5, -6.77528e-07, 0.112859, 0.111625, 0.315796)
+mesh = SubResource("CylinderMesh_wytfb")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_kruel")
+
+[node name="CameraBase" type="Node3D" parent="My Model/trackingCam/Model Camera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, -3.55271e-15, 1, -7.45058e-09, -0.151691, 0.0743189)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="My Model/trackingCam/Model Camera/CameraBase"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -0.0922796, -1.83284e-05, 0)
+mesh = SubResource("PrismMesh_shgd0")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="My Model/trackingCam/Model Camera/CameraBase"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0.0925465, -1.83284e-05, 0)
+mesh = SubResource("PrismMesh_ck6xv")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="My Model/trackingCam/Model Camera/CameraBase"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, -0.00538409, 0)
+mesh = SubResource("BoxMesh_sng1b")
+
+[node name="CameraBody" type="MeshInstance3D" parent="My Model/trackingCam/Model Camera"]
+mesh = SubResource("BoxMesh_kfqw3")
+
+[node name="Right Side" type="Node3D" parent="My Model/trackingCam/Model Camera"]
+
+[node name="Right Side" type="MeshInstance3D" parent="My Model/trackingCam/Model Camera/Right Side"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.139831, 0, 0)
+mesh = SubResource("BoxMesh_sl0b8")
+skeleton = NodePath("../../root/@EditorNode@17036/@Panel@13/@VBoxContainer@14/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@25/DockVSplitCenter/@VSplitContainer@52/@VBoxContainer@53/@EditorMainScreen@98/MainScreen/@CanvasItemEditor@9336/@VSplitContainer@9158/@HSplitContainer@9160/@HSplitContainer@9162/@Control@9163/@SubViewportContainer@9164/@SubViewport@9165/Security Camera/My Model/Camera")
+
+[node name="Top Right Corner" type="MeshInstance3D" parent="My Model/trackingCam/Model Camera/Right Side"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.139821, 0.130186, 0)
+mesh = SubResource("PrismMesh_q0dot")
+skeleton = NodePath("../../root/@EditorNode@17036/@Panel@13/@VBoxContainer@14/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@25/DockVSplitCenter/@VSplitContainer@52/@VBoxContainer@53/@EditorMainScreen@98/MainScreen/@CanvasItemEditor@9336/@VSplitContainer@9158/@HSplitContainer@9160/@HSplitContainer@9162/@Control@9163/@SubViewportContainer@9164/@SubViewport@9165/Security Camera/My Model/Camera")
+
+[node name="Top Right Slope" type="MeshInstance3D" parent="My Model/trackingCam/Model Camera/Right Side"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.151305, 0.062522, -2.30074e-05)
+mesh = SubResource("PrismMesh_ojv5q")
+skeleton = NodePath("../../root/@EditorNode@17036/@Panel@13/@VBoxContainer@14/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@25/DockVSplitCenter/@VSplitContainer@52/@VBoxContainer@53/@EditorMainScreen@98/MainScreen/@CanvasItemEditor@9336/@VSplitContainer@9158/@HSplitContainer@9160/@HSplitContainer@9162/@Control@9163/@SubViewportContainer@9164/@SubViewport@9165/Security Camera/My Model/Camera")
+
+[node name="Bottom Right Slope2" type="MeshInstance3D" parent="My Model/trackingCam/Model Camera/Right Side"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0.151305, -0.0630706, -2.30074e-05)
+mesh = SubResource("PrismMesh_ojv5q")
+skeleton = NodePath("../../root/@EditorNode@17036/@Panel@13/@VBoxContainer@14/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@25/DockVSplitCenter/@VSplitContainer@52/@VBoxContainer@53/@EditorMainScreen@98/MainScreen/@CanvasItemEditor@9336/@VSplitContainer@9158/@HSplitContainer@9160/@HSplitContainer@9162/@Control@9163/@SubViewportContainer@9164/@SubViewport@9165/Security Camera/My Model/Camera")
+
+[node name="Bottom Right Corner" type="MeshInstance3D" parent="My Model/trackingCam/Model Camera/Right Side"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0.14, -0.13, 0)
+mesh = SubResource("PrismMesh_lva5v")
+skeleton = NodePath("../../root/@EditorNode@17036/@Panel@13/@VBoxContainer@14/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@25/DockVSplitCenter/@VSplitContainer@52/@VBoxContainer@53/@EditorMainScreen@98/MainScreen/@CanvasItemEditor@9336/@VSplitContainer@9158/@HSplitContainer@9160/@HSplitContainer@9162/@Control@9163/@SubViewportContainer@9164/@SubViewport@9165/Security Camera/My Model/Camera")
+
+[node name="Left Side2" type="Node3D" parent="My Model/trackingCam/Model Camera"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Right Side" type="MeshInstance3D" parent="My Model/trackingCam/Model Camera/Left Side2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.139831, 0, 0)
+mesh = SubResource("BoxMesh_sl0b8")
+skeleton = NodePath("../../root/@EditorNode@17036/@Panel@13/@VBoxContainer@14/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@25/DockVSplitCenter/@VSplitContainer@52/@VBoxContainer@53/@EditorMainScreen@98/MainScreen/@CanvasItemEditor@9336/@VSplitContainer@9158/@HSplitContainer@9160/@HSplitContainer@9162/@Control@9163/@SubViewportContainer@9164/@SubViewport@9165/Security Camera/My Model/Camera")
+
+[node name="Top Right Corner" type="MeshInstance3D" parent="My Model/trackingCam/Model Camera/Left Side2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.139821, 0.130186, 0)
+mesh = SubResource("PrismMesh_q0dot")
+skeleton = NodePath("../../root/@EditorNode@17036/@Panel@13/@VBoxContainer@14/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@25/DockVSplitCenter/@VSplitContainer@52/@VBoxContainer@53/@EditorMainScreen@98/MainScreen/@CanvasItemEditor@9336/@VSplitContainer@9158/@HSplitContainer@9160/@HSplitContainer@9162/@Control@9163/@SubViewportContainer@9164/@SubViewport@9165/Security Camera/My Model/Camera")
+
+[node name="Top Right Slope" type="MeshInstance3D" parent="My Model/trackingCam/Model Camera/Left Side2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.151305, 0.062522, -2.30074e-05)
+mesh = SubResource("PrismMesh_ojv5q")
+skeleton = NodePath("../../root/@EditorNode@17036/@Panel@13/@VBoxContainer@14/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@25/DockVSplitCenter/@VSplitContainer@52/@VBoxContainer@53/@EditorMainScreen@98/MainScreen/@CanvasItemEditor@9336/@VSplitContainer@9158/@HSplitContainer@9160/@HSplitContainer@9162/@Control@9163/@SubViewportContainer@9164/@SubViewport@9165/Security Camera/My Model/Camera")
+
+[node name="Bottom Right Slope2" type="MeshInstance3D" parent="My Model/trackingCam/Model Camera/Left Side2"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0.151305, -0.0630706, -2.30074e-05)
+mesh = SubResource("PrismMesh_ojv5q")
+skeleton = NodePath("../../root/@EditorNode@17036/@Panel@13/@VBoxContainer@14/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@25/DockVSplitCenter/@VSplitContainer@52/@VBoxContainer@53/@EditorMainScreen@98/MainScreen/@CanvasItemEditor@9336/@VSplitContainer@9158/@HSplitContainer@9160/@HSplitContainer@9162/@Control@9163/@SubViewportContainer@9164/@SubViewport@9165/Security Camera/My Model/Camera")
+
+[node name="Bottom Right Corner" type="MeshInstance3D" parent="My Model/trackingCam/Model Camera/Left Side2"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0.14, -0.13, 0)
+mesh = SubResource("PrismMesh_lva5v")
+skeleton = NodePath("../../root/@EditorNode@17036/@Panel@13/@VBoxContainer@14/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@25/DockVSplitCenter/@VSplitContainer@52/@VBoxContainer@53/@EditorMainScreen@98/MainScreen/@CanvasItemEditor@9336/@VSplitContainer@9158/@HSplitContainer@9160/@HSplitContainer@9162/@Control@9163/@SubViewportContainer@9164/@SubViewport@9165/Security Camera/My Model/Camera")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="My Model/trackingCam/Model Camera"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.319542)
+mesh = SubResource("CylinderMesh_wq476")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="My Model/trackingCam/Model Camera"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.371526)
+mesh = SubResource("CylinderMesh_1su88")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="My Model/trackingCam/Model Camera"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.319172)
+mesh = SubResource("CylinderMesh_5tj72")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="My Model/trackingCam/Model Camera"]
+transform = Transform3D(1, 0, 0, 0, -8.83844e-07, -1, 0, 20.22, -4.37114e-08, 0, 0, 0.40912)
+mesh = SubResource("TorusMesh_8v3qk")
