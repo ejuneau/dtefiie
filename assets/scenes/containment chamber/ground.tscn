@@ -3,13 +3,12 @@
 [ext_resource type="Material" uid="uid://cdspjiqeukke3" path="res://assets/textures/metal-floor/metalFloor.tres" id="2_mcwfm"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_avguv"]
-size = Vector2(12, 15)
+size = Vector2(8, 10)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_68hpj"]
 data = PackedVector3Array(10, 0, 10, -10, 0, 10, 10, 0, -10, -10, 0, 10, -10, 0, -10, 10, 0, -10)
 
 [node name="ground" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_avguv")

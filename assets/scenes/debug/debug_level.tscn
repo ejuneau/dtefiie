@@ -1,11 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://bjdft7bcwpnt6"]
+[gd_scene load_steps=19 format=3 uid="uid://bjdft7bcwpnt6"]
 
 [ext_resource type="Script" path="res://assets/scenes/debug/debug_level.gd" id="1_ufycv"]
 [ext_resource type="PackedScene" uid="uid://ce7hf8flai85b" path="res://assets/scenes/player/player.tscn" id="1_uobwy"]
-[ext_resource type="PackedScene" uid="uid://b4xhlgk2thg0v" path="res://assets/scenes/deco/mirror.tscn" id="2_1b167"]
-[ext_resource type="PackedScene" uid="uid://6jc0oj15ibsk" path="res://assets/scenes/containment chamber/containment_chamber.tscn" id="2_qkbli"]
 [ext_resource type="Shader" path="res://assets/shaders/retropixel.gdshader" id="3_7rmmw"]
-[ext_resource type="Shader" path="res://assets/shaders/jmarceno realistic water.gdshader" id="6_bsf4b"]
+[ext_resource type="Environment" uid="uid://j3yw0ieb1hv8" path="res://assets/themes/containment_chamber.tres" id="6_0vwjq"]
+[ext_resource type="Shader" path="res://assets/scenes/debug/debug_level.gdshader" id="6_ewire"]
+[ext_resource type="PackedScene" uid="uid://b5g3njj664r6" path="res://assets/scenes/containment chamber/containment_chamber_mirror.tscn" id="8_xt554"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a5qul"]
 shader = ExtResource("3_7rmmw")
@@ -21,30 +21,70 @@ shader_parameter/use_lens_distortion = true
 shader_parameter/overlay_color = Color(1, 1, 1, 10)
 shader_parameter/lens_distortion_strength = 0.007
 
-[sub_resource type="Environment" id="Environment_utdv7"]
-glow_enabled = true
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_7rh3y"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_t3cy7"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_s8aiq"]
+seamless = true
+as_normal_map = true
+noise = SubResource("FastNoiseLite_7rh3y")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_77cwu"]
+noise_type = 3
+seed = 1
+fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_f5v6q"]
+width = 1024
+height = 1024
+seamless = true
+as_normal_map = true
+noise = SubResource("FastNoiseLite_77cwu")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_wnjom"]
+noise_type = 2
+seed = 1
+fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2ulsp"]
+width = 1024
+height = 1024
+seamless = true
+as_normal_map = true
+noise = SubResource("FastNoiseLite_wnjom")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_aaxdb"]
+noise_type = 2
+seed = 3
+fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_upapq"]
+width = 1024
+height = 1024
+seamless = true
+noise = SubResource("FastNoiseLite_aaxdb")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b6xld"]
 render_priority = 0
-shader = ExtResource("6_bsf4b")
-shader_parameter/wave_speed = 0.5
-shader_parameter/wave_a = Vector4(1, 1, 0.35, 1)
-shader_parameter/wave_b = Vector4(1, 0.6, 0.3, 1.55)
-shader_parameter/wave_c = Vector4(1, 1.3, 0.25, 0.9)
-shader_parameter/sampler_scale = Vector2(0.25, 0.25)
-shader_parameter/sampler_direction = Vector2(0.05, 0.04)
-shader_parameter/uv_sampler_scale = Vector2(0.25, 0.25)
-shader_parameter/uv_sampler_strength = 0.04
-shader_parameter/foam_level = 0.5
-shader_parameter/refraction = 0.075
-shader_parameter/color_deep = Color(0.416058, 0.514407, 0.570382, 1)
-shader_parameter/color_shallow = Color(0.215323, 0.457785, 0.547519, 1)
-shader_parameter/beers_law = 2.0
-shader_parameter/depth_offset = -0.75
-shader_parameter/projector = null
+shader = ExtResource("6_ewire")
+shader_parameter/depth_fade_distance = 1.0
+shader_parameter/absorbance = 6.48
+shader_parameter/shallow_color = Color(8.90419e-07, 0.296799, 0.356407, 1)
+shader_parameter/deep_color = Color(3.76021e-09, 0.0666883, 0.0468076, 1)
+shader_parameter/foam_amount = 0.075
+shader_parameter/foam_color = Color(0.0222187, 0.291032, 0.324915, 1)
+shader_parameter/foam_noise = SubResource("NoiseTexture2D_s8aiq")
+shader_parameter/roughness = 0.3
+shader_parameter/wave_texture = SubResource("NoiseTexture2D_upapq")
+shader_parameter/wave_scale = 4.0
+shader_parameter/height_scale = 0.15
+shader_parameter/normal1 = SubResource("NoiseTexture2D_f5v6q")
+shader_parameter/wave_dir1 = Vector2(0.11, 0.22)
+shader_parameter/normal2 = SubResource("NoiseTexture2D_2ulsp")
+shader_parameter/wave_dir2 = Vector2(-0.22, -0.11)
+shader_parameter/wave_speed = 0.03
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_n6vft"]
-material = SubResource("ShaderMaterial_t3cy7")
+material = SubResource("ShaderMaterial_b6xld")
 size = Vector2(10, 10)
 subdivide_width = 200
 subdivide_depth = 200
@@ -54,13 +94,7 @@ subdivide_depth = 200
 [node name="DEBUG_LEVEL" type="Node"]
 script = ExtResource("1_ufycv")
 
-[node name="Mirror" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_1b167")]
-transform = Transform3D(-1.26281e-08, 1.10481e-09, 0.29, 0.0252752, 0.288896, 0, -0.288896, 0.0252752, -1.26763e-08, 2.32789, 0, 3.04214)
-player = NodePath("../Player")
-
 [node name="Player" parent="." instance=ExtResource("1_uobwy")]
-
-[node name="Containment Chamber" parent="." instance=ExtResource("2_qkbli")]
 
 [node name="Perfect Pixel Effects" type="ColorRect" parent="."]
 z_index = 5
@@ -77,18 +111,27 @@ color = Color(1, 1, 1, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4.11156, 0)
+light_energy = 0.1
 light_cull_mask = 4293918751
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
-environment = SubResource("Environment_utdv7")
+environment = ExtResource("6_0vwjq")
+
+[node name="DEBUG Environment" type="Node" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="DEBUG Environment"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4.11156, 0)
+visible = false
+light_cull_mask = 4293918751
 
 [node name="Water" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.154, -1.5)
 visible = false
-cast_shadow = 0
 mesh = SubResource("PlaneMesh_n6vft")
 
 [node name="Debug Cube" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03386, -3.04225)
 visible = false
 mesh = SubResource("BoxMesh_n682u")
+
+[node name="Containment Chamber" parent="." instance=ExtResource("8_xt554")]

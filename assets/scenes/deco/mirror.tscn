@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b4xhlgk2thg0v"]
+[gd_scene load_steps=16 format=3 uid="uid://b4xhlgk2thg0v"]
 
 [ext_resource type="Script" path="res://assets/scenes/debug/mirror_new.gd" id="1_30sdg"]
 [ext_resource type="Shader" path="res://assets/scenes/deco/new_mirror.gdshader" id="2_3jsat"]
@@ -30,24 +30,29 @@ size = Vector3(6.5, 0.53, 10)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_im3gq"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_fra62"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_hxw0e"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_yug76"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l1ixy"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("2_3jsat")
-shader_parameter/viewport_texture = SubResource("ViewportTexture_fra62")
+shader_parameter/viewport_texture = SubResource("ViewportTexture_hxw0e")
 shader_parameter/TR = Vector2(0, 0)
 shader_parameter/TL = Vector2(0, 0)
 shader_parameter/BR = Vector2(0, 0)
 shader_parameter/BL = Vector2(0, 0)
-shader_parameter/tiling = Vector2(0.5, 0.5)
+shader_parameter/tiling = Vector2(1, 1)
 shader_parameter/offset = Vector2(0, 0)
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_d6kya"]
+viewport_path = NodePath("SubViewport")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iooqt"]
+resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("2_3jsat")
+shader_parameter/viewport_texture = SubResource("ViewportTexture_d6kya")
 shader_parameter/TR = Vector2(0, 0)
 shader_parameter/TL = Vector2(0, 0)
 shader_parameter/BR = Vector2(0, 0)
@@ -110,7 +115,7 @@ transform = Transform3D(-2.98023e-08, 4.37114e-08, -1, 1, 1.3027e-15, -2.98023e-
 [node name="Viewport Texture" type="MeshInstance3D" parent="Mirror Frame"]
 transform = Transform3D(1.845, 1.38678e-15, 4.26326e-14, -4.26326e-14, -8.06475e-08, 1.845, 6.41145e-22, -1.845, -8.06475e-08, 6.48015e-11, 0.265385, 0)
 layers = 16384
-material_overlay = SubResource("ShaderMaterial_yug76")
+material_overlay = SubResource("ShaderMaterial_l1ixy")
 mesh = SubResource("PlaneMesh_dmbg1")
 
 [node name="TR" type="Marker3D" parent="Mirror Frame/Viewport Texture"]

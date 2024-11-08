@@ -36,10 +36,11 @@ dragger_visibility = 2
 [node name="TabContainer" type="TabContainer" parent="VSplit"]
 layout_mode = 2
 theme = ExtResource("1_53rmt")
-current_tab = 0
+current_tab = 2
 tab_focus_mode = 0
 
 [node name="General" type="Control" parent="VSplit/TabContainer"]
+visible = false
 layout_mode = 2
 theme = ExtResource("1_53rmt")
 metadata/_tab_index = 0
@@ -184,7 +185,6 @@ layout_mode = 2
 max_value = 10.0
 
 [node name="Display" type="Control" parent="VSplit/TabContainer"]
-visible = false
 layout_mode = 2
 focus_mode = 2
 metadata/_tab_index = 2
@@ -206,6 +206,21 @@ layout_mode = 2
 theme_override_constants/separation = 35
 alignment = 1
 
+[node name="VBoxContainer" type="VBoxContainer" parent="VSplit/TabContainer/Display/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VSplit/TabContainer/Display/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_53rmt")
+text = "Brightness"
+
+[node name="Brightness" type="HSlider" parent="VSplit/TabContainer/Display/MarginContainer/VBoxContainer/VBoxContainer" groups=["options"]]
+layout_mode = 2
+theme = ExtResource("1_53rmt")
+max_value = 2.0
+step = 0.2
+value = 1.0
+
 [node name="VBoxContainer2" type="VBoxContainer" parent="VSplit/TabContainer/Display/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
@@ -224,20 +239,24 @@ popup/item_1/text = "Windowed"
 popup/item_1/id = 1
 script = ExtResource("4_3caqg")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VSplit/TabContainer/Display/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer3" type="VBoxContainer" parent="VSplit/TabContainer/Display/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VSplit/TabContainer/Display/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="VSplit/TabContainer/Display/MarginContainer/VBoxContainer/VBoxContainer3"]
 layout_mode = 2
 theme = ExtResource("1_53rmt")
-text = "Brightness"
+text = "Anti-Aliasing"
 
-[node name="Brightness" type="HSlider" parent="VSplit/TabContainer/Display/MarginContainer/VBoxContainer/VBoxContainer" groups=["options"]]
+[node name="Anti-Aliasing" type="OptionButton" parent="VSplit/TabContainer/Display/MarginContainer/VBoxContainer/VBoxContainer3"]
 layout_mode = 2
-theme = ExtResource("1_53rmt")
-max_value = 2.0
-step = 0.2
-value = 1.0
+theme = ExtResource("1_lsd5l")
+item_count = 2
+popup/item_0/text = "Fullscreen"
+popup/item_0/id = 0
+popup/item_1/text = "Windowed"
+popup/item_1/id = 1
+script = ExtResource("4_3caqg")
 
 [node name="Save" type="Button" parent="."]
 layout_mode = 0
@@ -291,9 +310,11 @@ text = "Defaults"
 [connection signal="value_changed" from="VSplit/TabContainer/Sound/MarginContainer/VBoxContainer/Music Volume Container/Music Volume" to="." method="_on_options_changed"]
 [connection signal="value_changed" from="VSplit/TabContainer/Sound/MarginContainer/VBoxContainer/Ambiance Volume Container/Ambiance Volume" to="." method="_on_options_changed"]
 [connection signal="value_changed" from="VSplit/TabContainer/Sound/MarginContainer/VBoxContainer/SFX Volume Container/SFX Volume" to="." method="_on_options_changed"]
+[connection signal="value_changed" from="VSplit/TabContainer/Display/MarginContainer/VBoxContainer/VBoxContainer/Brightness" to="." method="_on_options_changed"]
 [connection signal="item_selected" from="VSplit/TabContainer/Display/MarginContainer/VBoxContainer/VBoxContainer2/Display Mode" to="." method="_on_options_changed"]
 [connection signal="pressed" from="VSplit/TabContainer/Display/MarginContainer/VBoxContainer/VBoxContainer2/Display Mode" to="." method="_on_display_mode_pressed"]
-[connection signal="value_changed" from="VSplit/TabContainer/Display/MarginContainer/VBoxContainer/VBoxContainer/Brightness" to="." method="_on_options_changed"]
+[connection signal="item_selected" from="VSplit/TabContainer/Display/MarginContainer/VBoxContainer/VBoxContainer3/Anti-Aliasing" to="." method="_on_options_changed"]
+[connection signal="pressed" from="VSplit/TabContainer/Display/MarginContainer/VBoxContainer/VBoxContainer3/Anti-Aliasing" to="." method="_on_display_mode_pressed"]
 [connection signal="pressed" from="Save" to="." method="_on_save_pressed"]
 [connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="Discard" to="." method="_on_discard_pressed"]

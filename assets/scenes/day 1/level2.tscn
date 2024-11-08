@@ -1,75 +1,857 @@
-[gd_scene load_steps=10 format=3 uid="uid://cmiu1lmmoj1io"]
+[gd_scene load_steps=39 format=3 uid="uid://cmiu1lmmoj1io"]
 
 [ext_resource type="Script" path="res://assets/scenes/day 1/level_2.gd" id="1_bkfcm"]
-[ext_resource type="PackedScene" uid="uid://di3tkkgp5ujo8" path="res://assets/models/deer/deer.glb" id="3_d746y"]
+[ext_resource type="PackedScene" uid="uid://b5g3njj664r6" path="res://assets/scenes/containment chamber/containment_chamber_mirror.tscn" id="2_ecnvv"]
+[ext_resource type="PackedScene" uid="uid://di3tkkgp5ujo8" path="res://assets/models/deer/deer1/deer.glb" id="3_n7f60"]
+[ext_resource type="Texture2D" uid="uid://305ufkdttqqu" path="res://assets/spritesheets/smoke(6x5).png" id="3_t31ur"]
 [ext_resource type="PackedScene" uid="uid://6jc0oj15ibsk" path="res://assets/scenes/containment chamber/containment_chamber.tscn" id="3_ye03n"]
 [ext_resource type="FontFile" uid="uid://curgdoaj3yxfs" path="res://assets/fonts/VT323-Regular.ttf" id="4_0sbh3"]
+[ext_resource type="ArrayMesh" uid="uid://cbxci3e23we3g" path="res://assets/models/deer/deer2/deer.obj" id="4_xrkbi"]
+[ext_resource type="Texture2D" uid="uid://bqvjvg6e1nvu7" path="res://assets/models/deer/deer2/doe-head.png" id="5_ba7i1"]
+[ext_resource type="Texture2D" uid="uid://bl7gclhif0r0o" path="res://assets/models/deer/deer2/doe-body.png" id="6_sommw"]
+[ext_resource type="PackedScene" uid="uid://c3r4aqbfx3eip" path="res://assets/models/deer/Deer Skull/deer_skull.glb" id="7_ptf6l"]
+[ext_resource type="AudioStream" uid="uid://b10yja3mkaudg" path="res://assets/sounds/Deer Sounds/Deer Sound 01.wav" id="11_du7xp"]
+[ext_resource type="AudioStream" uid="uid://cgb4d5paie812" path="res://assets/sounds/Deer Sounds/Deer Sound 02.wav" id="12_tqncb"]
+[ext_resource type="AudioStream" uid="uid://bsh5ylsckn4f7" path="res://assets/sounds/Deer Sounds/Deer Sound 03.wav" id="13_gamio"]
+[ext_resource type="AudioStream" uid="uid://bvm876xdm6p7j" path="res://assets/sounds/Deer Sounds/Deer Sound 04.wav" id="14_mwcog"]
+[ext_resource type="AudioStream" uid="uid://cf4pfvw5y008u" path="res://assets/sounds/Deer Sounds/Deer Sound 05.wav" id="15_kn2wb"]
+[ext_resource type="AudioStream" uid="uid://8jkjmkwk2doi" path="res://assets/sounds/Deer Sounds/Deer Sound 06.wav" id="16_uipyx"]
+[ext_resource type="AudioStream" uid="uid://ve82mex6h33n" path="res://assets/sounds/Deer Sounds/Deer Sound 07.wav" id="17_a8df5"]
+[ext_resource type="AudioStream" uid="uid://7fxby17ppxnv" path="res://assets/sounds/Deer Sounds/Deer Merge.wav" id="18_dtn32"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vjnj3"]
-radius = 0.337277
-height = 2.13749
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_leey7"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_t06xy"]
+lifetime_randomness = 0.6
+emission_shape = 1
+emission_sphere_radius = 1.0
+angle_min = -360.0
+angle_max = 360.0
+initial_velocity_min = -10.0
+initial_velocity_max = 10.0
+angular_velocity_min = -10.0
+angular_velocity_max = 9.99998
+orbit_velocity_min = -0.0519999
+orbit_velocity_max = 0.157
+scale_over_velocity_min = 0.01
+scale_over_velocity_max = 1.0
+turbulence_noise_strength = 0.45
+turbulence_noise_scale = 10.0
+collision_mode = 1
+collision_friction = 0.61
+collision_bounce = 0.37
+collision_use_scale = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_anhwt"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="Gradient" id="Gradient_iwhgl"]
+offsets = PackedFloat32Array(0, 0.344203, 0.431159, 0.518116, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.171246, 0.199732, 0.34701, 1, 0.899628, 0.877655, 0.865663, 1, 0.2088, 0.3, 0.129, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_v5ess"]
+gradient = SubResource("Gradient_iwhgl")
+
+[sub_resource type="Curve" id="Curve_q1jys"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.177215, 1), 0.0, 0.0, 0, 0, Vector2(0.990506, 0.029549), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_akcca"]
+curve = SubResource("Curve_q1jys")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rgbmj"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+angle_min = 1.07288e-05
+angle_max = 360.0
+direction = Vector3(0, 1, 0)
+spread = 19.0
+initial_velocity_min = 4.0
+initial_velocity_max = 6.0
+angular_velocity_min = 40.0
+angular_velocity_max = 40.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.1
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_akcca")
+color_ramp = SubResource("GradientTexture1D_v5ess")
+hue_variation_min = -0.11
+hue_variation_max = 0.13
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+anim_offset_min = 0.0523
+anim_offset_max = 0.6601
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vhsro"]
+transparency = 1
+blend_mode = 1
+depth_draw_mode = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("3_t31ur")
+disable_receive_shadows = true
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 6
+particles_anim_v_frames = 5
+particles_anim_loop = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_d0ubi"]
+material = SubResource("StandardMaterial3D_vhsro")
 
 [sub_resource type="Animation" id="Animation_pv3rg"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Deer:rotation")
+tracks/0/path = NodePath("../Deer:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, -1.5708, 0)]
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../reeD:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-8.74228e-08, -8.74228e-08, -3.14159)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Deer/Deer 1:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.360379, -1.19209e-07, 0.824634)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Deer/Deer 2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.540503, 1.19209e-07, -0.67449)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Deer/Deer 3:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.817924, 0, 0.678127)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Deer/Deer 4:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.763783, 0, -0.687114)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../Deer:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -3.19612)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../reeD:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 10.365)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../reeD/1 reeD:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.360379, -1.19209e-07, 0.824634)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../reeD/2 reeD:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.540503, 1.19209e-07, -0.67449)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../reeD/3 reeD:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.817924, 0, 0.678127)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("../reeD/4 reeD:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.763783, 0, -0.687114)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("../Deer:scale")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("../reeD:scale")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1, -1, -1)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("../SkullCam/Skull:rotation")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.575418, 2.84611, 3.11233)]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("../SkullCam/Skull:scale")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.1, 0.1, 0.1)]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("../SkullCam/Skull:position")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -0.79, 1.04)]
 }
 
-[sub_resource type="Animation" id="Animation_wplj5"]
-resource_name = "spin that deer!"
+[sub_resource type="Animation" id="Animation_ixnke"]
+resource_name = "Deer (merge)"
+length = 8.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Deer:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 7.9),
+"transitions": PackedFloat32Array(2, 1, 2),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 6.28319, 0), Vector3(0, 100.531, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../reeD:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2, 7.93333),
+"transitions": PackedFloat32Array(2, 1, 1),
+"update": 0,
+"values": [Vector3(-8.74228e-08, -8.74228e-08, -3.14159), Vector3(0, -6.28319, -3.14159), Vector3(0, -100.531, -3.14159)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Deer/Deer 1:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.360379, -1.19209e-07, 0.824634), Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Deer/Deer 2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.540503, 1.19209e-07, -0.67449), Vector3(0, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Deer/Deer 3:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.817924, 0, 0.678127), Vector3(0, 0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Deer/Deer 4:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.763783, 0, -0.687114), Vector3(0, 0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../Deer:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1.4, 4.8),
+"transitions": PackedFloat32Array(0.35, 2.21914, 1),
+"update": 0,
+"values": [Vector3(0, 0, -3.19612), Vector3(0, 1.2, -3.196), Vector3(0, 1, -3.196)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../reeD:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1.4, 4.8),
+"transitions": PackedFloat32Array(0.35, 2.2, 1),
+"update": 0,
+"values": [Vector3(0, 0, 10.365), Vector3(0, 1.2, 10.365), Vector3(0, 1, 10.365)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../reeD/1 reeD:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.360379, -1.19209e-07, 0.824634), Vector3(0, 0, 0)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../reeD/2 reeD:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.540503, 1.19209e-07, -0.67449), Vector3(0, 0, 0)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../reeD/3 reeD:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.817924, 0, 0.678127), Vector3(0, 0, 0)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("../reeD/4 reeD:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.763783, 0, -0.687114), Vector3(0, 0, 0)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("../Deer:scale")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 5.5, 7.86667),
+"transitions": PackedFloat32Array(4, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(2, 2, 2), Vector3(0.001, 0.001, 0.001)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("../reeD:scale")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 5.63333, 7.83333),
+"transitions": PackedFloat32Array(4, 1, 1),
+"update": 0,
+"values": [Vector3(-1, -1, -1), Vector3(-2, -2, -2), Vector3(-0.001, -0.001, -0.001)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("../SkullCam/Skull:rotation")
+tracks/14/interp = 2
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(5.53333, 7.46667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.575418, 2.84611, 3.11233), Vector3(-0.84268, 1.08396e-07, -2.17724e-07)]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("../SkullCam/Skull:scale")
+tracks/15/interp = 2
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(6.46667, 7.33333),
+"transitions": PackedFloat32Array(1, 0.392292),
+"update": 0,
+"values": [Vector3(0.1, 0.1, 0.1), Vector3(3, 3, 3)]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("../SkullCam/Skull:position")
+tracks/16/interp = 2
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(6.66667, 7.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -0.79, 1.04), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_cfqu1"]
+resource_name = "Deer (idle)"
+length = 2.0
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Deer:rotation")
+tracks/0/path = NodePath("../Deer:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 1.96667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, -1.5708, 0), Vector3(6.28319, -1.5708, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0, 6.28319, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../reeD:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.93333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-8.74228e-08, -8.74228e-08, -3.14159), Vector3(0, -6.28319, -3.14159)]
+}
+
+[sub_resource type="Animation" id="Animation_shi21"]
+resource_name = "Deer (merged)"
+length = 4.0
+loop_mode = 1
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Deer:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 25.1327, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../reeD:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -3.14159), Vector3(0, -25.1327, -3.14159)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Deer/Deer 1:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Deer/Deer 2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Deer/Deer 3:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Deer/Deer 4:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../reeD/1 reeD:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.00833344),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../reeD/2 reeD:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.00833344),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../reeD/3 reeD:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.00833344),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../reeD/4 reeD:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0.00833344),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../Deer:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4),
+"transitions": PackedFloat32Array(1, 2.21914, 1, 2.21914, 1, 2.21914, 1, 2.21914, 1),
+"update": 0,
+"values": [Vector3(0, 1, -3.196), Vector3(0, 1.2, -3.196), Vector3(0, 1, -3.196), Vector3(0, 1.2, -3.196), Vector3(0, 1, -3.196), Vector3(0, 1.2, -3.196), Vector3(0, 1, -3.196), Vector3(0, 1.2, -3.196), Vector3(0, 1, -3.196)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("../reeD:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0.00833344, 0.508333, 1.00833, 1.50833, 2.00833, 2.5, 3, 3.5, 4),
+"transitions": PackedFloat32Array(1, 2.21914, 1, 2.21914, 1, 2.21914, 1, 2.21914, 1),
+"update": 0,
+"values": [Vector3(0, 1, 10.365), Vector3(0, 1.2, 10.365), Vector3(0, 1, 10.365), Vector3(0, 1.2, 10.365), Vector3(0, 1, 10.365), Vector3(0, 1.2, 10.365), Vector3(0, 1, 10.365), Vector3(0, 1.2, 10.365), Vector3(0, 1, 10.365)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("../SkullCam/Skull:position")
+tracks/12/interp = 2
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 0.63728, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.2, 0), Vector3(0, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_161ea"]
 _data = {
-&"RESET": SubResource("Animation_pv3rg"),
-&"spin that deer!": SubResource("Animation_wplj5")
+&"Deer (merge)": SubResource("Animation_ixnke"),
+&"Deer (idle)": SubResource("Animation_cfqu1"),
+&"Deer (merged)": SubResource("Animation_shi21"),
+&"RESET": SubResource("Animation_pv3rg")
 }
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6yqtw"]
+albedo_texture = ExtResource("5_ba7i1")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g0v7j"]
+albedo_texture = ExtResource("6_sommw")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3744s"]
+albedo_texture = ExtResource("6_sommw")
 
 [sub_resource type="Theme" id="Theme_r2qjp"]
 default_font = ExtResource("4_0sbh3")
 default_font_size = 32
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_s3ore"]
+streams_count = 7
+stream_0/stream = ExtResource("11_du7xp")
+stream_1/stream = ExtResource("12_tqncb")
+stream_2/stream = ExtResource("13_gamio")
+stream_3/stream = ExtResource("14_mwcog")
+stream_4/stream = ExtResource("15_kn2wb")
+stream_5/stream = ExtResource("16_uipyx")
+stream_6/stream = ExtResource("17_a8df5")
+
 [node name="level2" type="Node"]
 process_mode = 1
 script = ExtResource("1_bkfcm")
 
-[node name="Containment Chamber" parent="." instance=ExtResource("3_ye03n")]
+[node name="Containment Chamber (Mirror)" parent="." instance=ExtResource("2_ecnvv")]
 
-[node name="Deer" parent="Containment Chamber" instance=ExtResource("3_d746y")]
-transform = Transform3D(-2.17199e-06, 0, -0.6, 0, 0.6, 0, 0.6, 0, -2.17199e-06, 0, 0, -2.99317)
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Containment Chamber (Mirror)"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.19365, 8.32641)
+visible = false
+material_override = SubResource("ShaderMaterial_leey7")
+amount = 10
+lifetime = 3.0
+randomness = 1.0
+fixed_fps = 60
+collision_base_size = 0.1
+trail_lifetime = 1.23
+process_material = SubResource("ParticleProcessMaterial_t06xy")
+draw_pass_1 = SubResource("BoxMesh_anhwt")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Containment Chamber/Deer"]
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="Containment Chamber (Mirror)"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.192561, -5.12745, 8.94006)
+size = Vector3(8, 10, 10)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Containment Chamber/Deer/StaticBody3D"]
-transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, -1, -4.37114e-08, 4.37114e-08, 4.37114e-08, -4.37114e-08, 1, 0.0190785, 1.22365, -8.3395e-10)
-shape = SubResource("CapsuleShape3D_vjnj3")
+[node name="GPUParticlesCollisionBox3D2" type="GPUParticlesCollisionBox3D" parent="Containment Chamber (Mirror)"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.96865, 3.58418, 3.38641)
+size = Vector3(8, 10, 22.6779)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Containment Chamber"]
+[node name="GPUParticlesCollisionBox3D3" type="GPUParticlesCollisionBox3D" parent="Containment Chamber (Mirror)"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.75219, 3.58418, 3.38641)
+size = Vector3(8, 10, 22.6779)
+
+[node name="GPUParticlesCollisionBox3D4" type="GPUParticlesCollisionBox3D" parent="Containment Chamber (Mirror)"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.766669, 3.59114, 16.3976)
+size = Vector3(22.0298, 10, 4.53958)
+
+[node name="GPUParticlesCollisionBox3D5" type="GPUParticlesCollisionBox3D" parent="Containment Chamber (Mirror)"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.766669, 3.59114, 1.5695)
+size = Vector3(22.0298, 10, 4.53958)
+
+[node name="Flames" type="GPUParticles3D" parent="Containment Chamber (Mirror)"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0612322, 0.336593, 10.1729)
+visible = false
+amount = 200
+lifetime = 0.5
+randomness = 1.0
+fixed_fps = 60
+draw_order = 3
+process_material = SubResource("ParticleProcessMaterial_rgbmj")
+draw_pass_1 = SubResource("QuadMesh_d0ubi")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Containment Chamber")
 libraries = {
 &"": SubResource("AnimationLibrary_161ea")
 }
 autoplay = "spin that deer!"
+
+[node name="Deer" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.19612)
+
+[node name="Deer 1" parent="Deer" instance=ExtResource("3_n7f60")]
+transform = Transform3D(-0.0700855, -1.04189e-07, -0.595892, -2.41589e-14, 0.6, -1.04907e-07, 0.595892, -1.22541e-08, -0.0700855, -0.360379, -1.19209e-07, 0.824634)
+
+[node name="Deer 2" parent="Deer" instance=ExtResource("3_n7f60")]
+transform = Transform3D(0.466074, 0, -0.345217, 0, 0.58, 0, 0.345217, 0, 0.466074, 0.540503, 1.19209e-07, -0.67449)
+
+[node name="Deer 3" type="MeshInstance3D" parent="Deer"]
+transform = Transform3D(0.165816, 0, 0.0927628, 0, 0.19, 0, -0.0927628, 0, 0.165816, 0.817924, 0, 0.678127)
+mesh = ExtResource("4_xrkbi")
+surface_material_override/0 = SubResource("StandardMaterial3D_6yqtw")
+surface_material_override/1 = SubResource("StandardMaterial3D_g0v7j")
+surface_material_override/2 = SubResource("StandardMaterial3D_3744s")
+
+[node name="Deer 4" type="MeshInstance3D" parent="Deer"]
+transform = Transform3D(-0.100233, 0, -0.137308, 0, 0.17, 0, -0.137308, 0, 0.100233, -0.763783, 0, -0.687114)
+mesh = ExtResource("4_xrkbi")
+surface_material_override/0 = SubResource("StandardMaterial3D_6yqtw")
+surface_material_override/1 = SubResource("StandardMaterial3D_g0v7j")
+surface_material_override/2 = SubResource("StandardMaterial3D_3744s")
+
+[node name="SkullCam" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0204676, 2.76233, 9.361)
+
+[node name="Skull" parent="SkullCam" instance=ExtResource("7_ptf6l")]
+transform = Transform3D(0.0960889, -0.0130409, 0.0244308, 0.00245469, -0.0838606, -0.0544186, 0.0275845, 0.0528899, -0.0802606, 0, -0.79, 1.04)
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+transform = Transform3D(0.5, -1.3113e-06, -4.37114e-08, 1.3113e-06, 0.5, 4.37114e-08, 4.37113e-08, -4.37115e-08, 0.5, 1.31442e-06, 0.608939, 10.3293)
+
+[node name="VisibleOnScreenNotifier3D2" type="VisibleOnScreenNotifier3D" parent="."]
+transform = Transform3D(0.5, -1.3113e-06, -4.37114e-08, 1.3113e-06, 0.5, 4.37114e-08, 4.37113e-08, -4.37115e-08, 0.5, 1.31442e-06, 0.631325, -2.74995)
+
+[node name="reeD" type="Node3D" parent="."]
+transform = Transform3D(1, -2.53518e-06, 8.74228e-08, 2.53518e-06, 1, -8.74228e-08, 8.74226e-08, -8.7423e-08, -1, 0, 0, 10.365)
+
+[node name="1 reeD" parent="reeD" instance=ExtResource("3_n7f60")]
+transform = Transform3D(-0.0700855, -1.04189e-07, -0.595892, -2.41589e-14, 0.6, -1.04907e-07, 0.595892, -1.22542e-08, -0.0700855, -0.360379, -1.19209e-07, 0.824634)
+
+[node name="2 reeD" parent="reeD" instance=ExtResource("3_n7f60")]
+transform = Transform3D(0.466074, 0, -0.345217, 0, 0.58, 0, 0.345217, 0, 0.466074, 0.540503, 1.19209e-07, -0.67449)
+
+[node name="3 reeD" type="MeshInstance3D" parent="reeD"]
+transform = Transform3D(0.165816, 0, 0.0927628, 0, 0.19, 0, -0.0927628, 0, 0.165816, 0.817924, 0, 0.678127)
+mesh = ExtResource("4_xrkbi")
+surface_material_override/0 = SubResource("StandardMaterial3D_6yqtw")
+surface_material_override/1 = SubResource("StandardMaterial3D_g0v7j")
+surface_material_override/2 = SubResource("StandardMaterial3D_3744s")
+
+[node name="4 reeD" type="MeshInstance3D" parent="reeD"]
+transform = Transform3D(-0.100233, 0, -0.137308, 0, 0.17, 0, -0.137308, 0, 0.100233, -0.763783, 0, -0.687114)
+mesh = ExtResource("4_xrkbi")
+surface_material_override/0 = SubResource("StandardMaterial3D_6yqtw")
+surface_material_override/1 = SubResource("StandardMaterial3D_g0v7j")
+surface_material_override/2 = SubResource("StandardMaterial3D_3744s")
+
+[node name="Containment Chamber" parent="." instance=ExtResource("3_ye03n")]
+visible = false
 
 [node name="Title" type="Control" parent="."]
 layout_mode = 3
@@ -129,6 +911,35 @@ autostart = true
 position = Vector2(576, 324)
 scale = Vector2(57.6, 32.4)
 
+[node name="Audio" type="Node" parent="."]
+
+[node name="Deer (idle)" type="AudioStreamPlayer3D" parent="Audio"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.60123, -3.21176)
+stream = SubResource("AudioStreamRandomizer_s3ore")
+volume_db = -30.0
+bus = &"SFX"
+
+[node name="Deer (merging)" type="AudioStreamPlayer3D" parent="Audio"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.00426, -3.21176)
+
+[node name="Deer (merged)" type="AudioStreamPlayer3D" parent="Audio"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.00426, -3.21176)
+
+[node name="Deer (Splat)" type="AudioStreamPlayer3D" parent="Audio"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.00426, -3.21176)
+stream = ExtResource("18_dtn32")
+volume_db = -30.0
+
+[node name="Deer Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier3D2" to="." method="_on_visible_on_screen_notifier_3d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier3D2" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]
 [connection signal="timeout" from="Title/TitleTimer" to="." method="_on_title_timer_timeout"]
 [connection signal="timeout" from="Title/DayTimer" to="." method="_on_day_timer_timeout"]
 [connection signal="screen_entered" from="Title/TitleNotifier" to="." method="_on_title_notifier_screen_entered"]
+[connection signal="timeout" from="Deer Timer" to="." method="_on_deer_timer_timeout"]

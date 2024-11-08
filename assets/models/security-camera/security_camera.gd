@@ -3,7 +3,7 @@ extends Node3D
 ## Node that the camera will point towards.
 @export var targetNode: Node3D 
 
-@onready var trackingCam: Camera3D = $"My Model/trackingCam"
+@onready var trackingCam: Camera3D = $trackingCam
 
 var cameraRot
 

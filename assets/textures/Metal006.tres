@@ -1,4 +1,4 @@
-[gd_resource type="StandardMaterial3D" load_steps=6 format=3 uid="uid://c0w401y0a83u4"]
+[gd_resource type="StandardMaterial3D" load_steps=6 format=3 uid="uid://brgmei5msouw1"]
 
 [ext_resource type="Texture2D" uid="uid://cr7v533iwqrrb" path="res://assets/textures/Metal006/Metal_006_Base_Color.png" id="1_jdfyy"]
 [ext_resource type="Texture2D" uid="uid://d0oe02wc8wudy" path="res://assets/textures/Metal006/Metal_006_Ambient_Occlusion.jpg" id="2_15ttn"]
@@ -15,3 +15,4 @@ normal_enabled = true
 normal_texture = ExtResource("4_ntcnj")
 ao_enabled = true
 ao_texture = ExtResource("2_15ttn")
+uv1_scale = Vector3(2, 2, 2)

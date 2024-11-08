@@ -3,7 +3,7 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$"Containment Chamber/Security Camera".targetNode = $Player
+	#$"Containment Chamber/Security Camera".targetNode = $Player
 	pass # Replace with function body.
 
 

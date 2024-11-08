@@ -120,6 +120,7 @@ I don't know if I will be able to get this done and may have to hire a professio
   
 
 Based on a dream by Eve Juneau.
+All design and development by Eve Juneau unless specified.
 
   
 
@@ -145,6 +146,13 @@ All other assets are used under Creative Commons License unless specified.
 
   
   
+## Models
+
+
+
+[Deer Skull](https://sketchfab.com/3d-models/deer-skull-46aa0dc438cc4a0bb6a655a008d92fcc) by MrDumDum
+
+
 
 ## Sounds
 
@@ -168,6 +176,25 @@ All other assets are used under Creative Commons License unless specified.
 
 [Heels.wav](https://pixabay.com/sound-effects/heelswav-14843/) by Pixabay
 
+
+
+[Deer, Reeve's Muntjac Gaywood Park first 4.5.22 00.30 SF.wav](https://freesound.org/s/674574/) by genghisattenborough
+
+
+
+[jelenie deer.wav](https://freesound.org/people/monosfera/sounds/413314/) by monosfera
+
+
+[squelch under boot watermelon](https://freesound.org/people/MaddieCooper/sounds/739191/) by MaddieCooper
+
+
+[Gore Rain.mp3](https://freesound.org/people/LucasDuff/sounds/555066/) by LucasDuff
+
+
+[Screaming beast 1](https://freesound.org/people/Valerie-Vivegnis/sounds/761611/) by Valerie-Vivegnis
+
+
+[Male Inhale scream 3](https://freesound.org/people/jorickhoofd/sounds/180302/) by jorickhoofd
   
   
 
