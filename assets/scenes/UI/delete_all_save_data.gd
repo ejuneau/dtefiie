@@ -5,8 +5,8 @@ var popup
 
 func _ready():
 	popup = get_popup()
-	var theme = load("res://assets/themes/theme2.tres")
-	popup.set_theme(theme)
+	var popupTheme = load("res://assets/themes/theme2.tres")
+	popup.set_theme(popupTheme)
 	popup.connect("id_pressed", _on_item_pressed)
 
 func _on_item_pressed(_ID):

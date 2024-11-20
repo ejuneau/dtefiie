@@ -1,35 +1,5 @@
 extends Node
 
-#var all_levels = {
-	#"day1": {
-		##"day1": {
-			##"doesEntityFit": null,
-			##"levelPath": "res://assets/scenes/day 1/day1.tscn"	
-		##},
-		#"level1": {
-			#"doesEntityFit": true,
-			#"levelPath": "res://assets/scenes/day 1/level1.tscn" 
-		#},
-		#"level2": {
-			#"doesEntityFit": false,
-			#"levelPath": "res://assets/scenes/day 1/level2.tscn"
-		#},
-		#"level3": {
-			#"doesEntityFit": false,
-			#"levelPath": "res://assets/scenes/day 1/level3.tscn"
-		#}
-	#},
-	#"day2": {
-		#"level4": {
-			#"doesEntityFit": false,
-			#"levelPath": "res://assets/scenes/day 2/level4.tscn"
-		#},
-		#"level5": {
-			#"doesEntityFit": true,
-			#"levelPath": "res://assets/scenes/day 2/level5.tscn"
-		#}
-	#}
-#}
 var all_levels = [
 	# TUTORIAL
 	[
@@ -125,7 +95,8 @@ var all_levels = [
 # Takes an Array of two numbers representing the index of the day and level in the above all_levels
 func load_level(dayLevelArray):
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	print("DEBUG [load_level]: load_level received array: "+ str(dayLevelArray)) if globals.DEBUG_VERBOSE else print()
+	if globals.DEBUG_VERBOSE:
+		print("DEBUG [load_level]: load_level received array: "+ str(dayLevelArray))
 	var dayNum = dayLevelArray[0]
 	var levelNum = dayLevelArray[1]
 	
@@ -144,24 +115,21 @@ func load_level(dayLevelArray):
 			get_tree().root.get_node("Main").get_child(-1).queue_free()
 			get_tree().root.get_node("Main/player").queue_free()
 		get_tree().root.get_node("Main/Pause screen").set_process_mode(Node.PROCESS_MODE_ALWAYS)
-		#get_tree().root.get_node("Main/"+all_levels[dayNum][levelNum].name).confirmPressed.connect(get_tree().root.get_node("Main")._on_confirm_pressed)
-		#get_tree().root.get_node("Main/"+all_levels[dayNum][levelNum].name).clickPressed.connect(get_tree().root.get_node("Main")._on_click_pressed)
-		#get_tree().root.get_node("Main/"+all_levels[dayNum][levelNum].name).errorPressed.connect(get_tree().root.get_node("Main")._on_error_pressed)
 	
 	else:
 
 		get_tree().paused = true
-		print("DEBUG [load_level]: Loading Level number "+str(all_levels[dayNum][levelNum].levelNum)+ " from path: "+all_levels[dayNum][levelNum].levelPath) if globals.DEBUG_VERBOSE else print()
+		if globals.DEBUG_VERBOSE:
+			print("DEBUG [load_level]: Loading Level number "+str(all_levels[dayNum][levelNum].levelNum)+ " from path: "+all_levels[dayNum][levelNum].levelPath)
 		var newLevel = "level" + str(all_levels[dayNum][levelNum].levelNum)
 		var oldLevel = "level" + str(all_levels[dayNum][levelNum].levelNum - 1)
 		var level = load(all_levels[dayNum][levelNum].levelPath).instantiate()
 		level.set_name(newLevel)
 		if get_tree().root.get_node_or_null("Main/"+oldLevel):
 			get_tree().root.get_node("Main/"+oldLevel).queue_free()
-		get_tree().root.get_node("Main").add_child(level)
+		if get_tree().root.get_node_or_null("Main"):
+			get_tree().root.get_node("Main").add_child(level)
 
-		#get_tree().root.get_node("Main/"+newLevel).confirmPressed.connect(get_tree().root.get_node("Main")._on_confirm_pressed)
-		#get_tree().root.get_node("Main/"+newLevel).clickPressed.connect(get_tree().root.get_node("Main")._on_click_pressed)
 		get_tree().paused = false
 		if get_tree().root.get_node_or_null("Main/Main Menu"):
 			get_tree().root.get_node("Main/Main Menu").queue_free()

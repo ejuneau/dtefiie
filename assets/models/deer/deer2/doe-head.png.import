@@ -2,20 +2,17 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4g0ph4f7i128"
-path.s3tc="res://.godot/imported/deer_0.jpg-f52786d7337b0af1a7b5cac206df109d.s3tc.ctex"
+uid="uid://bqvjvg6e1nvu7"
+path.s3tc="res://.godot/imported/doe-head.png-88069a15338d638fc11edffdf9ce5586.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={
-"md5": "5b40a6602b3710885ebc07023dcb020f"
-}
 
 [deps]
 
-source_file="res://assets/models/deer/deer_0.jpg"
-dest_files=["res://.godot/imported/deer_0.jpg-f52786d7337b0af1a7b5cac206df109d.s3tc.ctex"]
+source_file="res://assets/models/deer/deer2/doe-head.png"
+dest_files=["res://.godot/imported/doe-head.png-88069a15338d638fc11edffdf9ce5586.s3tc.ctex"]
 
 [params]
 

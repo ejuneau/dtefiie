@@ -51,7 +51,8 @@ func get_data_from_disk():
 	if save_data_exists():
 		return JSON.parse_string(FileAccess.open("user://save.dat", FileAccess.READ).get_as_text())
 	else:
-		print("DEBUG [get_data_from_disk] - No save data exists!") if globals.DEBUG_VERBOSE else print()
+		if globals.DEBUG_VERBOSE:
+			print("DEBUG [get_data_from_disk] - No save data exists!") 
 		return null
 		
 func save_data_exists() -> bool:
@@ -123,7 +124,8 @@ func get_correct_assessments_day(day: int) -> Array:
 						totalAssessments += 1
 						if level.get("doesEntityFit") == levelRef.get("doesEntityFit"):
 							correctAssessments += 1
-							print("DEBUG [get_correct_assessments] - Your answer: "+str(level.get("doesEntityFit"))+" | Correct Answer: "+str(levelRef.get("doesEntityFit"))) if globals.DEBUG_VERBOSE else print()
+							if globals.DEBUG_VERBOSE:
+								print("DEBUG [get_correct_assessments] - Your answer: "+str(level.get("doesEntityFit"))+" | Correct Answer: "+str(levelRef.get("doesEntityFit")))
 	return [correctAssessments, totalAssessments]	
 		
 func get_correct_assessments_total() -> void:

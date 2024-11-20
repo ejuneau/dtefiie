@@ -9,11 +9,17 @@ extends Node
 func play_click() -> void:
 	if clickPlayer != null:
 		clickPlayer.play()
+	else:
+		print("[audio_info/play_click()] No clickPlayer!")
 
 func play_confirm() -> void:
 	if confirmPlayer != null:
 		confirmPlayer.play()
+	else:
+		print("[audio_info/play_confirm()] No confirmPlayer!")
 
 func play_error() -> void:
 	if errorPlayer != null:
 		errorPlayer.play()
+	else:
+		print("[audio_info/play_error()] No errorPlayer!")

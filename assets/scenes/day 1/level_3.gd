@@ -23,7 +23,16 @@ func _on_title_timer_timeout() -> void:
 
 func _on_day_timer_timeout() -> void:
 	$"Title/Day 1".show()
-	$"Containment Chamber/Near Wall/Door/DoorHum".play()
-	$"Containment Chamber/Ceiling Light 2/Ceiling Light Hum".play()
-	$"Containment Chamber/Ceiling Light/Ceiling Light Hum".play()
+	$"Containment Chamber (Water)/Near Wall/Door/DoorHum".play()
+	$"Containment Chamber (Water)/Ceiling Light 2/Ceiling Light Hum".play()
+	$"Containment Chamber (Water)/Ceiling Light/Ceiling Light Hum".play()
 	pass # Replace with function body.
+
+
+func _on_containment_chamber_water_is_under_water(isUnderWater) -> void:
+	if isUnderWater:
+		$"Squid small".hide()
+		$"Squid Big".show()
+	else:
+		$"Squid small".show()
+		$"Squid Big".hide()

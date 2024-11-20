@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://ce7hf8flai85b"]
+[gd_scene load_steps=41 format=3 uid="uid://ce7hf8flai85b"]
 
 [ext_resource type="Script" path="res://assets/scenes/player/player.gd" id="1_tt18g"]
 [ext_resource type="PackedScene" uid="uid://c0a71s75g5xh8" path="res://assets/scenes/player/clipboard/clipboard.tscn" id="2_cv7uu"]
@@ -22,7 +22,17 @@
 [ext_resource type="AudioStream" uid="uid://by40w3v1osfp4" path="res://assets/sounds/footsteps/footstep8.mp3" id="20_102bq"]
 [ext_resource type="AudioStream" uid="uid://hpouru8ls7dl" path="res://assets/sounds/footsteps/footstep9.mp3" id="21_u6pso"]
 [ext_resource type="AudioStream" uid="uid://ikonawnc53uk" path="res://assets/sounds/footsteps/footstep10.mp3" id="22_wxa54"]
+[ext_resource type="AudioStream" uid="uid://7bw6tajytuds" path="res://assets/sounds/footsteps-water/footstep-water-01.wav" id="23_lgxp8"]
 [ext_resource type="PackedScene" uid="uid://c1goxluh42fgw" path="res://assets/scenes/player/models/model.tscn" id="23_vfskx"]
+[ext_resource type="AudioStream" uid="uid://bx8f4c6rbljdc" path="res://assets/sounds/footsteps-water/footstep-water-02.wav" id="24_j8woi"]
+[ext_resource type="AudioStream" uid="uid://dlehogcfb7n74" path="res://assets/sounds/footsteps-water/footstep-water-03.wav" id="25_b7y43"]
+[ext_resource type="AudioStream" uid="uid://b1ny3xrar5fq5" path="res://assets/sounds/footsteps-water/footstep-water-04.wav" id="26_a187t"]
+[ext_resource type="AudioStream" uid="uid://dpi7s5bwmthwa" path="res://assets/sounds/footsteps-water/footstep-water-05.wav" id="27_svfgx"]
+[ext_resource type="AudioStream" uid="uid://djacj2o1cd42w" path="res://assets/sounds/footsteps-swim/footstep-swim-01.wav" id="28_3oaqr"]
+[ext_resource type="AudioStream" uid="uid://2oe5odnd5xmp" path="res://assets/sounds/footsteps-swim/footstep-swim-02.wav" id="29_c8ixa"]
+[ext_resource type="AudioStream" uid="uid://c24pch2yttkos" path="res://assets/sounds/footsteps-swim/footstep-swim-03.wav" id="30_nhni2"]
+[ext_resource type="AudioStream" uid="uid://dqkwi57pui525" path="res://assets/sounds/footsteps-swim/footstep-swim-04.wav" id="31_lxcnx"]
+[ext_resource type="AudioStream" uid="uid://dh2mw412rp7h2" path="res://assets/sounds/footsteps-swim/footstep-swim-05.wav" id="32_rt1xo"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_jbuhc"]
 
@@ -53,6 +63,24 @@ stream_17/stream = ExtResource("12_0tgf6")
 stream_18/stream = ExtResource("13_6q55y")
 stream_19/stream = ExtResource("14_k4byv")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_lgxp8"]
+streams_count = 5
+stream_0/stream = ExtResource("23_lgxp8")
+stream_1/stream = ExtResource("24_j8woi")
+stream_2/stream = ExtResource("25_b7y43")
+stream_3/stream = ExtResource("26_a187t")
+stream_4/stream = ExtResource("27_svfgx")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_lx1qx"]
+streams_count = 5
+stream_0/stream = ExtResource("28_3oaqr")
+stream_1/stream = ExtResource("29_c8ixa")
+stream_2/stream = ExtResource("30_nhni2")
+stream_3/stream = ExtResource("31_lxcnx")
+stream_4/stream = ExtResource("32_rt1xo")
+
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_j8woi"]
+
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("CameraNode", "CameraActual", "ClipboardNode")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07633, 2)
 script = ExtResource("1_tt18g")
@@ -82,18 +110,44 @@ current = true
 [node name="Clipboard" parent="Neck/Camera3D/Clipboard Container" instance=ExtResource("2_cv7uu")]
 
 [node name="FootstepPlayer" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.542943, 0)
 stream = SubResource("AudioStreamRandomizer_frxnh")
+volume_db = 80.0
+unit_size = 3.15
+max_polyphony = 10
+bus = &"SFX"
+
+[node name="FootstepWaterPlayer" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.542943, 0)
+stream = SubResource("AudioStreamRandomizer_lgxp8")
+volume_db = -60.0
+unit_size = 3.15
+bus = &"SFX"
+
+[node name="FootstepSwimPlayer" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.542943, 0)
+stream = SubResource("AudioStreamRandomizer_lx1qx")
+volume_db = -60.0
+unit_size = 3.15
+bus = &"SFX"
+
+[node name="PolyphonicPlayer" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.542943, 0)
+stream = SubResource("AudioStreamPolyphonic_j8woi")
 volume_db = -30.0
 unit_size = 3.15
+bus = &"SFX"
 
 [node name="JumpPlayer" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.542943, 0)
 stream = SubResource("AudioStreamRandomizer_frxnh")
-volume_db = -28.0
+volume_db = 80.0
 unit_size = 3.15
-max_polyphony = 2
+max_polyphony = 10
+bus = &"SFX"
 
 [node name="model" parent="." instance=ExtResource("23_vfskx")]
-transform = Transform3D(-1.225, 0, 1.8497e-07, 0, 1.225, 0, -1.8497e-07, 0, -1.225, 0, -0.989169, 0.156186)
+transform = Transform3D(-1.225, 0, 1.8497e-07, 0, 1.225, 0, -1.8497e-07, 0, -1.225, 0, -0.989, 0.15)
 visible = false
 
 [connection signal="step_taken" from="." to="." method="_on_step_taken"]

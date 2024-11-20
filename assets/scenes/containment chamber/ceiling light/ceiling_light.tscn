@@ -1,11 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cdvk5ukt4vfd8"]
+[gd_scene load_steps=3 format=3 uid="uid://cdvk5ukt4vfd8"]
 
-[ext_resource type="Script" path="res://assets/scenes/containment chamber/ceiling light/ceiling_light.gd" id="1_gxw7n"]
 [ext_resource type="AudioStream" uid="uid://kaifxvuwb3jv" path="res://assets/sounds/712127__duasun__electricity-sound.wav" id="2_lhbg6"]
 [ext_resource type="PackedScene" uid="uid://c81g6e6r7er0s" path="res://assets/scenes/containment chamber/ceiling light/ceiling_light_model.tscn" id="2_oik5o"]
 
 [node name="Ceiling Light" type="Node3D"]
-script = ExtResource("1_gxw7n")
 
 [node name="Sketchfab_Scene2" parent="." instance=ExtResource("2_oik5o")]
 transform = Transform3D(-1.09278e-09, 0, 0.025, 0, 0.025, 0, -0.025, 0, -1.09278e-09, -0.0920677, -0.301834, -0.0643054)

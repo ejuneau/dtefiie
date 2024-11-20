@@ -24,7 +24,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.188235, 0.188235, 0.188235, 1)
+color = Color(0.0235294, 0.0509804, 0.0235294, 1)
 
 [node name="Title" type="Label" parent="Overlay"]
 layout_mode = 2

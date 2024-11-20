@@ -43,8 +43,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_old2y"]
 _data = {
-"RESET": SubResource("Animation_fm84p"),
-"pause flash": SubResource("Animation_xmx0b")
+&"RESET": SubResource("Animation_fm84p"),
+&"pause flash": SubResource("Animation_xmx0b")
 }
 
 [node name="Pause screen" type="Control"]
@@ -64,6 +64,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0, 0, 0, 0.513726)
 
 [node name="Pause Screen Margin" type="MarginContainer" parent="."]
@@ -94,7 +95,7 @@ text = "||"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Pause Screen Margin/Pause Screen/HSplitContainer/Label"]
 libraries = {
-"": SubResource("AnimationLibrary_old2y")
+&"": SubResource("AnimationLibrary_old2y")
 }
 autoplay = "pause flash"
 

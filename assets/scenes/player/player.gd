@@ -3,6 +3,11 @@ extends CharacterBody3D
 signal step_taken(type)
 signal answerConfirmed(answer: bool)
 
+@export_category("Level-Specific Variables")
+@export var isWaterLevel:bool = false
+var isUnderWater:bool = false
+@export var WATER_HEIGHT:float = 1.0 # Adjust with water shader
+
 @export_category("Movement Variables")
 @export var SPEED = 5.0
 @export var JUMP_VELOCITY = 4.5
@@ -70,9 +75,17 @@ var HandOffsetPosition: Vector3;
 
 var landing : bool
 
+var footstepPlayer
+
+enum footstepTypes {FOOTSTEP_TYPE_GROUND, FOOTSTEP_TYPE_SPLASH, FOOTSTEP_TYPE_SWIM}
+var footstepType
+
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	ArmsBasePosition = ClipboardNode.position
+	$PolyphonicPlayer.play()
+	footstepPlayer = $PolyphonicPlayer.get_stream_playback()
+	
 
 func _unhandled_input(event) -> void:
 	
@@ -102,7 +115,7 @@ func _physics_process(delta: float) -> void:
 	$"Neck/Camera3D/Clipboard Container/Clipboard".global_position += HandOffsetPosition * 0.1
 	
 	# Add the gravity.
-	if not is_on_floor():
+	if not is_on_floor() && !isWaterLevel:
 		velocity += get_gravity() * delta
 		
 	#Camera shake code begin
@@ -137,32 +150,69 @@ func _physics_process(delta: float) -> void:
 		HandOffsetPosition = Vector3.ZERO
 	#Camera shake code end
 
-
+	if isWaterLevel:
+		if isUnderWater:
+			footstepType = footstepTypes.FOOTSTEP_TYPE_SWIM
+		else:
+			footstepType = footstepTypes.FOOTSTEP_TYPE_SPLASH
+	else:
+		footstepType = footstepTypes.FOOTSTEP_TYPE_GROUND
 
 	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-	
+	if !isWaterLevel:
+		if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+			velocity.y = JUMP_VELOCITY
+		
+	else:
+		### Pass properties down
+		$"Neck/Camera3D/Clipboard Container/Clipboard".isWaterLevel = isWaterLevel
+		$"Neck/Camera3D/Clipboard Container/Clipboard".isUnderWater = isUnderWater
+		# Prevent from going over a certain height
+		if get_global_position().y >= 1.4:
+			global_position.y = lerpf(global_position.y, 1.4, delta * 15)
+
+		# Move where camera is pointing while underwater
+		isUnderWater = get_global_position().y <= WATER_HEIGHT
+		### TODO Add Water screen effect
+		### TODO Remove foodtsep sounds (Add another sound)
+
+
+		var vertical_dir = 0
+		
+		vertical_dir = move_toward(vertical_dir, Input.get_axis("crouch", "ui_accept"), delta * 10)
+		if Input.is_action_pressed("ui_accept") || Input.is_action_pressed("crouch"):
+			velocity.y = vertical_dir * SPEED * 5
+		else:
+			vertical_dir = move_toward(vertical_dir, 0, delta)
+			velocity.y = lerpf(velocity.y, 0, delta)
 	# Play sound when landing jump
 	if is_on_floor():
 		if landing:
-			$JumpPlayer.play()
-			$FootstepPlayer.play()
+			footstepPlayer.play_stream($JumpPlayer.stream)
+			#$FootstepPlayer.play()
 			landing = false
 	else:
 		if !landing:
 			landing = true
 
 	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	var direction = (neck.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+	if !isWaterLevel:
+		var direction = (neck.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+		if direction:
+			velocity.x = direction.x * SPEED
+			velocity.z = direction.z * SPEED
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED )
+			velocity.z = move_toward(velocity.z, 0, SPEED )
+	else: # Movement during water level
+		var direction = (neck.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+		if direction:
+			velocity.x = direction.x * SPEED
+			velocity.z = direction.z * SPEED
+		else:
+			velocity.x = move_toward(velocity.x, 0,  SPEED / 50)
+			velocity.z = move_toward(velocity.z, 0,  SPEED / 50)
 
 	move_and_slide()
 	
@@ -188,16 +238,26 @@ func _on_clipboard_lowered() -> void:
 	
 func _on_step_taken(type = "step") -> void:
 	if type == "step" :
-		$FootstepPlayer.play()
+		#if !isWaterLevel:
+			#$FootstepPlayer.play()
+		#else:
+			#footstepPlayer.play_stream($FootstepWaterPlayer.stream)
+		match footstepType:
+			footstepTypes.FOOTSTEP_TYPE_GROUND:
+				footstepPlayer.play_stream($FootstepPlayer.stream)
+			footstepTypes.FOOTSTEP_TYPE_SPLASH:
+				footstepPlayer.play_stream($FootstepWaterPlayer.stream)
+			footstepTypes.FOOTSTEP_TYPE_SWIM:
+				footstepPlayer.play_stream($FootstepSwimPlayer.stream)
 	elif type == "jump":
-		$JumpPlayer.play()
+		footstepPlayer.play_stream($JumpPlayer.stream)
 
 
 func _on_clipboard_answer_confirmed(answer: bool) -> void:
 	answerConfirmed.emit(answer)
 	pass # Replace with function body.
 	
-func rotate_model(x, y, cameraRot) -> void:
+func rotate_model(x, y, _cameraRot) -> void:
 	# TODO implement model neck rotation
 	# x and y are event.relative.x/y respectively
 	model.rotate_y(-x * 0.01)

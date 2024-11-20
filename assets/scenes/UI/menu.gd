@@ -1,6 +1,7 @@
 extends Control
 
 signal new_game_pressed
+signal continue_pressed
 signal options_pressed
 
 # Good luck with this one buddy
@@ -64,7 +65,7 @@ func _on_options_pressed() -> void:
 
 
 func _on_continue_pressed() -> void:
-	
+	continue_pressed.emit()
 	level_info.load_level(save_info.get_next_level())
 	get_tree().root.get_node("Main/Pause screen/Pause Screen Margin/Options Menu/VSplit/TabContainer/General/MarginContainer/VBoxContainer/Delete All Save Data").disabled = true
 

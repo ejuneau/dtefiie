@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://cjim0sd4epuv3"]
+
+[ext_resource type="Script" path="res://assets/scenes/player/player_(mirror).gd" id="1_fos50"]
+[ext_resource type="PackedScene" uid="uid://c0a71s75g5xh8" path="res://assets/scenes/player/clipboard/clipboard.tscn" id="2_xb3i4"]
+[ext_resource type="PackedScene" uid="uid://c1goxluh42fgw" path="res://assets/scenes/player/models/model.tscn" id="23_20qy3"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_fos50"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_4wqt8"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qdmkw"]
+
+[node name="Player (Mirror)" type="CharacterBody3D" node_paths=PackedStringArray("CameraNode", "CameraActual", "ClipboardNode")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07633, 2)
+script = ExtResource("1_fos50")
+SPEED = 2.0
+CameraNode = NodePath("Neck")
+CameraActual = NodePath("Neck/Camera3D")
+ClipboardNode = NodePath("Neck/Camera3D/Clipboard Container")
+CameraShake_Noise = SubResource("FastNoiseLite_fos50")
+WalkingSway_StepsPerSecond = 2.0
+WalkingSway_MaxSwayDistance = 0.005
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("CapsuleMesh_4wqt8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_qdmkw")
+
+[node name="Neck" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.667108, 0)
+
+[node name="Camera3D" type="Node3D" parent="Neck"]
+
+[node name="Clipboard Container" type="Node3D" parent="Neck/Camera3D"]
+
+[node name="Clipboard" parent="Neck/Camera3D/Clipboard Container" instance=ExtResource("2_xb3i4")]
+
+[node name="model" parent="." instance=ExtResource("23_20qy3")]
+transform = Transform3D(-1.225, 0, 1.8497e-07, 0, 1.225, 0, -1.8497e-07, 0, -1.225, 0, -0.989169, 0.156186)
+visible = false
+
+[connection signal="clipboard_lowered" from="Neck/Camera3D/Clipboard Container/Clipboard" to="." method="_on_clipboard_lowered"]
+[connection signal="clipboard_raised" from="Neck/Camera3D/Clipboard Container/Clipboard" to="." method="_on_clipboard_raised"]

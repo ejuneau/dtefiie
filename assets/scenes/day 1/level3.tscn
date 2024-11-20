@@ -1,7 +1,7 @@
 [gd_scene load_steps=20 format=3 uid="uid://qjgx2jjf1pxq"]
 
 [ext_resource type="Script" path="res://assets/scenes/day 1/level_3.gd" id="1_rygpe"]
-[ext_resource type="PackedScene" uid="uid://6jc0oj15ibsk" path="res://assets/scenes/containment chamber/containment_chamber.tscn" id="3_cyegj"]
+[ext_resource type="PackedScene" uid="uid://c7a5yhsk2x8pt" path="res://assets/scenes/containment chamber/containment_chamber_water.tscn" id="2_mfrkt"]
 [ext_resource type="Texture2D" uid="uid://bcjfqcuh0778u" path="res://assets/models/shrimp/RGB_a0cd01ef8b7a45b7989182aba5493bc5_Q11583-1all-3-body_2.jpeg" id="4_25mtf"]
 [ext_resource type="Shader" path="res://assets/shaders/floatLobster.gdshader" id="4_dt10o"]
 [ext_resource type="FontFile" uid="uid://curgdoaj3yxfs" path="res://assets/fonts/VT323-Regular.ttf" id="4_h6rai"]
@@ -12,19 +12,9 @@
 [ext_resource type="AudioStream" uid="uid://du1bh7c235q35" path="res://assets/sounds/UI clicks/confirm04.mp3" id="9_ens15"]
 [ext_resource type="AudioStream" uid="uid://brguralusvuwp" path="res://assets/sounds/UI clicks/confirm05.mp3" id="10_gdgsm"]
 [ext_resource type="AudioStream" uid="uid://b4mmt5jsak3g6" path="res://assets/sounds/UI clicks/confirm06.mp3" id="11_8bgjf"]
-
-[sub_resource type="Animation" id="Animation_pv3rg"]
-length = 0.001
-
-[sub_resource type="Animation" id="Animation_wplj5"]
-resource_name = "spin that deer!"
-loop_mode = 1
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_161ea"]
-_data = {
-&"RESET": SubResource("Animation_pv3rg"),
-&"spin that deer!": SubResource("Animation_wplj5")
-}
+[ext_resource type="Environment" uid="uid://j3yw0ieb1hv8" path="res://assets/themes/containment_chamber.tres" id="13_mfrkt"]
+[ext_resource type="PackedScene" uid="uid://c1eg4jjwl1nxi" path="res://assets/models/Squid/Squid.tscn" id="14_vnojy"]
+[ext_resource type="Script" path="res://assets/models/Squid/squid.gd" id="15_288ne"]
 
 [sub_resource type="Theme" id="Theme_r2qjp"]
 default_font = ExtResource("4_h6rai")
@@ -53,13 +43,7 @@ stream_5/stream = ExtResource("11_8bgjf")
 process_mode = 1
 script = ExtResource("1_rygpe")
 
-[node name="Containment Chamber" parent="." instance=ExtResource("3_cyegj")]
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Containment Chamber"]
-libraries = {
-&"": SubResource("AnimationLibrary_161ea")
-}
-autoplay = "spin that deer!"
+[node name="Containment Chamber (Water)" parent="." instance=ExtResource("2_mfrkt")]
 
 [node name="Title" type="Control" parent="."]
 layout_mode = 3
@@ -75,7 +59,7 @@ offset_left = -648.0
 offset_top = -363.0
 offset_right = 1825.0
 offset_bottom = 1102.0
-color = Color(0.188235, 0.188235, 0.188235, 1)
+color = Color(0.0235294, 0.0509804, 0.0235294, 1)
 
 [node name="I Sea" type="Label" parent="Title"]
 layout_mode = 1
@@ -122,6 +106,7 @@ scale = Vector2(57.6, 32.4)
 
 [node name="Model" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.0755039, 0, 0.484148, 0, 0.49, 0, -0.484148, 0, 0.0755039, 0, 1.95722, -3.17876)
+visible = false
 material_override = SubResource("StandardMaterial3D_qwd0k")
 material_overlay = SubResource("ShaderMaterial_s62kj")
 mesh = ExtResource("5_xdu2t")
@@ -130,6 +115,25 @@ mesh = ExtResource("5_xdu2t")
 stream = SubResource("AudioStreamRandomizer_7quph")
 autoplay = true
 
+[node name="Environment" type="Node" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4.11156, 0)
+light_energy = 0.1
+light_cull_mask = 4293918751
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = ExtResource("13_mfrkt")
+
+[node name="Squid small" parent="." instance=ExtResource("14_vnojy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.83917, -3.07374)
+
+[node name="Squid Big" parent="." instance=ExtResource("14_vnojy")]
+transform = Transform3D(3.16, 0, 0, 0, 3.16, 0, 0, 0, 3.16, 0, -1.448, -3.07374)
+visible = false
+script = ExtResource("15_288ne")
+
+[connection signal="isUnderWater" from="Containment Chamber (Water)" to="." method="_on_containment_chamber_water_is_under_water"]
 [connection signal="timeout" from="Title/TitleTimer" to="." method="_on_title_timer_timeout"]
 [connection signal="timeout" from="Title/DayTimer" to="." method="_on_day_timer_timeout"]
 [connection signal="screen_entered" from="Title/TitleNotifier" to="." method="_on_title_notifier_screen_entered"]

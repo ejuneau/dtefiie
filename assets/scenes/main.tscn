@@ -42,6 +42,15 @@ stream_5/stream = ExtResource("13_gu3ha")
 process_mode = 3
 script = ExtResource("1_8v2e7")
 
+[node name="Overlay" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.0235294, 0.0509804, 0.0235294, 1)
+
 [node name="Pause screen" parent="." instance=ExtResource("3_ew01b")]
 visible = false
 
@@ -92,6 +101,7 @@ environment = ExtResource("14_h5aqq")
 [connection signal="optionsSaved" from="Pause screen" to="." method="_on_pause_screen_options_saved"]
 [connection signal="showOptions" from="Pause screen" to="." method="_on_pause_screen_show_options"]
 [connection signal="unpaused" from="Pause screen" to="." method="_on_pause_screen_unpaused"]
+[connection signal="continue_pressed" from="Main Menu" to="." method="_on_main_menu_continue_pressed"]
 [connection signal="new_game_pressed" from="Main Menu" to="." method="_on_main_menu_new_game_pressed"]
 [connection signal="options_pressed" from="Main Menu" to="." method="_on_main_menu_options_pressed"]
 [connection signal="finished" from="Audio/Ambiance" to="." method="_on_ambiance_finished"]

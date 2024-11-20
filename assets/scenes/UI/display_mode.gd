@@ -6,6 +6,6 @@ var popup
 func _ready() -> void:
 	self.selected = config_info.getConfigFromDisk().display.display_mode
 	popup = get_popup()
-	var theme = load("res://assets/themes/pause_screen.tres")
-	popup.set_theme(theme)
+	var popupTheme = load("res://assets/themes/pause_screen.tres")
+	popup.set_theme(popupTheme)
 	pass # Replace with function body.

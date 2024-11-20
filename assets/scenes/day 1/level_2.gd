@@ -14,7 +14,7 @@ func _ready() -> void:
 	var clipboard = get_tree().root.get_node("Main/player/Neck/Camera3D/Clipboard Container/Clipboard")
 	clipboard.load_text(2)
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if get_tree().root.get_node_or_null("Main/player"):
 		$SkullCam.look_at(get_tree().root.get_node_or_null("Main/player").get_global_position())
 		$SkullCam/Skull.visible = isSkullVisible
@@ -27,6 +27,8 @@ func _on_title_notifier_screen_entered() -> void:
 func _on_title_timer_timeout() -> void:
 	audio_info.play_confirm()
 	$Title.queue_free()
+	$VisibleOnScreenNotifier3D.set_process_mode(PROCESS_MODE_INHERIT)
+	$VisibleOnScreenNotifier3D.show()
 	pass # Replace with function body.
 
 func _on_day_timer_timeout() -> void:

@@ -152,6 +152,12 @@ All other assets are used under Creative Commons License unless specified.
 
 [Deer Skull](https://sketchfab.com/3d-models/deer-skull-46aa0dc438cc4a0bb6a655a008d92fcc) by MrDumDum
 
+[Magnapinna Squid](https://sketchfab.com/3d-models/magnapinna-squid-be2b90cc7e2f436bb7a689a45aa256c1) by dotflare
+
+[Deer 3D Model](https://rigmodels.com/model.php?view=Deer-3d-model__KND9LH9Y6UY69VC80JWPZL2PW) by RIGModels
+
+[deer animated](https://www.turbosquid.com/3d-models/deer-animated-1012108) by TURBOSQUID
+
 
 
 ## Sounds
@@ -195,6 +201,20 @@ All other assets are used under Creative Commons License unless specified.
 
 
 [Male Inhale scream 3](https://freesound.org/people/jorickhoofd/sounds/180302/) by jorickhoofd
+
+[Footstep_Water_03.wav](https://freesound.org/s/270429/) by LittleRobotSoundFactory
+
+[Footstep_Water_05.wav](https://freesound.org/s/270428/) by LittleRobotSoundFactory  
+
+[Footstep_Water_04.wav](https://freesound.org/s/270427/) by LittleRobotSoundFactory   
+
+[Footstep_Water_07.wav](https://freesound.org/s/270426/) by LittleRobotSoundFactory
+
+[Footstep_Water_02.wav](https://freesound.org/s/270425/) by LittleRobotSoundFactory  
+
+[Dưới Mặt Biển](https://freesound.org/s/484184/) by SieuAmThanh
+
+[Underwater Movement.wav](https://freesound.org/s/484187/) by Tim_Verberne
   
   
 

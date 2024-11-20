@@ -1,0 +1,63 @@
+[gd_scene load_steps=8 format=3 uid="uid://dngd0s25de0nb"]
+
+[ext_resource type="Script" path="res://assets/scenes/containment chamber/infinitemirror.gd" id="1_t2gon"]
+[ext_resource type="PackedScene" uid="uid://dw35bffcddcbw" path="res://assets/scenes/containment chamber/wall12.tscn" id="2_ldlm4"]
+[ext_resource type="PackedScene" uid="uid://dvbjel3xsvehr" path="res://assets/scenes/containment chamber/wall15.tscn" id="3_4qt7c"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_yoket"]
+size = Vector2(8, 10)
+orientation = 1
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ldlm4"]
+viewport_path = NodePath("MeshInstance3D/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4qt7c"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_ldlm4")
+
+[sub_resource type="FogMaterial" id="FogMaterial_6nppy"]
+density = 0.0411
+albedo = Color(0, 0, 0, 1)
+
+[node name="Infinitemirror" type="Node3D"]
+script = ExtResource("1_t2gon")
+
+[node name="Node3Dtest walls" type="Node3D" parent="."]
+
+[node name="Wall Short" parent="Node3Dtest walls" instance=ExtResource("2_ldlm4")]
+transform = Transform3D(8.87513e-15, 4.37114e-08, 1, 4.645, -4.37114e-08, 0, 2.03039e-07, 1, -4.37114e-08, -0.0562611, 2.5, -5.53074)
+
+[node name="Wall Short2" parent="Node3Dtest walls" instance=ExtResource("2_ldlm4")]
+transform = Transform3D(8.87513e-15, 4.37114e-08, 1, 4.645, -4.37114e-08, 0, 2.03039e-07, 1, -4.37114e-08, -0.0562611, 2.5, 5.51969)
+
+[node name="Wall Long" parent="Node3Dtest walls" instance=ExtResource("3_4qt7c")]
+transform = Transform3D(-2.03039e-07, -1, 0, 4.645, -4.37114e-08, 0, 0, 0, 1, 4.38702, 2.5, 0)
+
+[node name="Wall Long2" parent="Node3Dtest walls" instance=ExtResource("3_4qt7c")]
+transform = Transform3D(-2.03039e-07, -1, 0, 4.645, -4.37114e-08, 0, 0, 0, 1, -4.46808, 2.5, 0)
+
+[node name="Wall Long3" parent="Node3Dtest walls" instance=ExtResource("3_4qt7c")]
+transform = Transform3D(-2.03039e-07, 0, 1, 0, 1, 0, -4.645, 0, -4.37114e-08, -0.468083, -10.2261, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9, 0)
+visible = false
+mesh = SubResource("QuadMesh_yoket")
+surface_material_override/0 = SubResource("StandardMaterial3D_4qt7c")
+
+[node name="SubViewport" type="SubViewport" parent="MeshInstance3D"]
+transparent_bg = true
+size = Vector2i(1000, 800)
+
+[node name="Camera3D" type="Camera3D" parent="MeshInstance3D/SubViewport"]
+transform = Transform3D(-4.37114e-08, -1, 0, -4.37114e-08, 1.91069e-15, 1, -1, 4.37114e-08, -4.37114e-08, 0, -1.67, 0)
+projection = 1
+size = 8.566
+
+[node name="Marker3D" type="Marker3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.743, 0)
+
+[node name="FogVolume" type="FogVolume" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8.09918, 0)
+size = Vector3(8, 1, 10)
+material = SubResource("FogMaterial_6nppy")

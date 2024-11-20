@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cv63n5anpa81i"]
+[gd_scene load_steps=7 format=3 uid="uid://cv63n5anpa81i"]
 
 [ext_resource type="Script" path="res://assets/scenes/UI/menu.gd" id="1_76wdd"]
 [ext_resource type="Theme" uid="uid://brc5wbswup5dd" path="res://assets/themes/pause_screen.tres" id="2_wwkv2"]
@@ -9,6 +9,9 @@
 default_font = ExtResource("3_b21va")
 default_font_size = 32
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u7y4f"]
+bg_color = Color(0.0235294, 0.0509804, 0.0235294, 1)
+
 [node name="Menu" type="Control"]
 process_mode = 3
 layout_mode = 3
@@ -18,15 +21,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_76wdd")
-
-[node name="Overlay" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.188235, 0.188235, 0.188235, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -114,100 +108,129 @@ text = "Does the Entity fit in its Enclosure?"
 clip_text = true
 
 [node name="MarginContainer" type="MarginContainer" parent="Credits"]
-offset_right = 1011.0
+offset_right = 1152.0
 offset_bottom = 648.0
-theme_override_constants/margin_left = 50
+theme_override_constants/margin_left = 100
 theme_override_constants/margin_top = 230
-theme_override_constants/margin_right = 50
+theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 50
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Credits/MarginContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="Credits/MarginContainer"]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_u7y4f")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Credits/MarginContainer/ScrollContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Credits/MarginContainer/PanelContainer"]
 layout_mode = 2
+horizontal_scroll_mode = 0
 
-[node name="CREDITS" type="Label" parent="Credits/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="CREDITS" type="Label" parent="Credits/MarginContainer/PanelContainer/ScrollContainer"]
+custom_minimum_size = Vector2(700, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 theme = ExtResource("2_wwkv2")
-text = "CREDITS
-"
-horizontal_alignment = 1
+text = "Based on a dream by Eve Juneau.
+All design and development by Eve Juneau unless specified.
 
-[node name="credits" type="Label" parent="Credits/MarginContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("2_wwkv2")
-text = "Developed by Eve Juneau"
+  
 
-[node name="ASSETS USED" type="Label" parent="Credits/MarginContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("2_wwkv2")
-text = "
-ASSETS USED"
-horizontal_alignment = 1
+All Fonts are used under SIL Open Font License.
 
-[node name="Licenses" type="Label" parent="Credits/MarginContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("2_wwkv2")
-text = "All assets are used under Creative Commons License
-All fonts are used under Open Font License"
+All other assets are used under Creative Commons License unless specified.
 
-[node name="SOUND" type="Label" parent="Credits/MarginContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("2_wwkv2")
-text = "
-SOUND"
-horizontal_alignment = 1
+  
 
-[node name="SOUND Credits" type="Label" parent="Credits/MarginContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("2_wwkv2")
-text = "Forcefield Hum.wav by Zeraora
-Fole_Mechanism_Light_Buzz_Short_Loop_Mono_DR05.wav by Nox_Sound
-Electricity Sound by Duasun
-Fridge buzz (loop) by Matislav"
+## Fonts
 
-[node name="SHADERS" type="Label" parent="Credits/MarginContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("2_wwkv2")
-text = "
-SHADERS"
-horizontal_alignment = 1
+[VT323](https://fonts.google.com/specimen/VT323) by Peter Hull
 
-[node name="SHADER Credits" type="Label" parent="Credits/MarginContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("2_wwkv2")
-text = "Perfect Retro Pixel Shader - Godot 4 by ReVybes"
+  
+  
+  
 
-[node name="MODELS" type="Label" parent="Credits/MarginContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("2_wwkv2")
-text = "
-MODELS"
-horizontal_alignment = 1
+## Shaders
 
-[node name="MODELS Credits" type="Label" parent="Credits/MarginContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("2_wwkv2")
-text = "All Models are placeholder and therefore are not yet credited. Sorry"
+  
 
-[node name="TEXTURES" type="Label" parent="Credits/MarginContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("2_wwkv2")
-text = "
-TEXTURES"
-horizontal_alignment = 1
+[Perfect Retro Pixel Shader - Godot 4](https://godotshaders.com/shader/perfect-retro-pixel-shader-godot-4/) by ReVybes
 
-[node name="MODELS Credits2" type="Label" parent="Credits/MarginContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("2_wwkv2")
-text = "All textures are placeholder and therefore are not yet credited. Sorry"
+  
+  
+## Models
+
+
+
+[Deer Skull](https://sketchfab.com/3d-models/deer-skull-46aa0dc438cc4a0bb6a655a008d92fcc) by MrDumDum
+
+[Magnapinna Squid](https://sketchfab.com/3d-models/magnapinna-squid-be2b90cc7e2f436bb7a689a45aa256c1) by dotflare
+
+[Deer 3D Model](https://rigmodels.com/model.php?view=Deer-3d-model__KND9LH9Y6UY69VC80JWPZL2PW) by RIGModels
+
+[deer animated](https://www.turbosquid.com/3d-models/deer-animated-1012108) by TURBOSQUID
+
+
+
+## Sounds
+
+  
+
+[Forcefield Hum.wav](https://freesound.org/people/Zeraora/sounds/702631/) by Zeraora
+
+  
+
+[Foley_Mechanism_Light_Buzz_Short_Loop_Mono_DR05.wav](https://freesound.org/people/Nox_Sound/sounds/553075/) by Nox_Sound
+
+  
+
+[Electricity Sound](https://freesound.org/people/Duasun/sounds/712127/) by Duasun
+
+  
+
+[Fridge buzz (loop)](https://freesound.org/people/Matislav/sounds/524598/) by Matislav
+
+  
+
+[Heels.wav](https://pixabay.com/sound-effects/heelswav-14843/) by Pixabay
+
+
+
+[Deer, Reeve's Muntjac Gaywood Park first 4.5.22 00.30 SF.wav](https://freesound.org/s/674574/) by genghisattenborough
+
+
+
+[jelenie deer.wav](https://freesound.org/people/monosfera/sounds/413314/) by monosfera
+
+
+[squelch under boot watermelon](https://freesound.org/people/MaddieCooper/sounds/739191/) by MaddieCooper
+
+
+[Gore Rain.mp3](https://freesound.org/people/LucasDuff/sounds/555066/) by LucasDuff
+
+
+[Screaming beast 1](https://freesound.org/people/Valerie-Vivegnis/sounds/761611/) by Valerie-Vivegnis
+
+
+[Male Inhale scream 3](https://freesound.org/people/jorickhoofd/sounds/180302/) by jorickhoofd
+
+[Footstep_Water_03.wav](https://freesound.org/s/270429/) by LittleRobotSoundFactory
+
+[Footstep_Water_05.wav](https://freesound.org/s/270428/) by LittleRobotSoundFactory  
+
+[Footstep_Water_04.wav](https://freesound.org/s/270427/) by LittleRobotSoundFactory   
+
+[Footstep_Water_07.wav](https://freesound.org/s/270426/) by LittleRobotSoundFactory
+
+[Footstep_Water_02.wav](https://freesound.org/s/270425/) by LittleRobotSoundFactory  
+
+[Dưới Mặt Biển](https://freesound.org/s/484184/) by SieuAmThanh
+
+[Underwater Movement.wav](https://freesound.org/s/484187/) by Tim_Verberne"
+autowrap_mode = 1
 
 [node name="Credits back" type="Button" parent="Credits"]
-offset_left = 997.0
-offset_top = 519.0
-offset_right = 1107.0
-offset_bottom = 592.0
+offset_left = 39.0
+offset_top = 33.0
+offset_right = 149.0
+offset_bottom = 106.0
 theme = ExtResource("2_wwkv2")
 theme_override_fonts/font = ExtResource("3_b21va")
 theme_override_font_sizes/font_size = 64
@@ -223,15 +246,15 @@ bus = &"Music"
 
 [connection signal="pressed" from="MarginContainer/Main Menu/Options/Continue" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="MarginContainer/Main Menu/Options/Continue" to="." method="_on_continue_pressed"]
-[connection signal="pressed" from="MarginContainer/Main Menu/Options/New Game" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="MarginContainer/Main Menu/Options/New Game" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="MarginContainer/Main Menu/Options/New Game" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="MarginContainer/Main Menu/Options/Options" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="MarginContainer/Main Menu/Options/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="MarginContainer/Main Menu/Options/Credits" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="MarginContainer/Main Menu/Options/Credits" to="." method="_on_show_credits_pressed"]
 [connection signal="pressed" from="MarginContainer/Main Menu/Options/Quit" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="MarginContainer/Main Menu/Options/Quit" to="." method="_on_quit_pressed"]
-[connection signal="pressed" from="Credits/Credits back" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Credits/Credits back" to="." method="_on_credits_back_pressed"]
+[connection signal="pressed" from="Credits/Credits back" to="." method="_on_button_pressed"]
 [connection signal="screen_entered" from="Credits/VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
 [connection signal="screen_exited" from="Credits/VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

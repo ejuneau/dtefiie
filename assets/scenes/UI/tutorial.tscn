@@ -31,7 +31,7 @@ offset_right = 579.0
 offset_bottom = 514.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.188235, 0.188235, 0.188235, 1)
+color = Color(0.0235294, 0.0509804, 0.0235294, 1)
 
 [node name="Page 1" type="Control" parent="."]
 layout_mode = 1

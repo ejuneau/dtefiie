@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c0a71s75g5xh8"]
+[gd_scene load_steps=39 format=3 uid="uid://c0a71s75g5xh8"]
 
 [ext_resource type="Script" path="res://assets/scenes/player/clipboard/clipboard.gd" id="1_nilc4"]
 [ext_resource type="PackedScene" uid="uid://cbx0gw3fw65pm" path="res://assets/models/clipboard/clipboard.glb" id="2_2ghuc"]
@@ -13,6 +13,20 @@
 [ext_resource type="AudioStream" uid="uid://bgbfbi7alfp60" path="res://assets/sounds/Pen Strokes/pen05.mp3" id="9_gkxas"]
 [ext_resource type="AudioStream" uid="uid://bk1lf83gqy3ho" path="res://assets/sounds/Pen Strokes/pen06.mp3" id="10_gopaa"]
 [ext_resource type="AudioStream" uid="uid://btdboixwg1m6j" path="res://assets/sounds/Pen Strokes/pen07.mp3" id="11_mq6tn"]
+[ext_resource type="AudioStream" uid="uid://dl8x5eldjn4x7" path="res://assets/sounds/Pen Strokes Underwater/pen-stroke-underwater-01.wav" id="14_uv0sw"]
+[ext_resource type="AudioStream" uid="uid://7bik7h0bvk3o" path="res://assets/sounds/Pen Strokes Underwater/pen-stroke-underwater-02.wav" id="15_1rary"]
+[ext_resource type="AudioStream" uid="uid://bhkknoy6263qc" path="res://assets/sounds/Pen Strokes Underwater/pen-stroke-underwater-03.wav" id="16_yca54"]
+[ext_resource type="AudioStream" uid="uid://43ks13auuddl" path="res://assets/sounds/Pen Strokes Underwater/pen-stroke-underwater-04.wav" id="17_uci21"]
+[ext_resource type="AudioStream" uid="uid://y4pjjm1dwqxw" path="res://assets/sounds/Pen Strokes Underwater/pen-stroke-underwater-05.wav" id="18_2lbdm"]
+[ext_resource type="AudioStream" uid="uid://bguvdvsun5qjb" path="res://assets/sounds/Pen Strokes Underwater/pen-stroke-underwater-06.wav" id="19_81aff"]
+[ext_resource type="AudioStream" uid="uid://xg5hfql07jmt" path="res://assets/sounds/Pen Strokes Underwater/pen-stroke-underwater-07.wav" id="20_wi1o0"]
+[ext_resource type="AudioStream" uid="uid://bmoggmh6oqkgo" path="res://assets/sounds/Pen Strokes Reverb/pen-stroke-reverb-01.wav" id="21_yxnsg"]
+[ext_resource type="AudioStream" uid="uid://b1mrnqw2ru7l0" path="res://assets/sounds/Pen Strokes Reverb/pen-stroke-reverb-02.wav" id="22_hgkn0"]
+[ext_resource type="AudioStream" uid="uid://ceakhtpna0y3o" path="res://assets/sounds/Pen Strokes Reverb/pen-stroke-reverb-03.wav" id="23_vd6bc"]
+[ext_resource type="AudioStream" uid="uid://bhdqsm8n7osbl" path="res://assets/sounds/Pen Strokes Reverb/pen-stroke-reverb-04.wav" id="24_a3x7h"]
+[ext_resource type="AudioStream" uid="uid://qjlsjsd3jmu4" path="res://assets/sounds/Pen Strokes Reverb/pen-stroke-reverb-05.wav" id="25_cti0m"]
+[ext_resource type="AudioStream" uid="uid://cqdcx75ydd1wf" path="res://assets/sounds/Pen Strokes Reverb/pen-stroke-reverb-06.wav" id="26_u5k0p"]
+[ext_resource type="AudioStream" uid="uid://div4ptsrkuex0" path="res://assets/sounds/Pen Strokes Reverb/pen-stroke-reverb-07.wav" id="27_fw5d2"]
 
 [sub_resource type="Animation" id="Animation_0g8lp"]
 length = 0.001
@@ -70,64 +84,6 @@ tracks/4/keys = {
 "handle_modes": PackedInt32Array(0),
 "points": PackedFloat32Array(-0.015708, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
-}
-
-[sub_resource type="Animation" id="Animation_eeben"]
-resource_name = "Put Back"
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(-0.154, -0.25, 0, 0.25, 0, 0.265, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0.166667, 0.7)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -0.04, -0.25, 0, 0.25, 0, -0.261, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.466667, 0.833333)
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:rotation:x")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(-0.10821, -0.25, 0, 0.25, 0, -0.401426, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0.333333, 0.966667)
-}
-tracks/3/type = "bezier"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".:rotation:y")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0.253073, -0.25, 0, 0.25, 0, -0.561996, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0.2, 0.9)
-}
-tracks/4/type = "bezier"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath(".:rotation:z")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0.0628319, -0.25, 0, 0.25, 0, -0.015708, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0.4, 0.7)
 }
 
 [sub_resource type="Animation" id="Animation_uyvm2"]
@@ -188,11 +144,69 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0.4, 0.633333)
 }
 
+[sub_resource type="Animation" id="Animation_eeben"]
+resource_name = "Put Back"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-0.154, -0.25, 0, 0.25, 0, 0.265, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.166667, 0.7)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -0.04, -0.25, 0, 0.25, 0, -0.261, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.466667, 0.833333)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-0.10821, -0.25, 0, 0.25, 0, -0.401426, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.333333, 0.966667)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:rotation:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0.253073, -0.25, 0, 0.25, 0, -0.561996, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.2, 0.9)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:rotation:z")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0.0628319, -0.25, 0, 0.25, 0, -0.015708, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.4, 0.7)
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cujlj"]
 _data = {
-&"RESET": SubResource("Animation_0g8lp"),
 &"Hold Up": SubResource("Animation_uyvm2"),
-&"Put Back": SubResource("Animation_eeben")
+&"Put Back": SubResource("Animation_eeben"),
+&"RESET": SubResource("Animation_0g8lp")
 }
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_o4ahl"]
@@ -214,6 +228,28 @@ stream_3/stream = ExtResource("8_cvgfp")
 stream_4/stream = ExtResource("9_gkxas")
 stream_5/stream = ExtResource("10_gopaa")
 stream_6/stream = ExtResource("11_mq6tn")
+
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_l4hkg"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_7f73k"]
+streams_count = 7
+stream_0/stream = ExtResource("14_uv0sw")
+stream_1/stream = ExtResource("15_1rary")
+stream_2/stream = ExtResource("16_yca54")
+stream_3/stream = ExtResource("17_uci21")
+stream_4/stream = ExtResource("18_2lbdm")
+stream_5/stream = ExtResource("19_81aff")
+stream_6/stream = ExtResource("20_wi1o0")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_dperj"]
+streams_count = 7
+stream_0/stream = ExtResource("21_yxnsg")
+stream_1/stream = ExtResource("22_hgkn0")
+stream_2/stream = ExtResource("23_vd6bc")
+stream_3/stream = ExtResource("24_a3x7h")
+stream_4/stream = ExtResource("25_cti0m")
+stream_5/stream = ExtResource("26_u5k0p")
+stream_6/stream = ExtResource("27_fw5d2")
 
 [node name="Clipboard" type="Node3D"]
 script = ExtResource("1_nilc4")
@@ -525,7 +561,24 @@ width = 210.0
 transform = Transform3D(0.829037, 0.212189, -0.517371, 0, 0.92521, 0.379456, 0.559193, -0.314584, 0.767034, 0.0901148, -0.17, -0.035)
 visible = false
 
-[node name="scribble player" type="AudioStreamPlayer2D" parent="."]
+[node name="scribble player" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamRandomizer_1cdrv")
+volume_db = -80.0
+bus = &"SFX"
+
+[node name="PolyphonicPlayer" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamPolyphonic_l4hkg")
+volume_db = -80.0
+bus = &"SFX"
+
+[node name="scribble muffle player" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_7f73k")
+volume_db = -80.0
+bus = &"SFX"
+
+[node name="scribble reverb player" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_dperj")
+volume_db = -80.0
+bus = &"SFX"
 
 [connection signal="animation_finished" from="MeshInstance3D/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

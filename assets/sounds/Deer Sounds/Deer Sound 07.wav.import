@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ve82mex6h33n"
+path="res://.godot/imported/Deer Sound 07.wav-0adbe2b38184888de00e8bd0b6021302.sample"
+
+[deps]
+
+source_file="res://assets/sounds/Deer Sounds/Deer Sound 07.wav"
+dest_files=["res://.godot/imported/Deer Sound 07.wav-0adbe2b38184888de00e8bd0b6021302.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

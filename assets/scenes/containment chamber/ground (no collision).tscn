@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddfww7a86xcal"]
+
+[ext_resource type="Material" uid="uid://cdspjiqeukke3" path="res://assets/textures/metal-floor/metalFloor.tres" id="1_byjj8"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_avguv"]
+size = Vector2(8, 10)
+
+[node name="ground (no collision)" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_avguv")
+surface_material_override/0 = ExtResource("1_byjj8")

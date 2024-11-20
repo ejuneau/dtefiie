@@ -10,6 +10,9 @@ var isMoving = false
 
 var isTooBig
 
+var isWaterLevel: bool = false
+var isUnderWater: bool = false
+
 @onready var yes_tick: Label3D = $"MeshInstance3D/Assessment/Yes Box/Yes Tick"
 @onready var no_tick: Label3D = $"MeshInstance3D/Assessment/No Box/No Tick"
 
@@ -17,10 +20,17 @@ var isTooBig
 @onready var level_2_text: Node3D = $MeshInstance3D/level2text
 @onready var level_3_text: Node3D = $MeshInstance3D/level3text
 
-@onready var scribble_player: AudioStreamPlayer2D = $"scribble player"
+@onready var scribble_player: AudioStreamPlayer3D = $"scribble player"
 @onready var animation_player: AnimationPlayer = $MeshInstance3D/AnimationPlayer
 
+var scribblePlayer
 
+func _ready() -> void:
+	$"PolyphonicPlayer".play()
+	scribblePlayer = $PolyphonicPlayer.get_stream_playback()
+
+func _process(_delta: float) -> void:
+	$"scribble player".global_position = global_position
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("clipboard"):
@@ -46,10 +56,23 @@ func _unhandled_input(event: InputEvent) -> void:
 	if targetUpDown: # Only allow selections if clipboard is up
 		if event.is_action_pressed("mark_too_big"):
 			isTooBig = "true"
-			scribble_player.play()
+			if isWaterLevel:
+				if isUnderWater:
+					scribblePlayer.play_stream($"scribble muffle player".stream)
+				else:
+					scribblePlayer.play_stream($"scribble reverb player".stream)
+			else:
+				scribblePlayer.play_stream($"scribble player".stream)
+				
 		elif event.is_action_pressed("mark_not_too_big"):
 			isTooBig = "false"
-			scribble_player.play()
+			if isWaterLevel:
+				if isUnderWater:
+					scribblePlayer.play_stream($"scribble muffle player".stream)
+				else:
+					scribblePlayer.play_stream($"scribble reverb player".stream)
+			else:
+				scribblePlayer.play_stream($"scribble player".stream)
 			
 			
 		if isTooBig == "true":
